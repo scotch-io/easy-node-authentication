@@ -37,8 +37,9 @@ module.exports = function(passport) {
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
+        passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(email, password, done) {
+    function(req, email, password, done) {
 
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
@@ -81,9 +82,10 @@ module.exports = function(passport) {
     passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
-        passwordField : 'password'
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(email, password, done) { // callback with email and password from our form
+    function(req, email, password, done) { // callback with email and password from our form
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
