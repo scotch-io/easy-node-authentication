@@ -9,8 +9,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash 	 = require('connect-flash');
 
-// var configDB = require('./config/database.js');
-var configDB = require('./config/secretDatabase.js');
+var configDB = require('./config/database.js');
+// var configDB = require('./config/secretDatabase.js');
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
