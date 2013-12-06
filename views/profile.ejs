@@ -19,15 +19,16 @@
 
 	<div class="row">
 
-		<!-- LOCAL INFORMATION -->
+		<!-- FACEBOOK INFORMATION -->
 		<div class="col-sm-6">
 			<div class="well">
-				<h3><span class="fa fa-user"></span> Local</h3>
+				<h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
 
 					<p>
-						<strong>id</strong>: <%= user._id %><br>
-						<strong>email</strong>: <%= user.local.email %><br>
-						<strong>password</strong>: <%= user.local.password %>
+						<strong>id</strong>: <%= user.facebook.id %><br>
+						<strong>token</strong>: <%= user.facebook.token %><br>
+						<strong>email</strong>: <%= user.facebook.email %><br>
+						<strong>name</strong>: <%= user.facebook.name %>
 					</p>
 
 			</div>
