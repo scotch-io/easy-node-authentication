@@ -37,10 +37,8 @@ userSchema.methods.validPassword = function(password) {
 };
 
 
-// we will use .pre to hash our password before saving our user
-// we don't have to manually create our hash
-// we are hashing asynchronously so we are not blocking our application when multiple people are signing up
-userSchema.pre('save', function(next) {
+// this method hashes the password and sets the users password
+userSchema.methods.hashPassword = function(password) {
     var user = this;
 
     // hash the password
@@ -49,10 +47,9 @@ userSchema.pre('save', function(next) {
             return next(err);
 
         user.local.password = hash;
-        next();
     });
 
-});
+};
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);
