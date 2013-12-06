@@ -19,6 +19,20 @@
 
 	<div class="row">
 
+		<!-- LOCAL INFORMATION -->
+		<div class="col-sm-6">
+			<div class="well">
+				<h3><span class="fa fa-user"></span> Local</h3>
+
+					<p>
+						<strong>id</strong>: <%= user._id %><br>
+						<strong>email</strong>: <%= user.local.email %><br>
+						<strong>password</strong>: <%= user.local.password %>
+					</p>
+
+			</div>
+		</div>
+
 		<!-- FACEBOOK INFORMATION -->
 		<div class="col-sm-6">
 			<div class="well">
