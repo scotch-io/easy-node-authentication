@@ -42,7 +42,7 @@ userSchema.methods.hashPassword = function(password) {
     var user = this;
 
     // hash the password
-    bcrypt.hash(user.local.password, null, null, function(err, hash) {
+    bcrypt.hash(password, null, null, function(err, hash) {
         if (err)
             return next(err);
 
