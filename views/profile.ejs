@@ -19,30 +19,16 @@
 
 	<div class="row">
 
-		<!-- LOCAL INFORMATION -->
+		<!-- TWITTER INFORMATION -->
 		<div class="col-sm-6">
 			<div class="well">
-				<h3><span class="fa fa-user"></span> Local</h3>
+				<h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
 
 					<p>
-						<strong>id</strong>: <%= user._id %><br>
-						<strong>email</strong>: <%= user.local.email %><br>
-						<strong>password</strong>: <%= user.local.password %>
-					</p>
-
-			</div>
-		</div>
-
-		<!-- FACEBOOK INFORMATION -->
-		<div class="col-sm-6">
-			<div class="well">
-				<h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
-					<p>
-						<strong>id</strong>: <%= user.facebook.id %><br>
-						<strong>token</strong>: <%= user.facebook.token %><br>
-						<strong>email</strong>: <%= user.facebook.email %><br>
-						<strong>name</strong>: <%= user.facebook.name %>
+						<strong>id</strong>: <%= user.twitter.id %><br>
+						<strong>token</strong>: <%= user.twitter.token %><br>
+						<strong>username</strong>: <%= user.twitter.username %><br>
+						<strong>displayName</strong>: <%= user.twitter.displayName %>
 					</p>
 
 			</div>
