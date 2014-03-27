@@ -40,6 +40,8 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
+        if (email)
+            email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
         // asynchronous
         process.nextTick(function() {
@@ -73,10 +75,12 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
+        if (email)
+            email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
         // asynchronous
         process.nextTick(function() {
-            // check if the user is already logged ina
+            // if the user is not already logged in:
             if (!req.user) {
                 User.findOne({ 'local.email' :  email }, function(err, user) {
                     // if there are any errors, return the error
@@ -103,8 +107,9 @@ module.exports = function(passport) {
                     }
 
                 });
-            } else {
-
+            // if the user is logged in but has no local account...
+            } else if ( !req.user.local.email ) {
+                // ...presumably they're trying to connect a local account
                 var user            = req.user;
                 user.local.email    = email;
                 user.local.password = user.generateHash(password);
@@ -113,7 +118,9 @@ module.exports = function(passport) {
                         throw err;
                     return done(null, user);
                 });
-
+            } else {
+                // user is logged in and already has a local account. Ignore signup. (You should log out before trying to create a new account, user!)
+                return done(null, req.user);
             }
 
         });
@@ -149,7 +156,7 @@ module.exports = function(passport) {
                         if (!user.facebook.token) {
                             user.facebook.token = token;
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                            user.facebook.email = profile.emails[0].value;
+                            user.facebook.email = (profile.emails[0].value || '').toLowerCase();
 
                             user.save(function(err) {
                                 if (err)
@@ -166,7 +173,7 @@ module.exports = function(passport) {
                         newUser.facebook.id    = profile.id;
                         newUser.facebook.token = token;
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.facebook.email = profile.emails[0].value;
+                        newUser.facebook.email = (profile.emails[0].value || '').toLowerCase();
 
                         newUser.save(function(err) {
                             if (err)
@@ -183,7 +190,7 @@ module.exports = function(passport) {
                 user.facebook.id    = profile.id;
                 user.facebook.token = token;
                 user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                user.facebook.email = profile.emails[0].value;
+                user.facebook.email = (profile.emails[0].value || '').toLowerCase();
 
                 user.save(function(err) {
                     if (err)
@@ -300,7 +307,7 @@ module.exports = function(passport) {
                         if (!user.google.token) {
                             user.google.token = token;
                             user.google.name  = profile.displayName;
-                            user.google.email = profile.emails[0].value; // pull the first email
+                            user.google.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
 
                             user.save(function(err) {
                                 if (err)
@@ -316,7 +323,7 @@ module.exports = function(passport) {
                         newUser.google.id    = profile.id;
                         newUser.google.token = token;
                         newUser.google.name  = profile.displayName;
-                        newUser.google.email = profile.emails[0].value; // pull the first email
+                        newUser.google.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
 
                         newUser.save(function(err) {
                             if (err)
@@ -333,7 +340,7 @@ module.exports = function(passport) {
                 user.google.id    = profile.id;
                 user.google.token = token;
                 user.google.name  = profile.displayName;
-                user.google.email = profile.emails[0].value; // pull the first email
+                user.google.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
 
                 user.save(function(err) {
                     if (err)
