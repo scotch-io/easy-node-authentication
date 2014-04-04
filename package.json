@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "homepage": "https://github.com/PriceBeater/Share",
-  "main": "server.js",
+  "main": "main.js",
   "scripts": {
     "start": "node main.js"
   },
