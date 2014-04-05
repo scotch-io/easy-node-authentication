@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <title>PriceBeater Share</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Share Page</h1>
+        <a href="/profile" class="btn btn-default btn-sm">Profile</a>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="/share" method="post">
+                <textarea name="txt-content"></textarea>
+                <input name="img-0" type="file">
+                <input name="img-1" type="file">
+                <input name="img-2" type="file">
+                <input name="img-3" type="file">
+                <input name="img-4" type="file">
+                <input name="img-5" type="file">
+                <input name="img-6" type="file">
+                <input name="img-7" type="file">
+                <input name="img-8" type="file">
+                <input name="img-9" type="file">
+                <% if (user.twitter.token) { %>
+                    <input type="checkbox" name="sns-twitter">Twitter
+                <% } %>
+                <% if (user.facebook.token) { %>
+                    <input type="checkbox" name="sns-facebook">Facebook
+                <% } %>
+                <% if (0) { %>
+                    <input type="checkbox" name="sns-pinterest">Pinterest
+                <% } %>
+                <% if (0) { %>
+                    <input type="checkbox" name="sns-renren">RenRen
+                <% } %>
+                <% if (0) { %>
+                    <input type="checkbox" name="sns-weibo">Weibo
+                <% } %>
+                <br>
+                <button id="btn-share" ng-click="share()" type="submit">Share</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

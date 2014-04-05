@@ -13,6 +13,7 @@
 
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+		<a href="/share" class="btn btn-default btn-sm">Share</a>
 		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 	</div>
 
@@ -71,6 +72,7 @@
 					<p>
 						<strong>id</strong>: <%= user.twitter.id %><br>
 						<strong>token</strong>: <%= user.twitter.token %><br>
+						<strong>token secret</strong>: <%= user.twitter.tokenSecret %><br>
 						<strong>display name</strong>: <%= user.twitter.displayName %><br>
 						<strong>username</strong>: <%= user.twitter.username %>
 					</p>

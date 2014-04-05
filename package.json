@@ -19,6 +19,8 @@
     "passport-google-oauth" : "~0.1.5",
     "connect-flash" : "~0.1.1",
     "bcrypt-nodejs" : "latest",
+    "fb": "*",
+    "node-twitter-api": "*",
 
     "mysql": "*",
     "async": "~0.2.9",
