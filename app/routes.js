@@ -51,6 +51,9 @@ module.exports = function(app, passport) {
 		//     }
 		// );
 
+		// pinterest
+		// http://www.nextscripts.com/pinterest-automated-posting/
+
 
 	});
 
