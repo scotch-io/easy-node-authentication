@@ -54,7 +54,7 @@ module.exports = function(app, passport) {
 		// pinterest
 		// http://www.nextscripts.com/pinterest-automated-posting/
 
-		// var request = require('request');
+		var request = require('request');
 
 		// request.post(
   //           'https://api.renren.com/v2/feed/put',
@@ -70,8 +70,17 @@ module.exports = function(app, passport) {
   //           }
   //       );
 
+		request.post(
+            'https://api.weibo.com/2/statuses/update.json',
+            {form: {
+            	access_token: req.user.weibo.token,
+            	status: 'Fucking Sina Weibo!',
+            	rip: '75.126.104.238' // $ ping goyourmommy.com # by @leaskh
+           	}},
+            function (error, response, body) {
 
-
+            }
+        );
 
 	});
 
