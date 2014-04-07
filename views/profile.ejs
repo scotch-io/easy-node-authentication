@@ -105,6 +105,27 @@
 
 			</div>
 		</div>
+
+		<!-- RENREN INFORMATION -->
+		<div class="col-sm-6">
+			<div class="well">
+				<h3 class="text-danger"><span class="fa fa-renren-plus"></span> Renren</h3>
+
+				<% if (user.renren.token) { %>
+					<p>
+						<strong>id</strong>: <%= user.renren.id %><br>
+						<strong>token</strong>: <%= user.renren.token %><br>
+						<strong>refreshToken</strong>: <%= user.renren.refreshToken %><br>
+						<strong>name</strong>: <%= user.renren.name %>
+					</p>
+
+					<a href="/unlink/renren" class="btn btn-danger">Unlink</a>
+				<% } else { %>
+					<a href="/connect/renren" class="btn btn-danger">Connect Renren</a>
+				<% } %>
+
+			</div>
+		</div>
 	</div>
 
 </div>

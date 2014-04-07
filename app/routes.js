@@ -138,6 +138,19 @@ module.exports = function(app, passport) {
 				failureRedirect : '/'
 			}));
 
+
+	// renren ---------------------------------
+
+		// send to renren to do the authentication
+		app.get('/auth/renren', passport.authenticate('renren', {}));
+
+		// the callback after renren has authenticated the user
+		app.get('/auth/renren/callback',
+			passport.authenticate('renren', {
+				successRedirect : '/share',
+				failureRedirect : '/'
+			}));
+
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
@@ -147,7 +160,7 @@ module.exports = function(app, passport) {
 			res.render('connect-local.ejs', { message: req.flash('loginMessage') });
 		});
 		app.post('/connect/local', passport.authenticate('local-signup', {
-			successRedirect : '/share', // redirect to the secure share section
+			successRedirect : '/profile', // redirect to the secure share section
 			failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
 		}));
@@ -160,7 +173,7 @@ module.exports = function(app, passport) {
 		// handle the callback after facebook has authorized the user
 		app.get('/connect/facebook/callback',
 			passport.authorize('facebook', {
-				successRedirect : '/share',
+				successRedirect : '/profile',
 				failureRedirect : '/'
 			}));
 
@@ -172,7 +185,7 @@ module.exports = function(app, passport) {
 		// handle the callback after twitter has authorized the user
 		app.get('/connect/twitter/callback',
 			passport.authorize('twitter', {
-				successRedirect : '/share',
+				successRedirect : '/profile',
 				failureRedirect : '/'
 			}));
 
@@ -185,7 +198,21 @@ module.exports = function(app, passport) {
 		// the callback after google has authorized the user
 		app.get('/connect/google/callback',
 			passport.authorize('google', {
-				successRedirect : '/share',
+				successRedirect : '/profile',
+				failureRedirect : '/'
+			}));
+
+
+	// renren ---------------------------------
+
+		// send to renren to do the authentication
+		app.get('/connect/renren', passport.authorize('renren', { scope : ['publish_blog', 'publish_feed', 'publish_share'
+] }));
+
+		// the callback after renren has authorized the user
+		app.get('/connect/renren/callback',
+			passport.authorize('renren', {
+				successRedirect : '/profile',
 				failureRedirect : '/'
 			}));
 
@@ -202,7 +229,7 @@ module.exports = function(app, passport) {
 		user.local.email    = undefined;
 		user.local.password = undefined;
 		user.save(function(err) {
-			res.redirect('/share');
+			res.redirect('/profile');
 		});
 	});
 
@@ -211,7 +238,7 @@ module.exports = function(app, passport) {
 		var user            = req.user;
 		user.facebook.token = undefined;
 		user.save(function(err) {
-			res.redirect('/share');
+			res.redirect('/profile');
 		});
 	});
 
@@ -220,7 +247,7 @@ module.exports = function(app, passport) {
 		var user           = req.user;
 		user.twitter.token = undefined;
 		user.save(function(err) {
-			res.redirect('/share');
+			res.redirect('/profile');
 		});
 	});
 
@@ -229,10 +256,18 @@ module.exports = function(app, passport) {
 		var user          = req.user;
 		user.google.token = undefined;
 		user.save(function(err) {
-			res.redirect('/share');
+			res.redirect('/profile');
 		});
 	});
 
+	// renren ---------------------------------
+	app.get('/unlink/renren', function(req, res) {
+		var user          = req.user;
+		user.renren.token = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
 
 };
 

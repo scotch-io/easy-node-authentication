@@ -24,15 +24,17 @@ build/Release
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
 
-# Added by Easy Node Authentication
+# Added by Easy Node Authentication {
 *.csv
 *.dat
 *.out
 *.gz
-
 results
-
 npm-debug.log
-
 config/secretDatabase.js
 config/auth.js
+# }
+
+# Added by @leaskh {
+!node_modules/passport-renren
+# }
