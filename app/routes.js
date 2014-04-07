@@ -143,7 +143,6 @@ module.exports = function(app, passport) {
 				failureRedirect : '/'
 			}));
 
-
 	// google ---------------------------------
 
 		// send to google to do the authentication
@@ -156,7 +155,6 @@ module.exports = function(app, passport) {
 				failureRedirect : '/'
 			}));
 
-
 	// renren ---------------------------------
 
 		// send to renren to do the authentication
@@ -165,6 +163,18 @@ module.exports = function(app, passport) {
 		// the callback after renren has authenticated the user
 		app.get('/auth/renren/callback',
 			passport.authenticate('renren', {
+				successRedirect : '/share',
+				failureRedirect : '/'
+			}));
+
+	// weibo ---------------------------------
+
+		// send to weibo to do the authentication
+		app.get('/auth/weibo', passport.authenticate('weibo', {}));
+
+		// the callback after weibo has authenticated the user
+		app.get('/auth/weibo/callback',
+			passport.authenticate('weibo', {
 				successRedirect : '/share',
 				failureRedirect : '/'
 			}));
@@ -234,6 +244,19 @@ module.exports = function(app, passport) {
 				failureRedirect : '/'
 			}));
 
+
+	// weibo ---------------------------------
+
+		// send to weibo to do the authentication
+		app.get('/connect/weibo', passport.authorize('weibo', {}));
+
+		// the callback after weibo has authorized the user
+		app.get('/connect/weibo/callback',
+			passport.authorize('weibo', {
+				successRedirect : '/profile',
+				failureRedirect : '/'
+			}));
+
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
 // =============================================================================
@@ -282,6 +305,15 @@ module.exports = function(app, passport) {
 	app.get('/unlink/renren', function(req, res) {
 		var user          = req.user;
 		user.renren.token = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
+
+	// weibo ---------------------------------
+	app.get('/unlink/weibo', function(req, res) {
+		var user         = req.user;
+		user.weibo.token = undefined;
 		user.save(function(err) {
 			res.redirect('/profile');
 		});

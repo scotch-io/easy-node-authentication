@@ -33,6 +33,12 @@ var userSchema = mongoose.Schema({
         token        : String,
         refreshToken : String,
         name         : String
+    },
+    weibo            : {
+        id           : String,
+        token        : String,
+        username     : String,
+        nickname     : String
     }
 
 });

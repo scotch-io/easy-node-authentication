@@ -109,7 +109,7 @@
 		<!-- RENREN INFORMATION -->
 		<div class="col-sm-6">
 			<div class="well">
-				<h3 class="text-danger"><span class="fa fa-renren-plus"></span> Renren</h3>
+				<h3 class="text-danger"><span class="fa fa-renren"></span> Renren</h3>
 
 				<% if (user.renren.token) { %>
 					<p>
@@ -126,6 +126,28 @@
 
 			</div>
 		</div>
+
+		<!-- WEIBO INFORMATION -->
+		<div class="col-sm-6">
+			<div class="well">
+				<h3 class="text-danger"><span class="fa fa-weibo"></span> Weibo</h3>
+
+				<% if (user.weibo.token) { %>
+					<p>
+						<strong>id</strong>: <%= user.weibo.id %><br>
+						<strong>token</strong>: <%= user.weibo.token %><br>
+						<strong>username</strong>: <%= user.weibo.username %><br>
+						<strong>nickname</strong>: <%= user.weibo.nickname %>
+					</p>
+
+					<a href="/unlink/weibo" class="btn btn-danger">Unlink</a>
+				<% } else { %>
+					<a href="/connect/weibo" class="btn btn-danger">Connect Weibo</a>
+				<% } %>
+
+			</div>
+		</div>
+
 	</div>
 
 </div>
