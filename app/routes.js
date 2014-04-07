@@ -54,6 +54,24 @@ module.exports = function(app, passport) {
 		// pinterest
 		// http://www.nextscripts.com/pinterest-automated-posting/
 
+		// var request = require('request');
+
+		// request.post(
+  //           'https://api.renren.com/v2/feed/put',
+  //           {form: {
+  //           	access_token: req.user.renren.token,
+  //           	message: 'Hello from renren SDK!',
+  //           	title: '123123',
+  //           	description: '1231',
+  //           	targetUrl: 'http://www.leaskh.com'
+  //          	}},
+  //           function (error, response, body) {
+
+  //           }
+  //       );
+
+
+
 
 	});
 
