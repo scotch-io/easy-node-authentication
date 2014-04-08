@@ -1,4 +1,4 @@
-Share
+Bullhorn
 =====
 
 Share something to multiple social networks with one single click.
