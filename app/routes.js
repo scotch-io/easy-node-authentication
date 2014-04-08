@@ -7,13 +7,13 @@ module.exports = function(app, passport) {
 		res.render('index.ejs');
 	});
 
-	// SHARE SECTION =========================
-	app.get('/share', isLoggedIn, function(req, res) {
-		res.render('share.ejs', {
+	// BULLHORN SECTION =========================
+	app.get('/bullhorn', isLoggedIn, function(req, res) {
+		res.render('bullhorn.ejs', {
 			user : req.user
 		});
 	});
-	app.post('/share', isLoggedIn, function(req, res) {
+	app.post('/bullhorn', isLoggedIn, function(req, res) {
 		console.log(req);
 
 		// var FB = require('fb');
@@ -110,7 +110,7 @@ module.exports = function(app, passport) {
 
 		// process the login form
 		app.post('/login', passport.authenticate('local-login', {
-			successRedirect : '/share', // redirect to the secure share section
+			successRedirect : '/bullhorn', // redirect to the secure bullhorn section
 			failureRedirect : '/login', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
 		}));
@@ -123,7 +123,7 @@ module.exports = function(app, passport) {
 
 		// process the signup form
 		app.post('/signup', passport.authenticate('local-signup', {
-			successRedirect : '/share', // redirect to the secure share section
+			successRedirect : '/bullhorn', // redirect to the secure bullhorn section
 			failureRedirect : '/signup', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
 		}));
@@ -136,7 +136,7 @@ module.exports = function(app, passport) {
 		// handle the callback after facebook has authenticated the user
 		app.get('/auth/facebook/callback',
 			passport.authenticate('facebook', {
-				successRedirect : '/share',
+				successRedirect : '/bullhorn',
 				failureRedirect : '/'
 			}));
 
@@ -148,19 +148,19 @@ module.exports = function(app, passport) {
 		// handle the callback after twitter has authenticated the user
 		app.get('/auth/twitter/callback',
 			passport.authenticate('twitter', {
-				successRedirect : '/share',
+				successRedirect : '/bullhorn',
 				failureRedirect : '/'
 			}));
 
 	// google ---------------------------------
 
 		// send to google to do the authentication
-		app.get('/auth/google', passport.authenticate('google', { scope : ['share', 'email'] }));
+		app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
 		// the callback after google has authenticated the user
 		app.get('/auth/google/callback',
 			passport.authenticate('google', {
-				successRedirect : '/share',
+				successRedirect : '/bullhorn',
 				failureRedirect : '/'
 			}));
 
@@ -172,7 +172,7 @@ module.exports = function(app, passport) {
 		// the callback after renren has authenticated the user
 		app.get('/auth/renren/callback',
 			passport.authenticate('renren', {
-				successRedirect : '/share',
+				successRedirect : '/bullhorn',
 				failureRedirect : '/'
 			}));
 
@@ -184,7 +184,7 @@ module.exports = function(app, passport) {
 		// the callback after weibo has authenticated the user
 		app.get('/auth/weibo/callback',
 			passport.authenticate('weibo', {
-				successRedirect : '/share',
+				successRedirect : '/bullhorn',
 				failureRedirect : '/'
 			}));
 
@@ -197,7 +197,7 @@ module.exports = function(app, passport) {
 			res.render('connect-local.ejs', { message: req.flash('loginMessage') });
 		});
 		app.post('/connect/local', passport.authenticate('local-signup', {
-			successRedirect : '/profile', // redirect to the secure share section
+			successRedirect : '/profile', // redirect to the secure profile section
 			failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
 		}));
@@ -230,7 +230,7 @@ module.exports = function(app, passport) {
 	// google ---------------------------------
 
 		// send to google to do the authentication
-		app.get('/connect/google', passport.authorize('google', { scope : ['share', 'email'] }));
+		app.get('/connect/google', passport.authorize('google', { scope : ['profile', 'email'] }));
 
 		// the callback after google has authorized the user
 		app.get('/connect/google/callback',
