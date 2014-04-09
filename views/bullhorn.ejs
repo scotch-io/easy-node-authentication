@@ -100,7 +100,7 @@
         var filesInputs = $('.file-input');
         data.append('txt-content', $('#txt-content').val());
         for (var i = 0; i < snsCheckBox.length; i++) {
-            data.append(snsCheckBox[i].name, snsCheckBox[i].value);
+            data.append(snsCheckBox[i].name, snsCheckBox[i].checked ? snsCheckBox[i].value : '');
         }
         for (i = 0; i < filesInputs.length; i++) {
             if ($(filesInputs[i]).val().length > 0) {
