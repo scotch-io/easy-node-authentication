@@ -31,12 +31,12 @@ node_modules
 *.gz
 results
 npm-debug.log
-config/secretDatabase.js
-config/auth.js
 # }
 
 # Added by @leaskh {
 !node_modules/passport-renren
 uploads/*
+config/auth.js
+config/database.js
 config/aws.json
 # }
