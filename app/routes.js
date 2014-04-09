@@ -33,7 +33,7 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
-    app.post('/bullhorn', isLoggedIn, function(req, res) {
+    app.post('/pin', isLoggedIn, function(req, res) {
         var imgUrls = [];
         var files   = [];
         for (var i in req.files) {
@@ -41,6 +41,63 @@ module.exports = function(app, passport) {
         }
 
         var content = req.body['txt-content'] || '';
+        if (!content) {
+            var error = 'Content can not be empty!';
+            res.json({'error': error});
+            console.log(error);
+            return;
+        }
+
+        function share() {
+            if (!imgUrls.length) {
+                res.json({error: 'No images to Pin!'});
+                return;
+            }
+            res.json({data: imgUrls});
+        }
+
+        async.each(files, function(file, callback) {
+            if (!file.size) {
+                callback();
+                return;
+            }
+            fs.readFile(file.path, function(err, file_buffer) {
+                var s3Params = {
+                    Bucket      : configAuth.awsAuth.bucket,
+                    Key         : randomString(32) + '-' + file.name.replace(/ /g, '_'),
+                    ACL         : 'public-read',
+                    Body        : file_buffer,
+                    ContentType : file.type || 'image/png'
+                };
+                s3.putObject(s3Params, function (perr, pres) {
+                    if (perr) {
+                        callback('[AWS] Error uploading data: ', perr);
+                        return perr;
+                    }
+                    var imgUrl = 'http://' + s3Params.Bucket + '/' + s3Params.Key;
+                    imgUrls.push(imgUrl);
+                    callback();
+                });
+            });
+        }, function(err) {
+            // if any of the saves produced an error, err would equal that error
+            if (err) {
+                // One of the iterations produced an error.
+                // All processing will now stop.
+                res.json({'error': err});
+                console.log(err);
+                return;
+            }
+            share();
+        });
+    });
+    app.post('/shout', isLoggedIn, function(req, res) {
+        var imgUrls = [];
+        var files   = [];
+        for (var i in req.files) {
+            files.push(req.files[i]);
+        }
+
         var toSNS   = [];
         if (req.body['sns-facebook'] === 'on') {
             toSNS.push('facebook');
@@ -55,6 +112,7 @@ module.exports = function(app, passport) {
             toSNS.push('weibo');
         }
 
+        var content = req.body['txt-content'] || '';
         if (!content) {
             var error = 'Content can not be empty!';
             res.json({'error': error});

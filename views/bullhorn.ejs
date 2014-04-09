@@ -35,37 +35,37 @@
     <div class="row">
         <div class="col-sm-12">
             <div id="form">
-                <form action="/bullhorn" method="post" enctype="multipart/form-data">
-                    <textarea id="txt-content" name="txt-content" placeholder="Share something here!"></textarea>
-                    <br><br>
-                    <div id="actions">
-                        <% if (user.twitter.token) { %>
-                            <input type="checkbox" id="sns-twitter" name="sns-twitter" checked="checked">
-                            <label for="sns-twitter"> Twitter </label>
-                        <% } %>
-                        <% if (user.facebook.token) { %>
-                            <input type="checkbox" id="sns-facebook" name="sns-facebook" checked="checked">
-                            <label for="sns-facebook"> Facebook </label>
-                        <% } %>
-                        <% if (0) { %>
-                            <input type="checkbox" id="sns-pinterest" name="sns-pinterest" checked="checked">
-                            <label for="sns-pinterest"> Pinterest </label>
-                        <% } %>
-                        <% if (user.renren.token) { %>
-                            <input type="checkbox" id="sns-renren" name="sns-renren" checked="checked">
-                            <label for="sns-renren"> Renren </label>
-                        <% } %>
-                        <% if (user.weibo.token) { %>
-                            <input type="checkbox" id="sns-weibo" name="sns-weibo" checked="checked">
-                            <label for="sns-weibo"> Weibo </label>
-                        <% } %>
-                        <button id="btn-share" ng-click="share()" type="submit">Share</button>
-                    </div>
-                    <br>
-                    <div id="files">
-                        <input name="img-0" type="file" class="file-input">
-                    </div>
-                </form>
+                <textarea id="txt-content" name="txt-content" placeholder="Share something here!"></textarea>
+                <br><br>
+                <div id="actions">
+                    <% if (user.twitter.token) { %>
+                        <input type="checkbox" id="sns-twitter" name="sns-twitter" checked="checked">
+                        <label for="sns-twitter"> Twitter </label>
+                    <% } %>
+                    <% if (user.facebook.token) { %>
+                        <input type="checkbox" id="sns-facebook" name="sns-facebook" checked="checked">
+                        <label for="sns-facebook"> Facebook </label>
+                    <% } %>
+                    <% if (0) { %>
+                        <input type="checkbox" id="sns-pinterest" name="sns-pinterest" checked="checked">
+                        <label for="sns-pinterest"> Pinterest </label>
+                    <% } %>
+                    <% if (user.renren.token) { %>
+                        <input type="checkbox" id="sns-renren" name="sns-renren" checked="checked">
+                        <label for="sns-renren"> Renren </label>
+                    <% } %>
+                    <% if (user.weibo.token) { %>
+                        <input type="checkbox" id="sns-weibo" name="sns-weibo" checked="checked">
+                        <label for="sns-weibo"> Weibo </label>
+                    <% } %>
+                    <button id="btn-pin" type="button">Pinterest</button>
+                    &nbsp;&nbsp;
+                    <button id="btn-shout" type="button">Shout</button>
+                </div>
+                <br>
+                <div id="files">
+                    <input name="img-0" type="file" class="file-input">
+                </div>
             </div>
         </div>
     </div>
@@ -86,6 +86,66 @@
         if (needToAdd) {
             $('#files').append('<input name="img-' + (++maxId) + '" type="file" class="file-input">');
         }
+    });
+
+    $('#btn-shout').on('click', function() {
+        var data = new FormData();
+        var snsCheckBox = $('[name^=sns-]');
+        var filesInputs = $('.file-input');
+        data.append('txt-content', $('#txt-content').val());
+        for (var i = 0; i < snsCheckBox.length; i++) {
+            data.append(snsCheckBox[i].name, snsCheckBox[i].value);
+        }
+        for (i = 0; i < filesInputs.length; i++) {
+            if ($(filesInputs[i]).val().length > 0) {
+                data.append(filesInputs[i].name, filesInputs[i].files[0]);
+            }
+        }
+        $.ajax({
+            url: '/shout',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function(data) {
+                if (!data || data.error) {
+                    alert(data.error);
+                    return;
+                }
+                alert('OK!');
+            }
+        });
+    });
+
+    $('#btn-pin').on('click', function() {
+        var data = new FormData();
+        var filesInputs = $('.file-input');
+        var content     = $('#txt-content').val();
+        data.append('txt-content', content);
+        for (i = 0; i < filesInputs.length; i++) {
+            if ($(filesInputs[i]).val().length > 0) {
+                data.append(filesInputs[i].name, filesInputs[i].files[0]);
+            }
+        }
+        $.ajax({
+            url: '/pin',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function(data) {
+                if (!data || data.error) {
+                    alert(data.error);
+                    return;
+                }
+                window.location.href = 'http://www.pinterest.com/pin/create/button/'
+                                     + '?url='         + encodeURIComponent(data.data[0])
+                                     + '&media='       + encodeURIComponent(data.data[0])
+                                     + '&description=' + encodeURIComponent(content);
+            }
+        });
     });
 </script>
 </body>
