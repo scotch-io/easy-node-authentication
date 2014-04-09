@@ -9,11 +9,19 @@
             padding-top:80px;
             word-wrap:break-word;
         }
-        #txt-content {
 
+        #form {
+            width: 730px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
+        #txt-content {
+            width: 100%;
+            height: 137px;
+        }
     </style>
+    <script src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -26,39 +34,59 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form action="/bullhorn" method="post" enctype="multipart/form-data">
-                <textarea id="txt-content" name="txt-content"></textarea>
-                <input name="img-0" type="file">
-                <input name="img-1" type="file">
-                <input name="img-2" type="file">
-                <input name="img-3" type="file">
-                <input name="img-4" type="file">
-                <input name="img-5" type="file">
-                <input name="img-6" type="file">
-                <input name="img-7" type="file">
-                <input name="img-8" type="file">
-                <input name="img-9" type="file">
-                <% if (user.twitter.token) { %>
-                    <input type="checkbox" name="sns-twitter">Twitter
-                <% } %>
-                <% if (user.facebook.token) { %>
-                    <input type="checkbox" name="sns-facebook">Facebook
-                <% } %>
-                <% if (0) { %>
-                    <input type="checkbox" name="sns-pinterest">Pinterest
-                <% } %>
-                <% if (user.renren.token) { %>
-                    <input type="checkbox" name="sns-renren">Renren
-                <% } %>
-                <% if (user.weibo.token) { %>
-                    <input type="checkbox" name="sns-weibo">Weibo
-                <% } %>
-                <br>
-                <button id="btn-share" ng-click="share()" type="submit">Share</button>
-            </form>
+            <div id="form">
+                <form action="/bullhorn" method="post" enctype="multipart/form-data">
+                    <textarea id="txt-content" name="txt-content" placeholder="Share something here!"></textarea>
+                    <br><br>
+                    <div id="actions">
+                        <% if (user.twitter.token) { %>
+                            <input type="checkbox" id="sns-twitter" name="sns-twitter" checked="checked">
+                            <label for="sns-twitter"> Twitter </label>
+                        <% } %>
+                        <% if (user.facebook.token) { %>
+                            <input type="checkbox" id="sns-facebook" name="sns-facebook" checked="checked">
+                            <label for="sns-facebook"> Facebook </label>
+                        <% } %>
+                        <% if (0) { %>
+                            <input type="checkbox" id="sns-pinterest" name="sns-pinterest" checked="checked">
+                            <label for="sns-pinterest"> Pinterest </label>
+                        <% } %>
+                        <% if (user.renren.token) { %>
+                            <input type="checkbox" id="sns-renren" name="sns-renren" checked="checked">
+                            <label for="sns-renren"> Renren </label>
+                        <% } %>
+                        <% if (user.weibo.token) { %>
+                            <input type="checkbox" id="sns-weibo" name="sns-weibo" checked="checked">
+                            <label for="sns-weibo"> Weibo </label>
+                        <% } %>
+                        <button id="btn-share" ng-click="share()" type="submit">Share</button>
+                    </div>
+                    <br>
+                    <div id="files">
+                        <input name="img-0" type="file" class="file-input">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
 </div>
+<script>
+    $('#files').on('change', '.file-input', function() {
+        var filesInputs = $('.file-input');
+        var needToAdd   = true;
+        var maxId       = 0;
+        for (var i = 0; i < filesInputs.length; i++) {
+            if (!$(filesInputs[i]).val().length) {
+                needToAdd = false;
+            }
+            var curId = parseInt(filesInputs[i].name.replace(/^img\-/, ''));
+            maxId = curId > maxId ? curId : maxId;
+        }
+        if (needToAdd) {
+            $('#files').append('<input name="img-' + (++maxId) + '" type="file" class="file-input">');
+        }
+    });
+</script>
 </body>
 </html>
