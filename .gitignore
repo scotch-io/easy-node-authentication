@@ -37,4 +37,6 @@ config/auth.js
 
 # Added by @leaskh {
 !node_modules/passport-renren
+uploads/*
+config/aws.json
 # }

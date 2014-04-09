@@ -5,7 +5,14 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
-        body        { padding-top:80px; word-wrap:break-word; }
+        body {
+            padding-top:80px;
+            word-wrap:break-word;
+        }
+        #txt-content {
+
+        }
+
     </style>
 </head>
 <body>
@@ -19,8 +26,8 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form action="/bullhorn" method="post">
-                <textarea name="txt-content"></textarea>
+            <form action="/bullhorn" method="post" enctype="multipart/form-data">
+                <textarea id="txt-content" name="txt-content"></textarea>
                 <input name="img-0" type="file">
                 <input name="img-1" type="file">
                 <input name="img-2" type="file">
@@ -41,7 +48,7 @@
                     <input type="checkbox" name="sns-pinterest">Pinterest
                 <% } %>
                 <% if (user.renren.token) { %>
-                    <input type="checkbox" name="sns-renren">RenRen
+                    <input type="checkbox" name="sns-renren">Renren
                 <% } %>
                 <% if (user.weibo.token) { %>
                     <input type="checkbox" name="sns-weibo">Weibo

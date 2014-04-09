@@ -23,11 +23,11 @@
     "node-twitter-api": "*",
     "passport-renren": "*",
     "passport-weibo-2": "*",
+    "aws-sdk": "*",
+    "request": "*",
 
-    "mysql": "*",
     "async": "~0.2.9",
     "redis": "*",
-    "request": "*",
     "http": "*"
   }
 }

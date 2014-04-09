@@ -10,7 +10,7 @@ var WeiboStrategy    = require('passport-weibo-2').Strategy;
 var User       = require('../app/models/user');
 
 // load the auth variables
-var configAuth = require('./auth'); // use this one for testing
+var configAuth = require('./auth');
 
 module.exports = function(passport) {
 
