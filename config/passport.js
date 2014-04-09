@@ -142,6 +142,11 @@ module.exports = function(passport) {
     },
     function(req, token, refreshToken, profile, done) {
 
+        var expires_at = (
+            Math.ceil(new Date().getTime() / 1000)
+          + configAuth.facebookAuth.expire
+        ).toString();
+
         // asynchronous
         process.nextTick(function() {
 
@@ -156,9 +161,10 @@ module.exports = function(passport) {
 
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.facebook.token) {
-                            user.facebook.token = token;
-                            user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                            user.facebook.email = (profile.emails[0].value || '').toLowerCase();
+                            user.facebook.token      = token;
+                            user.facebook.name       = profile.name.givenName + ' ' + profile.name.familyName;
+                            user.facebook.email      = (profile.emails[0].value || '').toLowerCase();
+                            user.facebook.expires_at = expires_at;
 
                             user.save(function(err) {
                                 if (err)
@@ -170,12 +176,13 @@ module.exports = function(passport) {
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user, create them
-                        var newUser            = new User();
+                        var newUser                 = new User();
 
-                        newUser.facebook.id    = profile.id;
-                        newUser.facebook.token = token;
-                        newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.facebook.email = (profile.emails[0].value || '').toLowerCase();
+                        newUser.facebook.id         = profile.id;
+                        newUser.facebook.token      = token;
+                        newUser.facebook.name       = profile.name.givenName + ' ' + profile.name.familyName;
+                        newUser.facebook.email      = (profile.emails[0].value || '').toLowerCase();
+                        newUser.facebook.expires_at = expires_at;
 
                         newUser.save(function(err) {
                             if (err)
@@ -187,12 +194,13 @@ module.exports = function(passport) {
 
             } else {
                 // user already exists and is logged in, we have to link accounts
-                var user            = req.user; // pull the user out of the session
+                var user                 = req.user; // pull the user out of the session
 
-                user.facebook.id    = profile.id;
-                user.facebook.token = token;
-                user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                user.facebook.email = (profile.emails[0].value || '').toLowerCase();
+                user.facebook.id         = profile.id;
+                user.facebook.token      = token;
+                user.facebook.name       = profile.name.givenName + ' ' + profile.name.familyName;
+                user.facebook.email      = (profile.emails[0].value || '').toLowerCase();
+                user.facebook.expires_at = expires_at;
 
                 user.save(function(err) {
                     if (err)
@@ -447,6 +455,11 @@ module.exports = function(passport) {
     },
     function(req, accessToken, refreshToken, profile, done) {
 
+        var expires_at = (
+            Math.ceil(new Date().getTime() / 1000)
+          + configAuth.weiboAuth.expire
+        ).toString();
+
         // asynchronous
         process.nextTick(function() {
 
@@ -460,10 +473,10 @@ module.exports = function(passport) {
                     if (user) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.weibo.token) {
-                            user.weibo.token    = accessToken;
-                            user.weibo.username = profile.username;
-                            user.weibo.nickname = profile.nickname;
-
+                            user.weibo.token      = accessToken;
+                            user.weibo.username   = profile.username;
+                            user.weibo.nickname   = profile.nickname;
+                            user.weibo.expires_at = expires_at;
 
                             user.save(function(err) {
                                 if (err)
@@ -475,12 +488,13 @@ module.exports = function(passport) {
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user, create them
-                        var newUser            = new User();
+                        var newUser              = new User();
 
-                        newUser.weibo.id       = profile.id;
-                        newUser.weibo.token    = accessToken;
-                        newUser.weibo.username = profile.username;
-                        newUser.weibo.nickname = profile.nickname;
+                        newUser.weibo.id         = profile.id;
+                        newUser.weibo.token      = accessToken;
+                        newUser.weibo.username   = profile.username;
+                        newUser.weibo.nickname   = profile.nickname;
+                        newUser.weibo.expires_at = expires_at;
 
                         newUser.save(function(err) {
                             if (err)
@@ -492,12 +506,13 @@ module.exports = function(passport) {
 
             } else {
                 // user already exists and is logged in, we have to link accounts
-                var user            = req.user; // pull the user out of the session
+                var user              = req.user; // pull the user out of the session
 
-                user.weibo.id       = profile.id;
-                user.weibo.token    = accessToken;
-                user.weibo.username = profile.username;
-                user.weibo.nickname = profile.nickname;
+                user.weibo.id         = profile.id;
+                user.weibo.token      = accessToken;
+                user.weibo.username   = profile.username;
+                user.weibo.nickname   = profile.nickname;
+                user.weibo.expires_at = expires_at;
 
                 user.save(function(err) {
                     if (err)

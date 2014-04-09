@@ -29,8 +29,17 @@ module.exports = function(app, passport) {
 
     // BULLHORN SECTION =========================
     app.get('/bullhorn', isLoggedIn, function(req, res) {
+        var snsExpire = {weibo: false, facebook: false};
+        for (var i in snsExpire) {
+            if (req.user[i].token) {
+                req.user[i].expires_at = req.user[i].expires_at || 0;
+                req.user[i].expires_at = parseInt(req.user[i].expires_at);
+                snsExpire[i] = req.user[i].expires_at <= Math.ceil(new Date().getTime() / 1000);
+            }
+        }
         res.render('bullhorn.ejs', {
-            user : req.user
+            user    : req.user,
+            expired : snsExpire
         });
     });
     app.post('/pin', isLoggedIn, function(req, res) {
@@ -269,8 +278,18 @@ module.exports = function(app, passport) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
+        var snsExpire = {weibo: false, facebook: false};
+        for (var i in snsExpire) {
+            if (req.user[i].token) {
+                req.user[i].expires_at = req.user[i].expires_at || 0;
+                req.user[i].expires_at = parseInt(req.user[i].expires_at);
+                snsExpire[i] = req.user[i].expires_at <= Math.ceil(new Date().getTime() / 1000);
+            }
+        }
+
         res.render('profile.ejs', {
-            user : req.user
+            user    : req.user,
+            expired : snsExpire
         });
     });
 

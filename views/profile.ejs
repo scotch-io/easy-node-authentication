@@ -54,7 +54,12 @@
 						<strong>name</strong>: <%= user.facebook.name %><br>
 					</p>
 
+					<% if (expired.facebook) { %>
+                        <a href="/connect/facebook" class="btn btn-danger">Refresh Facebook token</a>
+                    <% } %>
+
 					<a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
+
 				<% } else { %>
 					<a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
 				<% } %>
@@ -149,7 +154,12 @@
 						<strong>nickname</strong>: <%= user.weibo.nickname %>
 					</p>
 
+					<% if (expired.weibo) { %>
+                        <a href="/connect/weibo" class="btn btn-danger">Refresh Weibo token</a>
+                    <% } %>
+
 					<a href="/unlink/weibo" class="btn btn-danger">Unlink</a>
+
 				<% } else { %>
 					<a href="/connect/weibo" class="btn btn-danger">Connect Weibo</a>
 				<% } %>
