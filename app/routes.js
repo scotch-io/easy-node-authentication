@@ -153,9 +153,9 @@ module.exports = function(app, passport) {
                     case 'twitter':
                         var twitterAPI = require('node-twitter-api');
                         var twitter    = new twitterAPI({
-                            consumerKey    : configAuth.twitter.consumerKey,
-                            consumerSecret : configAuth.twitter.consumerSecret,
-                            callback       : configAuth.twitter.callbackURL
+                            consumerKey    : configAuth.twitterAuth.consumerKey,
+                            consumerSecret : configAuth.twitterAuth.consumerSecret,
+                            callback       : configAuth.twitterAuth.callbackURL
                         });
                         twitter.statuses(
                             'update',
