@@ -66,6 +66,7 @@
                     <% } %>
                     <button id="btn-pin" type="button">Pinterest</button>
                     &nbsp;&nbsp;
+                    <span id='txt-count'></span>
                     <button id="btn-shout" type="button">Shout</button>
                 </div>
                 <br>
@@ -78,6 +79,27 @@
 
 </div>
 <script>
+    var count = function() {
+        var content     = $('#txt-content').val();
+        var filesInputs = $('.file-input');
+        var filesCount  = 0;
+        for (var i = 0; i < filesInputs.length; i++) {
+            filesCount += $(filesInputs[i]).val().length > 0 ? 1 : 0;
+        }
+        var length = 140 - (content.length + filesCount * 24);
+        $('#txt-count').html(length);
+        var twitter = $('#sns-twitter');
+        var weibo   = $('#sns-weibo');
+        if ((twitter && twitter[0] && twitter[0].checked)
+         || (weibo   && weibo[0]   && weibo[0].checked)) {
+            $('#txt-count').show();
+            $('#btn-shout').attr('disabled', length < 0);
+        } else {
+            $('#txt-count').hide();
+            $('#btn-shout').attr('disabled', false);
+        }
+    };
+
     $('#files').on('change', '.file-input', function() {
         var filesInputs = $('.file-input');
         var needToAdd   = true;
@@ -92,6 +114,7 @@
         if (needToAdd) {
             $('#files').append('<input name="img-' + (++maxId) + '" type="file" class="file-input">');
         }
+        count();
     });
 
     $('#btn-shout').on('click', function() {
@@ -153,6 +176,12 @@
             }
         });
     });
+
+    $('#txt-content').on('input', count);
+
+    $('[name^=sns-]').on('click', count);
+
+    count();
 </script>
 </body>
 </html>
