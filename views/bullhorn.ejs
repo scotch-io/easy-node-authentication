@@ -83,10 +83,20 @@
         var content     = $('#txt-content').val();
         var filesInputs = $('.file-input');
         var filesCount  = 0;
+        var tinyLength  = 24;
         for (var i = 0; i < filesInputs.length; i++) {
             filesCount += $(filesInputs[i]).val().length > 0 ? 1 : 0;
         }
-        var length = 140 - (content.length + filesCount * 24);
+        var arrContent  = content.split(' ');
+        var disCount    = 0;
+        // http://daringfireball.net/2010/07/improved_regex_for_matching_urls
+        for (i = 0; i < arrContent.length; i++) {
+            if (arrContent[i] && arrContent[i].length > 0
+             && /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i.test(arrContent[i])) {
+                disCount += arrContent[i].length - tinyLength;
+            }
+        }
+        var length = 140 - (content.length + filesCount * tinyLength - disCount);
         $('#txt-count').html(length);
         var twitter = $('#sns-twitter');
         var weibo   = $('#sns-weibo');
