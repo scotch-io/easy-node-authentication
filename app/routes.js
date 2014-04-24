@@ -37,9 +37,16 @@ module.exports = function(app, passport) {
                 snsExpire[i] = req.user[i].expires_at <= Math.ceil(new Date().getTime() / 1000);
             }
         }
+        var userExt = {
+            tumblr : {}
+        };
+        if (configAuth.tumblrAuth) {
+            userExt.tumblr = configAuth.tumblrAuth;
+        }
         res.render('bullhorn.ejs', {
             user    : req.user,
-            expired : snsExpire
+            expired : snsExpire,
+            userExt : userExt
         });
     });
     app.post('/pin', isLoggedIn, function(req, res) {
@@ -120,6 +127,9 @@ module.exports = function(app, passport) {
         if (req.body['sns-renren'] === 'on') {
             toSNS.push('weibo');
         }
+        if (req.body['sns-tumblr'] === 'on') {
+            toSNS.push('tumblr');
+        }
 
         var content = req.body['txt-content'] || '';
         if (!content) {
@@ -130,8 +140,8 @@ module.exports = function(app, passport) {
         }
 
         function share() {
-            imgUrls  = imgUrls.join(' ');
-            content += imgUrls.length > 0 ? (' ' + imgUrls) : '';
+            strImgUrls  = imgUrls.join(' ');
+            content += strImgUrls.length > 0 ? (' ' + strImgUrls) : '';
 
             async.each(toSNS, function(sns, callback) {
                 switch (sns) {
@@ -221,6 +231,34 @@ module.exports = function(app, passport) {
                                 // consolg.log(JSON.stringify(body));
                             }
                         );
+                        break;
+                    case 'tumblr':
+                        var nodemailer = require('nodemailer'),
+                            transport  = nodemailer.createTransport(
+                                configAuth.tumblrAuth.nodemailerTransport.type,
+                                configAuth.tumblrAuth.nodemailerTransport.option
+                            );
+                        var tblContent = req.body['txt-content'];
+                        for (i = 0; i < imgUrls.length; i++) {
+                            tblContent += '\n\n' + '![image ' + i + '](' + imgUrls[i] + ')';
+                        }
+                        transport.sendMail({
+                            from    : configAuth.tumblrAuth.fromAddress,
+                            to      : configAuth.tumblrAuth.postAddress,
+                            subject : 'PriceBeater !m',
+                            text    : tblContent
+                        }, function(error, responseStatus) {
+                            if (error) {
+                                callback({
+                                    sns   : 'tumblr',
+                                    error : error
+                                });
+                                return;
+                            }
+                            callback();
+                            console.log("[Tumblr] mail response: "   + responseStatus.message); // response from the server
+                            console.log("[Tumblr] mail message-id: " + responseStatus.messageId); // Message-ID value used
+                        });
                         break;
                     default:
                         callback({

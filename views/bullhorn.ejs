@@ -64,6 +64,10 @@
                     <% if (expired.weibo) { %>
                         <a href="/connect/weibo" class="btn btn-danger">Refresh Weibo token</a>
                     <% } %>
+                    <% if (userExt.tumblr.postAddress) { %>
+                        <input type="checkbox" id="sns-tumblr" name="sns-tumblr" checked="checked">
+                        <label for="sns-tumblr"> Tumblr </label>
+                    <% } %>
                     <button id="btn-pin" type="button">Pinterest</button>
                     &nbsp;&nbsp;
                     <span id='txt-count'></span>

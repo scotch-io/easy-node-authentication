@@ -25,9 +25,8 @@
     "passport-weibo-2": "*",
     "aws-sdk": "*",
     "request": "*",
-
+    "nodemailer": "*",
     "async": "~0.2.9",
-    "redis": "*",
-    "http": "*"
+    "redis": "*"
   }
 }
