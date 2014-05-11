@@ -118,7 +118,10 @@
                         <textarea id="product_desc" name="product_desc"></textarea><br/>
 
                         <label for="product_image"> product_image </label>
-                        <input type="file" id="product_image" name="product_image"><br/>
+                        <div id="product_image">
+                            <input name="img-0" type="file" class="file-input">
+                        </div>
+                        <br/>
 
                         <label for="custom_tag"> Tag </label>      
                         <input type="text" id="custom_tag" name="custom_tag"><br/>
@@ -129,9 +132,9 @@
                     <button id="btn-shout" type="button">Shout</button>
                 </div>
                 <br>
-                <div id="files">
+<!--                 <div id="files">
                     <input name="img-0" type="file" class="file-input">
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -202,7 +205,6 @@
         data.append('lowest_difference', $('#lowest_difference').val());
         data.append('lowest_time', $('#lowest_time').val());
         data.append('product_desc', $('#product_desc').val());
-        data.append('product_image', $('#product_image').val());
         data.append('custom_tag', $('#custom_tag').val());
         // data.append('txt-content', $('#txt-content').val());
         

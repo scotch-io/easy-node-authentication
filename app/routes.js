@@ -132,7 +132,6 @@ module.exports = function(app, passport) {
             toSNS.push('tumblr');
         }
 
-        console.log(toSNS);
         var data = {};
 
         data['product_name']      = req.body['product_name'] || '';
