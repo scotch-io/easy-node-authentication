@@ -145,7 +145,6 @@ module.exports = function(app, passport) {
         data['lowest_difference'] = req.body['lowest_difference'] || '';
         data['lowest_time']       = req.body['lowest_time'] || '';
         data['product_desc']      = req.body['product_desc'] || '';
-        data['product_image']     = req.body['product_image'] || '';
         data['custom_tag']        = req.body['custom_tag'] || '';
 
         console.log(data);
@@ -172,8 +171,8 @@ module.exports = function(app, passport) {
                 return null;
             }
 
-            var template_map   = {'twitter': 'twitter', 'weibo': 'twitter', 'facebook': 'tumblr', 'tumblr': 'tumblr', 'renren': 'tumblr'};
-            var templatePath   = './views/' + template_map[toSNS[0]] + '_template.ejs';
+            var templateMap   = {'twitter': 'twitter', 'weibo': 'twitter', 'facebook': 'tumblr', 'tumblr': 'tumblr', 'renren': 'tumblr'};
+            var templatePath   = './views/' + templateMap[toSNS[0]] + '_template.ejs';
             var templateString = null;
 
             try{

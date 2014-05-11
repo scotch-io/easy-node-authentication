@@ -84,43 +84,32 @@
                         <label for="pb_url"> Url </label>                        
                         <input id="pb_url" name="pb_url"><br/>
 
-
-                        <label for="dis_percentage"> dis_percentage </label>                          
-                        <select id="dis_percentage" name="dis_percentage">
-                            <option>2</option>
-                            <option>33</option>
-                            <option>44</option>
-                            <option>444</option>
+                        <select id="dis" name="dis">
+                            <option>dis_percentage</option>
+                            <option>dis_amount</option>
                         </select>
-                        <!-- <input id="dis_percentage" name="dis_percentage"> -->
-                        <br/>                        
-
-                        <label for="dis_amount"> dis_amount </label>                          
-                        <select id="dis_amount" name="dis_amount">
-                            <option>2</option>
-                            <option>33</option>
-                            <option>44</option>
-                            <option>444</option>
-                        </select>
-                        <!-- <input id="dis_amount" name="dis_amount"> -->
+                        <input id="dis_percentage" name="dis_percentage">
+                        <input id="dis_amount" name="dis_amount" hidden>
                         <br/>
 
-                        <label for="sns-tumblr"> lowest price? </label>                        
-                        <input type="checkbox" id="lowest_price" name="lowest_price" checked="checked"><br/>
+                        <input type="checkbox" id="lowest_price" name="lowest_price" checked="checked">
+                        <label for="sns-tumblr"> Lowest price </label>        
+                        <br/>
+                        
+                        <div id="lowest_infor" hidden>
+                        <label for="sns-tumblr"> Lowest difference </label> 
+                        <input type="text" id="lowest_difference" name="lowest_difference">
+                        <br/>
 
-                        <label for="sns-tumblr"> lowest_difference </label>                        
-                        <input type="text" id="lowest_difference" name="lowest_difference"><br/>
-
-                        <label for="lowest_time"> lowest_time </label>    
+                        <label for="lowest_time"> Lowest time </label>    
                         <input type="text" id="lowest_time" name="lowest_time"><br/>
-
-                        <label for="product_desc"> product_desc </label>
+                        </div>
+                        
+                        <label for="product_desc"> Product desc </label>
                         <textarea id="product_desc" name="product_desc"></textarea><br/>
 
-                        <label for="product_image"> product_image </label>
-                        <div id="product_image">
-                            <input name="img-0" type="file" class="file-input">
-                        </div>
+                        <label for="product_image"> Product image </label>
+                        <input name="img-0" type="file" class="file-input">
                         <br/>
 
                         <label for="custom_tag"> Tag </label>      
@@ -265,11 +254,29 @@
         });
     });
 
+    $('#dis').on('change', function() {
+        $('#dis_percentage').hide();
+        $('#dis_amount').hide();
+        $('#'+this.value).show();
+    });
+
+    $('#lowest_price').on('change', function() {
+        if ($('#lowest_price').is(':checked')) {
+            $('#lowest_infor').hide();
+            $('#lowest_time').val('');
+            $('#lowest_difference').val('');
+        } else {
+            $('#lowest_infor').show();
+        }
+
+    });
+
     $('#txt-content').on('input', count);
 
     $('[name^=sns-]').on('click', count);
 
     count();
+
 </script>
 </body>
 </html>
