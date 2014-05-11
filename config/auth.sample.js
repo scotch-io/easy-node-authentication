@@ -6,7 +6,7 @@ module.exports = {
     'facebookAuth' : {
         'clientID' 		 : 'your-secret-clientID-here', // your App ID
 		'clientSecret' 	 : 'your-client-secret-here', // your App Secret
-		'callbackURL'    : 'http://localhost:8030/auth/facebook/callback'
+		'callbackURL'    : 'http://localhost:8030/auth/facebook/callback',
         'expire'         : 60 * 60 * 24 * 60
     },
 
@@ -31,7 +31,7 @@ module.exports = {
     'weiboAuth' : {
         'clientID'       : 'your-secret-clientID-here',
         'clientSecret'   : 'your-client-secret-here',
-        'callbackURL'    : 'http://localhost:8030/auth/weibo/callback'
+        'callbackURL'    : 'http://localhost:8030/auth/weibo/callback',
         'expire'         : 60 * 60 * 24 * 1
     },
 

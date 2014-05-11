@@ -3,8 +3,9 @@ AWS.config.loadFromPath('./config/aws.json');
 var s3         = new AWS.S3(),
     configAuth = require('./../config/auth'),
     fs         = require('fs'),
-    async      = require('async')
-    request    = require('request');
+    async      = require('async'),
+    request    = require('request'),
+    ejs        = require('ejs');
 
 module.exports = function(app, passport) {
 
@@ -131,12 +132,60 @@ module.exports = function(app, passport) {
             toSNS.push('tumblr');
         }
 
-        var content = req.body['txt-content'] || '';
+        console.log(toSNS);
+        var data = {};
+
+        data['product_name']      = req.body['product_name'] || '';
+        data['model_number']      = req.body['model_number'] || '';
+        data['current_price']     = req.body['current_price'] || '';
+        data['seller']            = req.body['seller'] || '';
+        data['pb_url']            = req.body['pb_url'] || '';
+        data['dis_percentage']    = req.body['dis_percentage'] || '';
+        data['dis_amount']        = req.body['dis_amount'] || '';
+        data['lowest_price']      = req.body['lowest_price'] === 'on' ? 1 : 0;
+        data['lowest_difference'] = req.body['lowest_difference'] || '';
+        data['lowest_time']       = req.body['lowest_time'] || '';
+        data['product_desc']      = req.body['product_desc'] || '';
+        data['product_image']     = req.body['product_image'] || '';
+        data['custom_tag']        = req.body['custom_tag'] || '';
+
+        console.log(data);
+        if (!data) {
+            var error = 'Product information can not be empty';
+            res.json({'error': error});
+            console.log(error);
+            return;
+        }
+
+        var content = getContent(data);
+        console.log(content);
+        
+        // var content = req.body['txt-content'] || '';
         if (!content) {
             var error = 'Content can not be empty!';
             res.json({'error': error});
             console.log(error);
             return;
+        }
+
+        function getContent(data) {
+            if (!toSNS) {
+                return null;
+            }
+
+            var template_map   = {'twitter': 'twitter', 'weibo': 'twitter', 'facebook': 'tumblr', 'tumblr': 'tumblr', 'renren': 'tumblr'};
+            var templatePath   = './views/' + template_map[toSNS[0]] + '_template.ejs';
+            var templateString = null;
+
+            try{
+                templateString = fs.readFileSync(templatePath, 'utf-8');
+            } catch(err) {
+                console.log(err);
+            }
+
+            var content  = ejs.render(templateString, {'data': data});
+
+            return content;
         }
 
         function share() {

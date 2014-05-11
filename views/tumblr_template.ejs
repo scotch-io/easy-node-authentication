@@ -1,0 +1,15 @@
+标题:
+(<%= data.dis_percentage %> / <%= data.dis_amount %>) off! <%= data.product_name %> for <%= data.current_price %>
+正文:
+<% if (data.lowest_price == 1) { %>
+<%= data.seller %> offers <b><a href=$pb_url target=_blank><%= data.product_name %></a></b>, model number <b><%= data.model_number %></b> for <b><%= data.current_price %></b>, that’s <%= data.dis_amount %> off regular price and the lowest we’ve seen.
+<% } %>
+
+<% if (data.lowest_price == 0) { %>
+<%= data.seller %> offers <b><a href='<%= data.pb_url %>' target=_blank><%= data.product_name %></a></b>, model number <b><%= data.model_number %></b> for <b><%= data.current_price %></b>, that’s <%= data.dis_amount %> off regular price and only <%= data.lowest_difference %> than the lowest price we’ve recorded <%= data.lowest_time %>.
+<% } %>
+
+<%= data.product_desc %>.
+<a href='<%= data.pb_url %>' target=_blank><%= data.product_image %></a>
+Tag:
+Canada, Deals, Canadian Deals, Price, PriceBeater, Price Comparison, Lowest Price, <%= data.custom_tag %> (comma separated)

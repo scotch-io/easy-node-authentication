@@ -35,7 +35,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div id="form">
-                <textarea id="txt-content" name="txt-content" placeholder="Share something here!"></textarea>
+                <!-- <textarea id="txt-content" name="txt-content" placeholder="Share something here!"></textarea> -->
                 <br><br>
                 <div id="actions">
                     <% if (user.twitter.token) { %>
@@ -68,6 +68,61 @@
                         <input type="checkbox" id="sns-tumblr" name="sns-tumblr" checked="checked">
                         <label for="sns-tumblr"> Tumblr </label>
                     <% } %>
+                        <br/>
+                        <label for="product_name"> Product </label>                        
+                        <input id="product_name" name="product_name"><br/>
+
+                        <label for="model_number"> Model </label>                        
+                        <input id="model_number" name="model_number"><br/>
+                        
+                        <label for="current_price"> Price </label>                        
+                        <input id="current_price" name="current_price"><br/>
+                        
+                        <label for="seller"> Seller </label>                        
+                        <input id="seller" name="seller"><br/>
+                        
+                        <label for="pb_url"> Url </label>                        
+                        <input id="pb_url" name="pb_url"><br/>
+
+
+                        <label for="dis_percentage"> dis_percentage </label>                          
+                        <select id="dis_percentage" name="dis_percentage">
+                            <option>2</option>
+                            <option>33</option>
+                            <option>44</option>
+                            <option>444</option>
+                        </select>
+                        <!-- <input id="dis_percentage" name="dis_percentage"> -->
+                        <br/>                        
+
+                        <label for="dis_amount"> dis_amount </label>                          
+                        <select id="dis_amount" name="dis_amount">
+                            <option>2</option>
+                            <option>33</option>
+                            <option>44</option>
+                            <option>444</option>
+                        </select>
+                        <!-- <input id="dis_amount" name="dis_amount"> -->
+                        <br/>
+
+                        <label for="sns-tumblr"> lowest price? </label>                        
+                        <input type="checkbox" id="lowest_price" name="lowest_price" checked="checked"><br/>
+
+                        <label for="sns-tumblr"> lowest_difference </label>                        
+                        <input type="text" id="lowest_difference" name="lowest_difference"><br/>
+
+                        <label for="lowest_time"> lowest_time </label>    
+                        <input type="text" id="lowest_time" name="lowest_time"><br/>
+
+                        <label for="product_desc"> product_desc </label>
+                        <textarea id="product_desc" name="product_desc"></textarea><br/>
+
+                        <label for="product_image"> product_image </label>
+                        <input type="file" id="product_image" name="product_image"><br/>
+
+                        <label for="custom_tag"> Tag </label>      
+                        <input type="text" id="custom_tag" name="custom_tag"><br/>
+
                     <button id="btn-pin" type="button">Pinterest</button>
                     &nbsp;&nbsp;
                     <span id='txt-count'></span>
@@ -135,15 +190,32 @@
         var data = new FormData();
         var snsCheckBox = $('[name^=sns-]');
         var filesInputs = $('.file-input');
-        data.append('txt-content', $('#txt-content').val());
+
+        data.append('product_name', $('#product_name').val());
+        data.append('model_number', $('#model_number').val());
+        data.append('current_price', $('#current_price').val());
+        data.append('seller', $('#seller').val());
+        data.append('pb_url', $('#pb_url').val());
+        data.append('dis_percentage', $('#dis_percentage').val());
+        data.append('dis_amount', $('#dis_amount').val());
+        data.append('lowest_price', $('#lowest_price').val());
+        data.append('lowest_difference', $('#lowest_difference').val());
+        data.append('lowest_time', $('#lowest_time').val());
+        data.append('product_desc', $('#product_desc').val());
+        data.append('product_image', $('#product_image').val());
+        data.append('custom_tag', $('#custom_tag').val());
+        // data.append('txt-content', $('#txt-content').val());
+        
         for (var i = 0; i < snsCheckBox.length; i++) {
             data.append(snsCheckBox[i].name, snsCheckBox[i].checked ? snsCheckBox[i].value : '');
         }
+        
         for (i = 0; i < filesInputs.length; i++) {
             if ($(filesInputs[i]).val().length > 0) {
                 data.append(filesInputs[i].name, filesInputs[i].files[0]);
             }
         }
+        
         $.ajax({
             url: '/shout',
             data: data,
