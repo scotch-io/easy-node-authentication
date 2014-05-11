@@ -69,50 +69,50 @@
                         <label for="sns-tumblr"> Tumblr </label>
                     <% } %>
                         <br/>
-                        <label for="product_name"> Product </label>                        
+                        <label for="product_name"> Product Name </label>                        
                         <input id="product_name" name="product_name"><br/>
 
-                        <label for="model_number"> Model </label>                        
+                        <label for="model_number"> Model Number</label>                        
                         <input id="model_number" name="model_number"><br/>
                         
-                        <label for="current_price"> Price </label>                        
+                        <label for="current_price"> Current Price </label>                        
                         <input id="current_price" name="current_price"><br/>
                         
                         <label for="seller"> Seller </label>                        
                         <input id="seller" name="seller"><br/>
                         
-                        <label for="pb_url"> Url </label>                        
+                        <label for="pb_url"> Pb Url </label>                        
                         <input id="pb_url" name="pb_url"><br/>
 
                         <select id="dis" name="dis">
-                            <option>dis_percentage</option>
-                            <option>dis_amount</option>
+                            <option value="dis_percentage">Dis Percentage</option>
+                            <option value="dis_amount">Dis Amount</option>
                         </select>
                         <input id="dis_percentage" name="dis_percentage">
                         <input id="dis_amount" name="dis_amount" hidden>
                         <br/>
 
                         <input type="checkbox" id="lowest_price" name="lowest_price" checked="checked">
-                        <label for="sns-tumblr"> Lowest price </label>        
+                        <label for="sns-tumblr"> Lowest Price </label>        
                         <br/>
                         
                         <div id="lowest_infor" hidden>
-                        <label for="sns-tumblr"> Lowest difference </label> 
+                        <label for="sns-tumblr"> Lowest Difference </label> 
                         <input type="text" id="lowest_difference" name="lowest_difference">
                         <br/>
 
-                        <label for="lowest_time"> Lowest time </label>    
+                        <label for="lowest_time"> Lowest Time </label>    
                         <input type="text" id="lowest_time" name="lowest_time"><br/>
                         </div>
                         
-                        <label for="product_desc"> Product desc </label>
+                        <label for="product_desc"> Product Desc </label>
                         <textarea id="product_desc" name="product_desc"></textarea><br/>
 
-                        <label for="product_image"> Product image </label>
+                        <label for="product_image"> Product Image </label>
                         <input name="img-0" type="file" class="file-input">
                         <br/>
 
-                        <label for="custom_tag"> Tag </label>      
+                        <label for="custom_tag"> Custom Tag </label>      
                         <input type="text" id="custom_tag" name="custom_tag"><br/>
 
                     <button id="btn-pin" type="button">Pinterest</button>
@@ -131,7 +131,8 @@
 </div>
 <script>
     var count = function() {
-        var content     = $('#txt-content').val();
+        // var content     = $('#txt-content').val();
+        var content     = $('#txt-content').val() || '';
         var filesInputs = $('.file-input');
         var filesCount  = 0;
         var tinyLength  = 24;

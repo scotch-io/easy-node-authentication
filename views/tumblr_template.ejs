@@ -9,6 +9,8 @@
 <% } %>
 
 <%= data.product_desc %>.
-<a href='<%= data.pb_url %>' target=_blank><%= data.product_image %></a>
+<% for(var i=0; i<data.product_image.length; i++) {%>
+	<a href='<%= data.pb_url %>' target=_blank><img src='<%= data.product_image[i] %>'></a>
+<% } %>
 Tag:
 Canada, Deals, Canadian Deals, Price, PriceBeater, Price Comparison, Lowest Price, <%= data.custom_tag %> (comma separated)

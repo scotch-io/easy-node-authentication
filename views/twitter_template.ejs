@@ -1,1 +1,3 @@
-(<%= data.dis_percentage %> /<%= data.dis_amount %>) off! <%= data.product_name %> for <%= data.current_price %> <%= data.pb_url %> <%= data.product_image %>
+(<%= data.dis_percentage %> /<%= data.dis_amount %>) off! <%= data.product_name %> for <%= data.current_price %> <% for(var i=0; i<data.product_image.length; i++) {%>
+	<a href='<%= data.pb_url %>' target=_blank><img src='<%= data.product_image[i] %>'></a>
+<% } %>

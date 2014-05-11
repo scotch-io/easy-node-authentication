@@ -155,17 +155,6 @@ module.exports = function(app, passport) {
             return;
         }
 
-        var content = getContent(data);
-        console.log(content);
-        
-        // var content = req.body['txt-content'] || '';
-        if (!content) {
-            var error = 'Content can not be empty!';
-            res.json({'error': error});
-            console.log(error);
-            return;
-        }
-
         function getContent(data) {
             if (!toSNS) {
                 return null;
@@ -187,8 +176,20 @@ module.exports = function(app, passport) {
         }
 
         function share() {
-            strImgUrls  = imgUrls.join(' ');
-            content += strImgUrls.length > 0 ? (' ' + strImgUrls) : '';
+            data['product_image'] = imgUrls;
+            var content = getContent(data);
+            console.log(content);
+            
+            // var content = req.body['txt-content'] || '';
+            if (!content) {
+                var error = 'Content can not be empty!';
+                res.json({'error': error});
+                console.log(error);
+                return;
+            }
+
+            // strImgUrls  = imgUrls.join(' ');
+            // content += strImgUrls.length > 0 ? (' ' + strImgUrls) : '';
 
             async.each(toSNS, function(sns, callback) {
                 switch (sns) {
@@ -338,6 +339,7 @@ module.exports = function(app, passport) {
                     ContentType : file.type || 'image/png'
                 };
                 s3.putObject(s3Params, function (perr, pres) {
+                    console.log(perr);
                     if (perr) {
                         callback('[AWS] Error uploading data: ', perr);
                         return perr;
