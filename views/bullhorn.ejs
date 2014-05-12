@@ -16,9 +16,28 @@
             margin-right: auto;
         }
 
-        #txt-content {
-            width: 100%;
-            height: 137px;
+        textarea {
+            margin-left: 10px;
+            width: 154px;
+            vertical-align: middle;
+        }
+
+        select {
+            width: 100px;
+            vertical-align: middle;
+        }
+
+        label {
+            width: 100px;
+            vertical-align: middle;
+        }
+
+        input {
+            margin-left: 10px;
+        }
+
+        input[type="file"] {
+            display: inline;
         }
     </style>
     <script src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
@@ -115,8 +134,7 @@
                         <label for="custom_tag"> Custom Tag </label>      
                         <input type="text" id="custom_tag" name="custom_tag"><br/>
 
-                    <button id="btn-pin" type="button">Pinterest</button>
-                    &nbsp;&nbsp;
+                    <!-- <button id="btn-pin" type="button">Pinterest</button> -->
                     <span id='txt-count'></span>
                     <button id="btn-shout" type="button">Shout</button>
                 </div>
