@@ -155,19 +155,19 @@ module.exports = function(app, passport) {
             return;
         }
 
-        function getContent(data) {
-            if (!toSNS) {
+        function getContent(sns, data) {
+            if (!sns) {
                 return null;
             }
 
-            var templateMap   = {'twitter': 'twitter', 'weibo': 'twitter', 'facebook': 'tumblr', 'tumblr': 'tumblr', 'renren': 'tumblr'};
-            var templatePath   = './views/' + templateMap[toSNS[0]] + '_template.ejs';
+            var templatePath   = './views/sns_template/' + sns + '_template.ejs';
             var templateString = null;
 
             try{
                 templateString = fs.readFileSync(templatePath, 'utf-8');
             } catch(err) {
                 console.log(err);
+                return null;
             }
 
             var content  = ejs.render(templateString, {'data': data});
@@ -177,21 +177,21 @@ module.exports = function(app, passport) {
 
         function share() {
             data['product_image'] = imgUrls;
-            var content = getContent(data);
-            console.log(content);
             
             // var content = req.body['txt-content'] || '';
-            if (!content) {
-                var error = 'Content can not be empty!';
-                res.json({'error': error});
-                console.log(error);
-                return;
-            }
 
             // strImgUrls  = imgUrls.join(' ');
             // content += strImgUrls.length > 0 ? (' ' + strImgUrls) : '';
-
+            
             async.each(toSNS, function(sns, callback) {
+                var content = getContent(sns, data);
+                if (!content) {
+                    var error = 'Content can not be empty!';
+                    res.json({'error': error});
+                    console.log(error);
+                    return;
+                }
+
                 switch (sns) {
                     case 'facebook':
                         var FB = require('fb');
