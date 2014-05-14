@@ -159,7 +159,7 @@ module.exports = function(app, passport) {
             if (!sns) {
                 return null;
             }
-
+            
             var templatePath   = './views/sns_template/' + sns + '_template.ejs';
             var templateString = null;
 
@@ -182,7 +182,7 @@ module.exports = function(app, passport) {
 
             // strImgUrls  = imgUrls.join(' ');
             // content += strImgUrls.length > 0 ? (' ' + strImgUrls) : '';
-            
+
             async.each(toSNS, function(sns, callback) {
                 var content = getContent(sns, data);
                 if (!content) {
@@ -191,7 +191,7 @@ module.exports = function(app, passport) {
                     console.log(error);
                     return;
                 }
-
+                
                 switch (sns) {
                     case 'facebook':
                         var FB = require('fb');
@@ -235,12 +235,14 @@ module.exports = function(app, passport) {
                         );
                         break;
                     case 'renren':
+                        var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
+                        var message = content.substring(content.indexOf('[content]')+9, content.length);
                         request.post(
                             'https://api.renren.com/v2/feed/put',
                             {form: {
                                 access_token : req.user.renren.token,
-                                message      : content,
-                                title        : 'PriceBeater',
+                                message      : message,
+                                title        : title,
                                 description  : 'PriceBeater',
                                 targetUrl    : 'http://www.pricebeater.ca'
                             }},
@@ -286,15 +288,19 @@ module.exports = function(app, passport) {
                                 configAuth.tumblrAuth.nodemailerTransport.type,
                                 configAuth.tumblrAuth.nodemailerTransport.option
                             );
-                        var tblContent = req.body['txt-content'];
-                        for (i = 0; i < imgUrls.length; i++) {
-                            tblContent += '\n\n' + '![image ' + i + '](' + imgUrls[i] + ')';
-                        }
+                        // var tblContent = req.body['txt-content'];
+                        // for (i = 0; i < imgUrls.length; i++) {
+                        //     tblContent += '\n\n' + '![image ' + i + '](' + imgUrls[i] + ')';
+                        // }
+                        
+                        var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
+                        var message = content.substring(content.indexOf('[content]')+9, content.length);
+
                         transport.sendMail({
                             from    : configAuth.tumblrAuth.fromAddress,
                             to      : configAuth.tumblrAuth.postAddress,
-                            subject : 'PriceBeater !m',
-                            text    : tblContent
+                            subject : title,
+                            text    : message
                         }, function(error, responseStatus) {
                             if (error) {
                                 callback({

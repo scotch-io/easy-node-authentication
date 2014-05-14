@@ -1,6 +1,6 @@
-title:
+[title]
 (<%= data.dis_percentage %> / <%= data.dis_amount %>) off! <%= data.product_name %> for <%= data.current_price %>
-message:
+[content]
 <% if (data.lowest_price == 1) { %>
 <%= data.seller %> offers <b><a href='<%= data.pb_url %>' target=_blank><%= data.product_name %></a></b>, model number <b><%= data.model_number %></b> for <b><%= data.current_price %></b>, that’s <%= data.dis_amount %> off regular price and the lowest we’ve seen.
 <% } %>
