@@ -159,6 +159,7 @@ module.exports = function(app, passport) {
             if (!sns) {
                 return null;
             }
+            sns = 'tumblr';
             
             var templatePath   = './views/sns_template/' + sns + '_template.ejs';
             var templateString = null;
@@ -171,7 +172,7 @@ module.exports = function(app, passport) {
             }
 
             var content  = ejs.render(templateString, {'data': data});
-
+            console.log(content);
             return content;
         }
 
@@ -283,35 +284,33 @@ module.exports = function(app, passport) {
                         );
                         break;
                     case 'tumblr':
-                        var nodemailer = require('nodemailer'),
-                            transport  = nodemailer.createTransport(
-                                configAuth.tumblrAuth.nodemailerTransport.type,
-                                configAuth.tumblrAuth.nodemailerTransport.option
-                            );
-                        // var tblContent = req.body['txt-content'];
-                        // for (i = 0; i < imgUrls.length; i++) {
-                        //     tblContent += '\n\n' + '![image ' + i + '](' + imgUrls[i] + ')';
-                        // }
+                        var tumblr = require('tumblr');
                         
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
                         var message = content.substring(content.indexOf('[content]')+9, content.length);
 
-                        transport.sendMail({
-                            from    : configAuth.tumblrAuth.fromAddress,
-                            to      : configAuth.tumblrAuth.postAddress,
-                            subject : title,
-                            text    : message
-                        }, function(error, responseStatus) {
-                            if (error) {
-                                callback({
-                                    sns   : 'tumblr',
-                                    error : error
-                                });
-                                return;
-                            }
-                            callback();
-                            console.log("[Tumblr] mail response: "   + responseStatus.message); // response from the server
-                            console.log("[Tumblr] mail message-id: " + responseStatus.messageId); // Message-ID value used
+                        var oauth = {
+                          consumer_key: configAuth.tumblrAuth.consumerKey,
+                          consumer_secret: configAuth.tumblrAuth.consumerSecret,
+                          token: req.user.tumblr.token,
+                          token_secret: req.user.tumblr.tokenSecret
+                        };
+
+                        var blog = new tumblr.Blog('blog.tumblr.com', oauth);
+
+                        blog.text(
+                            {title: title, 
+                            body: message}, 
+                            function(error, response) {
+                                if (error) {
+                                        callback({
+                                            sns   : 'tumblr',
+                                            error : error
+                                        });
+                                        return;
+                                }
+                                callback();
+                                console.log('[Tumblr] OK!');
                         });
                         break;
                     default:
@@ -445,6 +444,18 @@ module.exports = function(app, passport) {
             passport.authenticate('twitter', {
                 successRedirect : '/bullhorn',
                 failureRedirect : '/'
+            }));    
+
+    // tumblr --------------------------------
+
+        // send to tumblr to do the authentication
+        app.get('/auth/tumblr', passport.authenticate('tumblr', { scope : 'email' }));
+
+        // handle the callback after tumblr has authenticated the user
+        app.get('/auth/tumblr/callback',
+            passport.authenticate('tumblr', {
+                successRedirect : '/bullhorn',
+                failureRedirect : '/'
             }));
 
     // google ---------------------------------
@@ -517,6 +528,18 @@ module.exports = function(app, passport) {
         // handle the callback after twitter has authorized the user
         app.get('/connect/twitter/callback',
             passport.authorize('twitter', {
+                successRedirect : '/profile',
+                failureRedirect : '/'
+            }));    
+
+    // tumblr --------------------------------
+
+        // send to twitter to do the authentication
+        app.get('/connect/tumblr', passport.authorize('tumblr', { scope : 'email' }));
+
+        // handle the callback after tumblr has authorized the user
+        app.get('/connect/tumblr/callback',
+            passport.authorize('tumblr', {
                 successRedirect : '/profile',
                 failureRedirect : '/'
             }));

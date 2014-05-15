@@ -203,7 +203,7 @@
         data.append('pb_url', $('#pb_url').val());
         data.append('dis_percentage', $('#dis_percentage').val());
         data.append('dis_amount', $('#dis_amount').val());
-        data.append('lowest_price', $('#lowest_price').val());
+        data.append('lowest_price', $('#lowest_price').is(':checked') ? 'on' : 'off');
         data.append('lowest_difference', $('#lowest_difference').val());
         data.append('lowest_time', $('#lowest_time').val());
         data.append('product_desc', $('#product_desc').val());

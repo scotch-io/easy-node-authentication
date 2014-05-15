@@ -2,6 +2,7 @@
 var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
+var TumblrStrategy   = require('passport-tumblr').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var RenrenStrategy   = require('passport-renren').Strategy;
 var WeiboStrategy    = require('passport-weibo-2').Strategy;
@@ -290,6 +291,80 @@ module.exports = function(passport) {
         });
 
     }));
+
+    // =========================================================================
+    // TUMBLR =================================================================
+    // =========================================================================
+    passport.use(new TumblrStrategy({
+        consumerKey    : configAuth.tumblrAuth.consumerKey,
+        consumerSecret : configAuth.tumblrAuth.consumerSecret,
+        callbackURL    : configAuth.tumblrAuth.callbackURL
+      },
+      function(req, token, tokenSecret, profile, done) {
+        // asynchronous
+        process.nextTick(function() {
+
+            // check if the user is already logged in
+            if (!req.user) {
+
+                User.findOne({ 'tumblr.id' : profile.id }, function(err, user) {
+                    if (err)
+                        return done(err);
+
+                    if (user) {
+                        // if there is a user id already but no token (user was linked at one point and then removed)
+                        if (!user.tumblr.token) {
+                            user.tumblr.token       = token;
+                            user.tumblr.tokenSecret = tokenSecret;
+                            user.tumblr.username    = profile.username;
+                            user.tumblr.displayName = profile.displayName;
+
+                            user.save(function(err) {
+                                if (err)
+                                    throw err;
+                                return done(null, user);
+                            });
+                        }
+
+                        return done(null, user); // user found, return that user
+                    } else {
+                        // if there is no user, create them
+                        var newUser                 = new User();
+
+                        newUser.tumblr.id          = profile.id;
+                        newUser.tumblr.token       = token;
+                        newUser.tumblr.tokenSecret = tokenSecret;
+                        newUser.tumblr.username    = profile.username;
+                        newUser.tumblr.displayName = profile.displayName;
+
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+                    }
+                });
+
+            } else {
+                // user already exists and is logged in, we have to link accounts
+                var user                 = req.user; // pull the user out of the session
+
+                user.tumblr.id          = profile.id;
+                user.tumblr.token       = token;
+                user.tumblr.tokenSecret = tokenSecret;
+                user.tumblr.username    = profile.username;
+                user.tumblr.displayName = profile.displayName;
+
+                user.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+            }
+
+        });
+      }
+    ));
 
     // =========================================================================
     // GOOGLE ==================================================================

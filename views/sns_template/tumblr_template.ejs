@@ -1,17 +1,22 @@
 [title]
-(<%= data.dis_percentage %> / <%= data.dis_amount %>) off! <%= data.product_name %> for <%= data.current_price %>
+<% if (data.dis_percentage && !data.dis_amount) { %>
+<%= data.dis_percentage %>% off! <%= data.product_name %> for <%= data.current_price %>
+<% } %>
+<% if (!data.dis_percentage && data.dis_amount) { %>
+$<%= data.dis_amount %> off! <%= data.product_name %> for <%= data.current_price %>
+<% } %>
 [content]
 <% if (data.lowest_price == 1) { %>
-<%= data.seller %> offers <b><a href='<%= data.pb_url %>' target=_blank><%= data.product_name %></a></b>, model number <b><%= data.model_number %></b> for <b><%= data.current_price %></b>, that’s <%= data.dis_amount %> off regular price and the lowest we’ve seen.
+<%= data.seller %> offers <b><a href=<%= data.pb_url %> target=_blank><%= data.product_name %></a></b>, model number <b><%= data.model_number %></b> for <b><%= data.current_price %></b>, that’s <%= data.dis_amount %> off regular price and the lowest we’ve seen.
 <% } %>
 
 <% if (data.lowest_price == 0) { %>
-<%= data.seller %> offers <b><a href='<%= data.pb_url %>' target=_blank><%= data.product_name %></a></b>, model number <b><%= data.model_number %></b> for <b><%= data.current_price %></b>, that’s <%= data.dis_amount %> off regular price and only <%= data.lowest_difference %> than the lowest price we’ve recorded <%= data.lowest_time %>.
+<%= data.seller %> offers <b><a href=<%= data.pb_url %> target=_blank><%= data.product_name %></a></b>, model number <b><%= data.model_number %></b> for <b><%= data.current_price %></b>, that’s <%= data.dis_amount %> off regular price and only <%= data.lowest_difference %> than the lowest price we’ve recorded <%= data.lowest_time %>.
 <% } %>
 
 <%= data.product_desc %>.
 <% for(var i=0; i<data.product_image.length; i++) {%>
-	<a href='<%= data.pb_url %>' target=_blank><img src='<%= data.product_image[i] %>'></a>
+	<a href=<%= data.pb_url %> target=_blank><img src='<%= data.product_image[i] %>'></a>
 <% } %>
 Tag:
 Canada, Deals, Canadian Deals, Price, PriceBeater, Price Comparison, Lowest Price, <%= data.custom_tag %> (comma separated)
