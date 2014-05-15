@@ -114,9 +114,9 @@ module.exports = function(app, passport) {
         var filePath = null;
         for (var i in req.files) {
             files.push(req.files[i]);
-            if (i == 0) {
-                filePath = req.files[i].path;
-            }
+        }
+        if (files.length > 0) {
+            filePath = files[0].path;
         }
 
         var toSNS   = [];
@@ -163,7 +163,6 @@ module.exports = function(app, passport) {
             if (!sns) {
                 return null;
             }
-            
             var templatePath   = './views/sns_template/' + sns + '_template.ejs';
             var templateString = null;
 
@@ -360,7 +359,6 @@ module.exports = function(app, passport) {
                 return;
             }
             fs.readFile(file.path, function(err, file_buffer) {
-                console.log(file.path);
                 var s3Params = {
                     Bucket      : configAuth.awsAuth.bucket,
                     Key         : randomString(32) + '-' + file.name.replace(/ /g, '_'),
