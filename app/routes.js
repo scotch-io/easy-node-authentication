@@ -219,7 +219,8 @@ module.exports = function(app, passport) {
                             callback       : configAuth.twitterAuth.callbackURL
                         });
                         
-                        var params = {status: content};
+                        console.log('>>>' + filePath);
+                        var params = {status: content, media: null};
                         if (filePath) {
                             params.media = fs.createReadStream(filePath);
                         }
