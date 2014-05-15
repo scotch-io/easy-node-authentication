@@ -303,7 +303,6 @@ module.exports = function(passport) {
       function(req, token, tokenSecret, profile, done) {
         // asynchronous
         process.nextTick(function() {
-            console.log("111>>>>"+profile);
             // check if the user is already logged in
             if (!req.user) {
 
@@ -329,8 +328,8 @@ module.exports = function(passport) {
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user, create them
-                        var newUser                 = new User();
-
+                        var newUser                = new User();
+                        newUser.tumblr             = {};
                         newUser.tumblr.id          = profile.id;
                         newUser.tumblr.token       = token;
                         newUser.tumblr.tokenSecret = tokenSecret;
