@@ -223,7 +223,8 @@ module.exports = function(app, passport) {
                         var params = {status: content};
                         if (filePath) {
                             action = 'update_with_media';
-                            params.media = new Array(fs.createReadStream(filePath));
+                            params.media = imgUrls[0];
+                            // params.media = new Array(fs.createReadStream(filePath));
                         }
 
                         twitter.statuses(
