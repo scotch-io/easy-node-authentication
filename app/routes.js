@@ -219,14 +219,13 @@ module.exports = function(app, passport) {
                             callback       : configAuth.twitterAuth.callbackURL
                         });
                         
-                        console.log('>>>' + filePath);
-                        var params = {status: content, media: filePath};
+                        var params = {status: content, media: [filePath]};
                         // if (filePath) {
                         //     params.media = fs.createReadStream(filePath);
                         // }
 
                         twitter.statuses(
-                            'update',
+                            'update_with_media',
                             params,
                             req.user.twitter.token,
                             req.user.twitter.tokenSecret,
