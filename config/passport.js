@@ -310,7 +310,7 @@ module.exports = function(passport) {
                     if (err)
                         return done(err);
 
-                    if (user.tumblr) {
+                    if (user) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.tumblr.token) {
                             user.tumblr.token       = token;
@@ -329,7 +329,6 @@ module.exports = function(passport) {
                     } else {
                         // if there is no user, create them
                         var newUser                = new User();
-                        newUser.tumblr             = {};
                         newUser.tumblr.id          = profile.id;
                         newUser.tumblr.token       = token;
                         newUser.tumblr.tokenSecret = tokenSecret;
