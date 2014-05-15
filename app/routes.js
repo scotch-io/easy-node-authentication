@@ -464,7 +464,7 @@ module.exports = function(app, passport) {
     // tumblr --------------------------------
 
         // send to tumblr to do the authentication
-        app.get('/auth/tumblr', passport.authenticate('tumblr', { scope : 'email' }));
+        app.get('/auth/tumblr', passport.authenticate('tumblr', { scope : ['email', 'read_stream', 'publish_actions'] }));
 
         // handle the callback after tumblr has authenticated the user
         app.get('/auth/tumblr/callback',
