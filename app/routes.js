@@ -159,7 +159,6 @@ module.exports = function(app, passport) {
             if (!sns) {
                 return null;
             }
-            sns = 'tumblr';
             
             var templatePath   = './views/sns_template/' + sns + '_template.ejs';
             var templateString = null;
@@ -218,7 +217,7 @@ module.exports = function(app, passport) {
                         });
                         twitter.statuses(
                             'update',
-                            {status: content},
+                            {media: imgUrls, status: content},
                             req.user.twitter.token,
                             req.user.twitter.tokenSecret,
                             function (error, data, response) { // data contains the data sent by twitter
