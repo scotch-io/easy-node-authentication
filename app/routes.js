@@ -225,7 +225,7 @@ module.exports = function(app, passport) {
                         }
 
                         twitter.statuses(
-                            'update',
+                            'update_with_media',
                             params,
                             req.user.twitter.token,
                             req.user.twitter.tokenSecret,
