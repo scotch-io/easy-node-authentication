@@ -220,10 +220,10 @@ module.exports = function(app, passport) {
                         });
                         
                         console.log('>>>' + filePath);
-                        var params = {status: content, media: null};
-                        if (filePath) {
-                            params.media = fs.createReadStream(filePath);
-                        }
+                        var params = {status: content, media: filePath};
+                        // if (filePath) {
+                        //     params.media = fs.createReadStream(filePath);
+                        // }
 
                         twitter.statuses(
                             'update_with_media',
