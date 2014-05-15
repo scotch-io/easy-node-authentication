@@ -301,7 +301,8 @@ module.exports = function(passport) {
         callbackURL    : configAuth.tumblrAuth.callbackURL
       },
       function(req, token, tokenSecret, profile, done) {
-         console.log("id>>>"+profile.id);
+        console.log("tokenSecret>>>"+JSON.stringify(tokenSecret));
+        console.log("profile>>>"+JSON.stringify(tokenSecret));
         // asynchronous
         process.nextTick(function() {
             // check if the user is already logged in

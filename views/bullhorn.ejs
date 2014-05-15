@@ -55,6 +55,10 @@
                         <input type="checkbox" id="sns-twitter" name="sns-twitter" checked="checked">
                         <label for="sns-twitter"> Twitter </label>
                     <% } %>
+                    <% if (user.tumblr.token) { %>
+                        <input type="checkbox" id="sns-tumblr" name="sns-tumblr" checked="checked">
+                        <label for="sns-tumblr"> Tumblr </label>
+                    <% } %>
                     <% if (user.facebook.token && !expired.facebook) { %>
                         <input type="checkbox" id="sns-facebook" name="sns-facebook" checked="checked">
                         <label for="sns-facebook"> Facebook </label>
@@ -76,10 +80,6 @@
                     <% } %>
                     <% if (expired.weibo) { %>
                         <a href="/connect/weibo" class="btn btn-danger">Refresh Weibo token</a>
-                    <% } %>
-                    <% if (user.tumblr.token) { %>
-                        <input type="checkbox" id="sns-tumblr" name="sns-tumblr" checked="checked">
-                        <label for="sns-tumblr"> Tumblr </label>
                     <% } %>
                         <br/>
                         <label for="product_name"> Product Name </label>                        
