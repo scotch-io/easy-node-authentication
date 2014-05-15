@@ -1,6 +1,6 @@
 <% if (data.dis_percentage && !data.dis_amount) { %>
-<%= data.dis_percentage %>% off! <%= data.product_name %> for <%= data.current_price %>
+<%= data.dis_percentage %>% off! <%= data.product_name %> for <%= data.current_price %> <%= data.pb_url %>
 <% } %>
 <% if (!data.dis_percentage && data.dis_amount) { %>
-$<%= data.dis_amount %> off! <%= data.product_name %> for <%= data.current_price %>
-<% } %><%= data.pb_url %>
+$<%= data.dis_amount %> off! <%= data.product_name %> for <%= data.current_price %> <%= data.pb_url %>
+<% } %>

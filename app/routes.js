@@ -109,10 +109,14 @@ module.exports = function(app, passport) {
         });
     });
     app.post('/shout', isLoggedIn, function(req, res) {
-        var imgUrls = [];
-        var files   = [];
+        var imgUrls  = [];
+        var files    = [];
+        var filePath = null;
         for (var i in req.files) {
             files.push(req.files[i]);
+            if (i == 0) {
+                filePath = req.files[i].path;
+            }
         }
 
         var toSNS   = [];
@@ -215,9 +219,15 @@ module.exports = function(app, passport) {
                             consumerSecret : configAuth.twitterAuth.consumerSecret,
                             callback       : configAuth.twitterAuth.callbackURL
                         });
+                        
+                        var params = {status: content};
+                        if (filePath) {
+                            params.media = fs.createReadStream(filePath);
+                        }
+
                         twitter.statuses(
                             'update',
-                            {media: imgUrls, status: content},
+                            params,
                             req.user.twitter.token,
                             req.user.twitter.tokenSecret,
                             function (error, data, response) { // data contains the data sent by twitter
@@ -350,6 +360,7 @@ module.exports = function(app, passport) {
                 return;
             }
             fs.readFile(file.path, function(err, file_buffer) {
+                console.log(file.path);
                 var s3Params = {
                     Bucket      : configAuth.awsAuth.bucket,
                     Key         : randomString(32) + '-' + file.name.replace(/ /g, '_'),
