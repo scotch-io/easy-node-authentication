@@ -77,7 +77,7 @@
                     <% if (expired.weibo) { %>
                         <a href="/connect/weibo" class="btn btn-danger">Refresh Weibo token</a>
                     <% } %>
-                    <% if (userExt.tumblr.postAddress) { %>
+                    <% if (user.tumblr.token) { %>
                         <input type="checkbox" id="sns-tumblr" name="sns-tumblr" checked="checked">
                         <label for="sns-tumblr"> Tumblr </label>
                     <% } %>
