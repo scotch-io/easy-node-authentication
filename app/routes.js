@@ -296,7 +296,7 @@ module.exports = function(app, passport) {
                           token_secret: req.user.tumblr.tokenSecret
                         };
 
-                        var hostName = req.user.tumblr.username;
+                        var hostName = req.user.tumblr.username + '.tumblr.com';
                         var blog     = new tumblr.Blog(hostName, oauth);
 
                         blog.text(
