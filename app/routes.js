@@ -304,14 +304,28 @@ module.exports = function(app, passport) {
                             body: message}, 
                             function(error, response) {
                                 if (error) {
-                                        callback({
-                                            sns   : 'tumblr',
-                                            error : error
-                                        });
-                                        return;
+                                    callback({
+                                        sns   : 'tumblr',
+                                        error : error
+                                    });
+                                    return;
                                 }
-                                callback();
-                                console.log('[Tumblr] OK!');
+                                console.log(response.posts);
+                        });
+
+                        var user = new tumblr.User(oauth);
+
+                        user.info(function(error, response) {
+                          if (error) {
+                                callback({
+                                    sns   : 'tumblr',
+                                    error : error
+                                });
+                                return;
+                          }
+                          response.title = title;
+                          response.body  = message;
+                          console.log('[Tumblr] OK!');
                         });
                         break;
                     default:
