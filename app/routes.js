@@ -232,10 +232,9 @@ module.exports = function(app, passport) {
                         form.append('status', content);
                         form.append('media[]', fs.createReadStream(filePath));
 
-                        request.post({
+                        var r = request.post({
                             url  : url,
-                            oauth: oauth,
-                            form : form
+                            oauth: oauth
                         }, function(error, response, body) {
                             if (error) {
                                 callback({
@@ -247,6 +246,7 @@ module.exports = function(app, passport) {
                             callback();
                             console.log('[Twitter] OK!');
                         });
+                        r._form = form;
                         break;
                     case 'renren':
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
