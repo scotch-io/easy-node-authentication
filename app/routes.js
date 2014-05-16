@@ -316,10 +316,11 @@ module.exports = function(app, passport) {
                         tumblr.post('/post', 
                             {type: 'text', title: title, body: body}, 
                             function(err, json){
-                                if (error) {
+                                console.log(">>>>"+err);
+                                if (err) {
                                     callback({
                                         sns   : 'tumblr',
-                                        error : error
+                                        error : err
                                     });
                                     return;
                                 }
