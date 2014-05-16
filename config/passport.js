@@ -300,21 +300,23 @@ module.exports = function(passport) {
         consumerSecret : configAuth.tumblrAuth.consumerSecret,
         callbackURL    : configAuth.tumblrAuth.callbackURL
       },
-      function(token, tokenSecret, profile, done) {
+      function(req, token, tokenSecret, profile, done) {
         // asynchronous
         process.nextTick(function() {
-            var user                 = req.user; // pull the user out of the session
+            if (req.user) {
+                var user                 = req.user; // pull the user out of the session
 
-            user.tumblr.token       = token;
-            user.tumblr.tokenSecret = tokenSecret;
-            user.tumblr.username    = profile.username;
-            user.tumblr.email       = profile.email;
+                user.tumblr.token       = token;
+                user.tumblr.tokenSecret = tokenSecret;
+                user.tumblr.username    = profile.username;
+                user.tumblr.email       = profile.email;
 
-            user.save(function(err) {
-                if (err)
-                    throw err;
-                return done(null, user);
-            });
+                user.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+            }
 
         });
       }
