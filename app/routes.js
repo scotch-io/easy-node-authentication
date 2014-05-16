@@ -301,15 +301,7 @@ module.exports = function(app, passport) {
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
                         var body = content.substring(content.indexOf('[content]')+9, content.length);
 
-                        var oauth = {
-                          consumer_key: configAuth.tumblrAuth.consumerKey,
-                          consumer_secret: configAuth.tumblrAuth.consumerSecret,
-                          token: req.user.tumblr.token,
-                          token_secret: req.user.tumblr.tokenSecret
-                        };
-
                         var hostName = req.user.tumblr.username + '.tumblr.com';
-                        var blog     = new tumblr.Blog(hostName, oauth);
 
                         var tumblr = new Tumblr(
                           {
