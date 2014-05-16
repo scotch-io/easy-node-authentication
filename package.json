@@ -30,6 +30,7 @@
     "nodemailer": "*",
     "async": "~0.2.9",
     "redis": "*",
+    "tumblrwks": "*0.2.0",
     "form-data": "~0.1.2"
   }
 }
