@@ -22,7 +22,6 @@
     "bcrypt-nodejs" : "latest",
     "fb": "*",
     "node-twitter-api": "*",
-    "tumblr":"*",
     "passport-renren": "*",
     "passport-weibo-2": "*",
     "aws-sdk": "*",
@@ -30,7 +29,7 @@
     "nodemailer": "*",
     "async": "~0.2.9",
     "redis": "*",
-    "tumblrwks": "*0.2.0",
+    "tumblr.js": "*0.0.4",
     "form-data": "~0.1.2"
   }
 }

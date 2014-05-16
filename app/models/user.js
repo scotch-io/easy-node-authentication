@@ -26,8 +26,7 @@ var userSchema = mongoose.Schema({
     tumblr           : {
         token        : String,
         tokenSecret  : String,
-        username     : String,
-        email        : String
+        username     : String
     },
     google           : {
         id           : String,

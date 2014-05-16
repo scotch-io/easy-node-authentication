@@ -295,28 +295,24 @@ module.exports = function(app, passport) {
                         );
                         break;
                     case 'tumblr':
-                        var Tumblr = require('tumblrwks');
-                        // var tumblr = require('tumblr');
+                        var tumblr = require('tumblr.js');
                         
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
-                        var body = content.substring(content.indexOf('[content]')+9, content.length);
+                        var body    = content.substring(content.indexOf('[content]')+9, content.length);
 
-                        var hostName = req.user.tumblr.username + '.tumblr.com';
-
-                        var tumblr = new Tumblr(
-                          {
-                            consumerKey: configAuth.tumblrAuth.consumerKey,
-                            consumerSecret: configAuth.tumblrAuth.consumerSecret,
-                            accessToken: req.user.tumblr.token,
-                            accessSecret: req.user.tumblr.tokenSecret
-                          }, hostName
-                          // specify the blog url now or the time you want to use
-                        );
-
-                        tumblr.post('/post', 
-                            {type: 'text', title: title, body: body}, 
-                            function(err, json){
-                                console.log(">>>>"+err);
+                        var client = tumblr.createClient({
+                          consumer_key   : configAuth.tumblrAuth.consumerKey,
+                          consumer_secret: configAuth.tumblrAuth.consumerSecret,
+                          token          : req.user.tumblr.token,
+                          token_secret   : req.user.tumblr.tokenSecret
+                        });
+                        
+                        client.text(
+                            req.user.tumblr.username, 
+                            { 
+                                title: title, body: body 
+                            }, 
+                            function (err, resp) {
                                 if (err) {
                                     callback({
                                         sns   : 'tumblr',
@@ -324,8 +320,9 @@ module.exports = function(app, passport) {
                                     });
                                     return;
                                 }
+                                callback();
                                 console.log('[Tumblr] OK!');
-                        });
+                            });  
                         break;
                     default:
                         callback({
@@ -463,7 +460,7 @@ module.exports = function(app, passport) {
     // tumblr --------------------------------
 
         // send to tumblr to do the authentication
-        app.get('/auth/tumblr', passport.authenticate('tumblr', { scope : ['email', 'read_stream', 'publish_actions'] }));
+        app.get('/auth/tumblr', passport.authenticate('tumblr', { scope : 'email' }));
 
         // handle the callback after tumblr has authenticated the user
         app.get('/auth/tumblr/callback',

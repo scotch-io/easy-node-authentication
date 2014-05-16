@@ -298,18 +298,57 @@ module.exports = function(passport) {
     passport.use(new TumblrStrategy({
         consumerKey    : configAuth.tumblrAuth.consumerKey,
         consumerSecret : configAuth.tumblrAuth.consumerSecret,
-        callbackURL    : configAuth.tumblrAuth.callbackURL
+        callbackURL    : configAuth.tumblrAuth.callbackURL,
+        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
       },
       function(req, token, tokenSecret, profile, done) {
         // asynchronous
         process.nextTick(function() {
-            if (req.user) {
+            // check if the user is already logged in
+            if (!req.user) {
+                User.findOne({ 'tumblr.username' : profile.username }, function(err, user) {
+                    if (err)
+                        return done(err);
+
+                    if (user) {
+                        // if there is a user id already but no token (user was linked at one point and then removed)
+                        if (!user.tumblr.token) {
+                            user.tumblr.token       = token;
+                            user.tumblr.tokenSecret = tokenSecret;
+                            user.tumblr.username    = profile.username;
+
+                            user.save(function(err) {
+                                if (err)
+                                    throw err;
+                                return done(null, user);
+                            });
+                        }
+
+                        return done(null, user); // user found, return that user
+                    } else {
+                        // if there is no user, create them
+                        var newUser                = new User();
+                        newUser.tumblr.token       = token;
+                        newUser.tumblr.tokenSecret = tokenSecret;
+                        newUser.tumblr.username    = profile.username;
+
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+                    }
+                });
+
+            } else {
+                // user already exists and is logged in, we have to link accounts
                 var user                 = req.user; // pull the user out of the session
 
+                user.tumblr.id          = profile.id;
                 user.tumblr.token       = token;
                 user.tumblr.tokenSecret = tokenSecret;
                 user.tumblr.username    = profile.username;
-                user.tumblr.email       = profile.email;
+                user.tumblr.displayName = profile.displayName;
 
                 user.save(function(err) {
                     if (err)
