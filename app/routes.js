@@ -212,40 +212,41 @@ module.exports = function(app, passport) {
                         });
                         break;
                     case 'twitter':
-                        var twitterAPI = require('node-twitter-api');
-                        var twitter    = new twitterAPI({
-                            consumerKey    : configAuth.twitterAuth.consumerKey,
-                            consumerSecret : configAuth.twitterAuth.consumerSecret,
-                            callback       : configAuth.twitterAuth.callbackURL
-                        });
+                        var FormData = require('form-data');                    
+                        var baseUrl = "https://api.twitter.com/1.1/";
                         
-                        var type = 'update';
                         var params = {status: content};
                         if (filePath) {
                             type = 'update_with_media';
                             // params.media = imgUrls[0];
-                            console.log(">>>>"+filePath);
-                            params.media = new Array(filePath);
                         }
+                        var url = baseUrl + "statuses/" + url + ".json";
+                        var oauth = {
+                            consumer_key: configAuth.twitterAuth.consumerKey,
+                            consumer_secret: configAuth.twitterAuth.consumerSecret,
+                            token: req.user.twitter.token,
+                            token_secret: req.user.twitter.tokenSecret
+                        };
 
-                        twitter.statuses(
-                            type,
-                            params,
-                            req.user.twitter.token,
-                            req.user.twitter.tokenSecret,
-                            function (error, data, response) { // data contains the data sent by twitter
-                                if (error) {
-                                    callback({
-                                        sns   : 'twitter',
-                                        error : error
-                                    });
-                                    return;
-                                }
-                                callback();
-                                console.log('[Twitter] OK!');
-                                // consolg.log(JSON.stringify(data));
-                            }
-                        );
+                        var form = new FormData();
+                        form.append('status', content);
+                        form.append('media[]', fs.createReadStream(filePath));
+
+                        request.post({
+                            url  : url,
+                            oauth: oauth,
+                            form : form
+                        }, function(error, response, body) {
+                            if (error) {
+                                callback({
+                                    sns   : 'twitter',
+                                    error : error
+                                });
+                                return;
+                            } 
+                            callback();
+                            console.log('[Twitter] OK!');
+                        });
                         break;
                     case 'renren':
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
