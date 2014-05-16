@@ -224,7 +224,7 @@ module.exports = function(app, passport) {
                             form.append('media[]', fs.createReadStream(filePath));
                             // params.media = imgUrls[0];
                         }
-                        
+
                         var url = baseUrl + "statuses/" + type + ".json";
                         var oauth = {
                             consumer_key: configAuth.twitterAuth.consumerKey,
@@ -236,7 +236,7 @@ module.exports = function(app, passport) {
                         var r = request.post({
                             url  : url,
                             oauth: oauth,
-                            form : form
+                            {form : form}
                         }, function(error, response, body) {
                             if (error) {
                                 callback({
