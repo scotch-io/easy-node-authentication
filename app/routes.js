@@ -220,7 +220,7 @@ module.exports = function(app, passport) {
                             type = 'update_with_media';
                             // params.media = imgUrls[0];
                         }
-                        var url = baseUrl + "statuses/" + url + ".json";
+                        var url = baseUrl + "statuses/" + type + ".json";
                         var oauth = {
                             consumer_key: configAuth.twitterAuth.consumerKey,
                             consumer_secret: configAuth.twitterAuth.consumerSecret,
