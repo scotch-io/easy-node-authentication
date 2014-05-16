@@ -219,16 +219,17 @@ module.exports = function(app, passport) {
                             callback       : configAuth.twitterAuth.callbackURL
                         });
                         
-                        var action = 'update';
+                        var type = 'update';
                         var params = {status: content};
                         if (filePath) {
-                            action = 'update_with_media';
-                            params.media = imgUrls[0];
-                            // params.media = new Array(fs.createReadStream(filePath));
+                            type = 'update_with_media';
+                            // params.media = imgUrls[0];
+                            console.log(">>>>"+filePath);
+                            params.media = new Array(filePath);
                         }
 
                         twitter.statuses(
-                            action,
+                            type,
                             params,
                             req.user.twitter.token,
                             req.user.twitter.tokenSecret,
