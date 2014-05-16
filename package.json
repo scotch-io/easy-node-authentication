@@ -29,6 +29,7 @@
     "request": "*",
     "nodemailer": "*",
     "async": "~0.2.9",
-    "redis": "*"
+    "redis": "*",
+    "form-data": "~0.1.2"
   }
 }

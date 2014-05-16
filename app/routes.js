@@ -215,11 +215,16 @@ module.exports = function(app, passport) {
                         var FormData = require('form-data');                    
                         var baseUrl = "https://api.twitter.com/1.1/";
                         
+                        var form = new FormData();
+                        form.append('status', content);
+                        
                         var params = {status: content};
                         if (filePath) {
                             type = 'update_with_media';
+                            form.append('media[]', fs.createReadStream(filePath));
                             // params.media = imgUrls[0];
                         }
+                        
                         var url = baseUrl + "statuses/" + type + ".json";
                         var oauth = {
                             consumer_key: configAuth.twitterAuth.consumerKey,
@@ -228,13 +233,10 @@ module.exports = function(app, passport) {
                             token_secret: req.user.twitter.tokenSecret
                         };
 
-                        var form = new FormData();
-                        form.append('status', content);
-                        form.append('media[]', fs.createReadStream(filePath));
-
                         var r = request.post({
                             url  : url,
-                            oauth: oauth
+                            oauth: oauth,
+                            form : form
                         }, function(error, response, body) {
                             if (error) {
                                 callback({
@@ -246,7 +248,6 @@ module.exports = function(app, passport) {
                             callback();
                             console.log('[Twitter] OK!');
                         });
-                        r._form = form;
                         break;
                     case 'renren':
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
