@@ -298,7 +298,8 @@ module.exports = function(app, passport) {
                         var tumblr = require('tumblr.js');
                         
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
-                        var body    = content.substring(content.indexOf('[content]')+9, content.length);
+                        var body    = content.substring(content.indexOf('[content]')+9, content.indexOf('[tags]'));
+                        var tags    = content.substring(content.indexOf('[tags]')+6, content.length);
 
                         var client = tumblr.createClient({
                           consumer_key   : configAuth.tumblrAuth.consumerKey,
@@ -310,7 +311,7 @@ module.exports = function(app, passport) {
                         client.text(
                             req.user.tumblr.username, 
                             { 
-                                title: title, body: body 
+                                title: title, body: body, tags: tags
                             }, 
                             function (err, resp) {
                                 if (err) {
