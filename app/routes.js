@@ -194,7 +194,7 @@ module.exports = function(app, passport) {
                     console.log(error);
                     return;
                 }
-                
+
                 switch (sns) {
                     case 'facebook':
                         var FB = require('fb');
@@ -218,9 +218,15 @@ module.exports = function(app, passport) {
                             consumerSecret : configAuth.twitterAuth.consumerSecret,
                             callback       : configAuth.twitterAuth.callbackURL
                         });
+
                         
                         var type = 'update';
                         var params = {status: content};
+                        
+                        if (content.length > 140) {
+                            params.status = content.substring(content.indexOf(' for ')-140, content.indexOf(' for '));
+                        }
+
                         if (filePath) {
                             type = 'update_with_media';
                             // params.media = imgUrls[0];
