@@ -16,6 +16,12 @@ module.exports = {
 		'callbackURL' 	 : 'http://localhost:8030/auth/twitter/callback'
     },
 
+    'tumblrAuth' : {
+        'consumerKey'    : 'your-consumer-key-here',
+        'consumerSecret' : 'your-secret-key-here',
+        'callbackURL'    : 'http://localhost:8030/auth/tumblr/callback'
+    },
+
     'googleAuth' : {
         'clientID' 		 : 'your-secret-clientID-here',
 		'clientSecret' 	 : 'your-client-secret-here',
