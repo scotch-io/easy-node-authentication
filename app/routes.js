@@ -194,7 +194,7 @@ module.exports = function(app, passport) {
                     console.log(error);
                     return;
                 }
-                
+                content = content.replace(/&quot;/g, '\"');
                 switch (sns) {
                     case 'facebook':
                         var FB = require('fb');
