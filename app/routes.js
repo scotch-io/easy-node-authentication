@@ -5,6 +5,7 @@ var s3         = new AWS.S3(),
     fs         = require('fs'),
     async      = require('async'),
     request    = require('request'),
+
     ejs        = require('ejs');
 
 module.exports = function(app, passport) {
@@ -151,7 +152,6 @@ module.exports = function(app, passport) {
         data['product_desc']      = req.body['product_desc'].trim() || '';
         data['custom_tag']        = req.body['custom_tag'].trim() || '';
 
-        console.log(data);
         if (!data) {
             var error = 'Product information can not be empty';
             res.json({'error': error});
@@ -663,7 +663,6 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
-
 };
 
 // route middleware to ensure user is logged in

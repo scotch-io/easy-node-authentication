@@ -12,7 +12,7 @@
 
         textarea {
             margin-left: 10px;
-            width: 250px;
+            width: 400px;
             height: 100px;
             vertical-align: middle;
         }
@@ -28,7 +28,7 @@
         }
 
         input {
-            width: 250px;
+            width: 400px;
             margin-left: 10px;
         }
 
@@ -287,6 +287,38 @@
             $('#lowest_infor').show();
         }
 
+    });
+
+    $('#pb_url').on('mouseleave', function() {
+        var url = this.value;
+        if (!url) {
+            return;
+        }
+
+        var urlhash = url.substring(url.indexOf('urlhash=')+8, url.length);
+        if (!urlhash) {
+            return;
+        }
+
+        $.post(
+            'http://api.pricebeater.ca/web/v2/price',
+            {
+                urlhash    : urlhash,
+                postalcode : '',
+                rebate     : 'true',
+                country    : ''
+            }
+        ).success(function(resp) {
+            if (resp.meta.code == 200) {
+                console.log(resp.response);
+                var data = resp.response.request_sku;
+                $("#product_name").val(decodeURIComponent(data.skuname.replace(/(%.{0,1})$/, '')));
+                $("#seller").val(decodeURIComponent(data.skufrom.replace(/(%.{0,1})$/, '')));
+                $("#current_price").val(data.price);
+            }
+        }).error(function(resp) {
+            console.log('failed to get product infor');
+        });
     });
 
     $('#txt-content').on('input', count);
