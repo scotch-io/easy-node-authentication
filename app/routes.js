@@ -248,7 +248,7 @@ module.exports = function(app, passport) {
 
                         if (!filePath && data['image_url']) {
                             var imgUrl = data['image_url'];
-                            filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.')+1, imgUrl.length);
+                            filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.'), imgUrl.length);
                             request.head(imgUrl, function(err, res, body){
                                 console.log('content-type:', res.headers['content-type']);
                                 console.log('content-length:', res.headers['content-length']);
