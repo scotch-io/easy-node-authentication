@@ -111,18 +111,41 @@ module.exports = function(app, passport) {
     });
 
     function checkFiles(req, res, next) {
-        console.log('>>>before test');
-        image_url = req.body['image_url'];
-        if (req.files.length > 0 && !image_url) {
+        var imgUrl = req.body['image_url'];
+
+        if (req.files.length > 0) {
+            return next();
+        }        
+
+        if (!imgUrl) {
             return next();
         }
+
+        var fileName = Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.'), imgUrl.length);
+        var filePath = './uploads/' + fileName;
+
+        request.head(imgUrl, function(err, res, body){
+            console.log('content-type:', res.headers['content-type']);
+            console.log('content-length:', res.headers['content-length']);
+
+            request(imgUrl).pipe(fs.createWriteStream(filePath)).on('close', function(err){
+                if (err) {
+                    console.log("[ERROR] download product image error!");
+                }
+                req.body['new_file'] = {name: fileName, path: filePath, size:1};
+                return next();
+            });
+        });
     }
 
-    app.post('/shout', isLoggedIn, function(req, res) {
-        console.log('<<<shout in');
+    app.post('/shout', isLoggedIn, checkFiles, function(req, res) {
         var imgUrls  = [];
         var files    = [];
         var filePath = null;
+
+        if (req.body['new_file']) {
+            files.push(req.body['new_file']);
+        }
         for (var i in req.files) {
             files.push(req.files[i]);
         }
@@ -196,11 +219,6 @@ module.exports = function(app, passport) {
         function share() {
             data['product_image'] = imgUrls;
             
-            // var content = req.body['txt-content'] || '';
-
-            // strImgUrls  = imgUrls.join(' ');
-            // content += strImgUrls.length > 0 ? (' ' + strImgUrls) : '';
-
             async.each(toSNS, function(sns, callback) {
                 var content = getContent(sns, data);
                 if (!content) {
@@ -242,67 +260,31 @@ module.exports = function(app, passport) {
                             params.status = content.replace(title, title.substring(0, title.length-(content.length-145)) + ' ... ');
                             // params.status = content.substring(content.lastIndexOf(' for ')-140, content.length);
                         }
-
-                        if (!filePath && data['image_url']) {
-                            var imgUrl = data['image_url'];
-                            filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.'), imgUrl.length);
-                            request.head(imgUrl, function(err, res, body){
-                                console.log('content-type:', res.headers['content-type']);
-                                console.log('content-length:', res.headers['content-length']);
-
-                                request(imgUrl).pipe(fs.createWriteStream(filePath)).on('close', function(err){
-                                    if (err) {
-                                        console.log("[ERROR] download product image error!");
-                                    }
-                                    
-                                    if (filePath) {
-                                        type = 'update_with_media';
-                                        params.media = new Array(filePath);
-                                    }
-
-                                    twitter.statuses(
-                                        type,
-                                        params,
-                                        req.user.twitter.token,
-                                        req.user.twitter.tokenSecret,
-                                        function (error, data, response) { // data contains the data sent by twitter
-                                            if (error) {
-                                                callback({
-                                                    sns   : 'twitter',
-                                                    error : error
-                                                });
-                                                return;
-                                            }
-                                            fs.unlinkSync(filePath);
-                                            callback();
-                                            console.log('[Twitter] OK!');
-                                        }
-                                    );
-                                });
-                            });
-                        } else {
+                        
+                        if (filePath) {
                             type = 'update_with_media';
                             params.media = new Array(filePath);
-
-                            twitter.statuses(
-                                type,
-                                params,
-                                req.user.twitter.token,
-                                req.user.twitter.tokenSecret,
-                                function (error, data, response) { // data contains the data sent by twitter
-                                    if (error) {
-                                        callback({
-                                            sns   : 'twitter',
-                                            error : error
-                                        });
-                                        return;
-                                    }
-                                    fs.unlinkSync(filePath);
-                                    callback();
-                                    console.log('[Twitter] OK!');
-                                }
-                            );
                         }
+
+                        twitter.statuses(
+                            type,
+                            params,
+                            req.user.twitter.token,
+                            req.user.twitter.tokenSecret,
+                            function (error, data, response) { // data contains the data sent by twitter
+                                if (error) {
+                                    callback({
+                                        sns   : 'twitter',
+                                        error : error
+                                    });
+                                    return;
+                                }
+                                fs.unlinkSync(filePath);
+                                callback();
+                                console.log('[Twitter] OK!');
+                            }
+                        );
+                        
                         break;
                     case 'renren':
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
