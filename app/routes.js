@@ -260,7 +260,7 @@ module.exports = function(app, passport) {
                                 });
                             });
                         }
-                        console.log('>>>'+filePath);
+
                         if (filePath) {
                             type = 'update_with_media';
                             params.media = new Array(filePath);
@@ -279,6 +279,7 @@ module.exports = function(app, passport) {
                                     });
                                     return;
                                 }
+                                fs.unlinkSync(filePath);
                                 callback();
                                 console.log('[Twitter] OK!');
                                 // consolg.log(JSON.stringify(data));
