@@ -332,8 +332,13 @@
             }
         ).success(function(resp) {
             if (resp.meta.code == 200) {
+                var pb_url = $("#pb_url").val();
+                
                 document.getElementById('data-form').reset()
+                $("#pb_url").val(pb_url);
+
                 var data = resp.response.request_sku;
+
                 $("#product_name").val(decodeURIComponent(data.skuname.replace(/(%.{0,1})$/, '')));
                 $("#seller").val(sellers[decodeURIComponent(data.skufrom.replace(/(%.{0,1})$/, ''))]);
                 $("#current_price").val(data.price);
