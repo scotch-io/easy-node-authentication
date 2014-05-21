@@ -257,34 +257,55 @@ module.exports = function(app, passport) {
                                     if (err) {
                                         console.log("[ERROR] download product image error!");
                                     }
+                                    
+                                    if (filePath) {
+                                        type = 'update_with_media';
+                                        params.media = new Array(filePath);
+                                    }
+
+                                    twitter.statuses(
+                                        type,
+                                        params,
+                                        req.user.twitter.token,
+                                        req.user.twitter.tokenSecret,
+                                        function (error, data, response) { // data contains the data sent by twitter
+                                            if (error) {
+                                                callback({
+                                                    sns   : 'twitter',
+                                                    error : error
+                                                });
+                                                return;
+                                            }
+                                            fs.unlinkSync(filePath);
+                                            callback();
+                                            console.log('[Twitter] OK!');
+                                        }
+                                    );
                                 });
                             });
-                        }
-
-                        if (filePath) {
+                        } else {
                             type = 'update_with_media';
                             params.media = new Array(filePath);
-                        }
 
-                        twitter.statuses(
-                            type,
-                            params,
-                            req.user.twitter.token,
-                            req.user.twitter.tokenSecret,
-                            function (error, data, response) { // data contains the data sent by twitter
-                                if (error) {
-                                    callback({
-                                        sns   : 'twitter',
-                                        error : error
-                                    });
-                                    return;
+                            twitter.statuses(
+                                type,
+                                params,
+                                req.user.twitter.token,
+                                req.user.twitter.tokenSecret,
+                                function (error, data, response) { // data contains the data sent by twitter
+                                    if (error) {
+                                        callback({
+                                            sns   : 'twitter',
+                                            error : error
+                                        });
+                                        return;
+                                    }
+                                    fs.unlinkSync(filePath);
+                                    callback();
+                                    console.log('[Twitter] OK!');
                                 }
-                                fs.unlinkSync(filePath);
-                                callback();
-                                console.log('[Twitter] OK!');
-                                // consolg.log(JSON.stringify(data));
-                            }
-                        );
+                            );
+                        }
                         break;
                     case 'renren':
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
@@ -340,6 +361,24 @@ module.exports = function(app, passport) {
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
                         var body    = content.substring(content.indexOf('[content]')+9, content.indexOf('[tags]'));
                         var tags    = content.substring(content.indexOf('[tags]')+6, content.length);
+
+                                                if (!filePath && data['image_url']) {
+                            var imgUrl = data['image_url'];
+                            filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.'), imgUrl.length);
+                            request.head(imgUrl, function(err, res, body){
+                                console.log('content-type:', res.headers['content-type']);
+                                console.log('content-length:', res.headers['content-length']);
+
+                                request(imgUrl).pipe(fs.createWriteStream(filePath)).on('close', function(err){
+                                    if (err) {
+                                        console.log("[ERROR] download product image error!");
+                                    }
+                                });
+                            });
+                        }
+                        console.log('>>>'+filePath);
+                        fs.unlinkSync(filePath);
+
 
                         var client = tumblr.createClient({
                           consumer_key   : configAuth.tumblrAuth.consumerKey,
