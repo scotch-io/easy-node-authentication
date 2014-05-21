@@ -192,8 +192,6 @@ module.exports = function(app, passport) {
                     if (err) {
                         console.log("[ERROR] download product image error!");
                     }
-
-                    return imgPath;
                 });
             });
         }
@@ -250,6 +248,7 @@ module.exports = function(app, passport) {
                         }
 
                         if (!filePath && data['image_url']) {
+                            var imgUrl = data['image_url'];
                             filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.')+1, imgUrl.length);
                             downloadImg(data['image_url'], filePath);
                         }
