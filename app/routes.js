@@ -183,19 +183,6 @@ module.exports = function(app, passport) {
             return content;
         }
 
-        function downloadImg(imgUrl, imgPath) {
-            request.head(imgUrl, function(err, res, body){
-                console.log('content-type:', res.headers['content-type']);
-                console.log('content-length:', res.headers['content-length']);
-
-                request(imgUrl).pipe(fs.createWriteStream(imgPath)).on('close', function(err){
-                    if (err) {
-                        console.log("[ERROR] download product image error!");
-                    }
-                });
-            });
-        }
-
         function share() {
             data['product_image'] = imgUrls;
             
@@ -361,24 +348,6 @@ module.exports = function(app, passport) {
                         var title   = content.substring(content.indexOf('[title]')+7, content.indexOf('[content]'));
                         var body    = content.substring(content.indexOf('[content]')+9, content.indexOf('[tags]'));
                         var tags    = content.substring(content.indexOf('[tags]')+6, content.length);
-
-                                                if (!filePath && data['image_url']) {
-                            var imgUrl = data['image_url'];
-                            filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.'), imgUrl.length);
-                            request.head(imgUrl, function(err, res, body){
-                                console.log('content-type:', res.headers['content-type']);
-                                console.log('content-length:', res.headers['content-length']);
-
-                                request(imgUrl).pipe(fs.createWriteStream(filePath)).on('close', function(err){
-                                    if (err) {
-                                        console.log("[ERROR] download product image error!");
-                                    }
-                                });
-                            });
-                        }
-                        console.log('>>>'+filePath);
-                        fs.unlinkSync(filePath);
-
 
                         var client = tumblr.createClient({
                           consumer_key   : configAuth.tumblrAuth.consumerKey,
