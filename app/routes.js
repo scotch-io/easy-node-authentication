@@ -109,7 +109,17 @@ module.exports = function(app, passport) {
             share();
         });
     });
+
+    function checkFiles(req, res, next) {
+        console.log('>>>before test');
+        image_url = req.body['image_url'];
+        if (req.files.length > 0 && !image_url) {
+            return next();
+        }
+    }
+
     app.post('/shout', isLoggedIn, function(req, res) {
+        console.log('<<<shout in');
         var imgUrls  = [];
         var files    = [];
         var filePath = null;
