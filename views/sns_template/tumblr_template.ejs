@@ -7,7 +7,7 @@ $<%- data.dis_amount %> off! <%- data.product_name %> for $<%- data.current_pric
 <% } %>
 [content]
 <% if (data.lowest_price == 1) { %><%- data.seller %> offers <b><a href=<%- data.pb_url %> target=_blank><%- data.product_name %></a></b><% if (data.model_number) { %>, model number <b><a href=<%- data.pb_url %> target=_blank><%- data.model_number %></a></b><% } %> for <b>$<%- data.current_price %></b>, that’s <b>$<%- data.dis_amount %></b> off regular price and the lowest we’ve seen.<% } %>
-<% if (data.lowest_price == 0) { %><%- data.seller %> offers <b><a href=<%- data.pb_url %> target=_blank><%- data.product_name %></a></b><% if (data.model_number) { %>, model number <b><a href=<%- data.pb_url %> target=_blank><%- data.model_number %></a></b><% } %> for <b>$<%- data.current_price %></b>, that’s <b>$<%- data.dis_amount %></b> off regular price and only $<%- data.lowest_difference %> than the lowest price we’ve recorded on <%- data.lowest_time %>.<% } %>
+<% if (data.lowest_price == 0) { %><%- data.seller %> offers <b><a href=<%- data.pb_url %> target=_blank><%- data.product_name %></a></b><% if (data.model_number) { %>, model number <b><a href=<%- data.pb_url %> target=_blank><%- data.model_number %></a></b><% } %> for <b>$<%- data.current_price %></b>, that’s <b>$<%- data.dis_amount %></b> off regular price and only $<%- data.lowest_difference %> more than the lowest price we’ve recorded on <%- data.lowest_time %>.<% } %>
 
 <%- data.product_desc %>
 <% for(var i=0; i<data.product_image.length; i++) {%>
