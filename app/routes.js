@@ -184,14 +184,20 @@ module.exports = function(app, passport) {
         }
 
         function downloadImg(imgUrl) {
-            var imgPath = '/uploads/' + imgUrl.substring(imgUrl.lastIndexOf('\/')+1, imgUrl.length);
-            try{
-                request(imgUrl).pipe(fs.createWriteStream(imgPath));
-                return imgPath;
-            }catch(ex){
-                console.log("[ERROR] download product image error!");
-                return null;
-            }
+            var imgPath = './uploads/' + imgUrl.substring(imgUrl.lastIndexOf('\/')+1, imgUrl.length);
+
+            request.head(imgUrl, function(err, res, body){
+                console.log('content-type:', res.headers['content-type']);
+                console.log('content-length:', res.headers['content-length']);
+
+                request(imgUrl).pipe(fs.createWriteStream(imgPath)).on('close', function(err){
+                    if (err) {
+                        console.log("[ERROR] download product image error!");
+                    }
+
+                    return imgPath;
+                });
+            });
         }
 
         function share() {
