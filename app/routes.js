@@ -183,9 +183,7 @@ module.exports = function(app, passport) {
             return content;
         }
 
-        function downloadImg(imgUrl) {
-            var imgPath = './uploads/' + imgUrl.substring(imgUrl.lastIndexOf('\/')+1, imgUrl.length);
-
+        function downloadImg(imgUrl, imgPath) {
             request.head(imgUrl, function(err, res, body){
                 console.log('content-type:', res.headers['content-type']);
                 console.log('content-length:', res.headers['content-length']);
@@ -252,7 +250,8 @@ module.exports = function(app, passport) {
                         }
 
                         if (!filePath && data['image_url']) {
-                            filePath = downloadImg(data['image_url']);
+                            filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.')+1, imgUrl.length);
+                            downloadImg(data['image_url'], filePath);
                         }
 
                         if (filePath) {
