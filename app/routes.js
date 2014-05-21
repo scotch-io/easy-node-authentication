@@ -224,7 +224,8 @@ module.exports = function(app, passport) {
                         var params = {status: content};
                         
                         if (content.length > 140) {
-                            params.status = content.substring(content.indexOf(' for ')-140, content.indexOf(' for '));
+                            params.status = content.replace(content.substring(str.indexOf('off!')+4, content.lastIndexOf('for ')), '')
+                            // params.status = content.substring(content.lastIndexOf(' for ')-140, content.length);
                         }
 
                         if (filePath) {
