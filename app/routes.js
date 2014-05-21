@@ -186,10 +186,6 @@ module.exports = function(app, passport) {
         data['product_desc']      = req.body['product_desc'].trim() || '';
         data['custom_tag']        = req.body['custom_tag'].trim() || '';
 
-        if (data['image_url']) {
-            imgUrls.push(data['image_url']);
-        }
-
         if (!data) {
             var error = 'Product information can not be empty';
             res.json({'error': error});
@@ -260,7 +256,7 @@ module.exports = function(app, passport) {
                             params.status = content.replace(title, title.substring(0, title.length-(content.length-145)) + ' ... ');
                             // params.status = content.substring(content.lastIndexOf(' for ')-140, content.length);
                         }
-                        
+
                         if (filePath) {
                             type = 'update_with_media';
                             params.media = new Array(filePath);
