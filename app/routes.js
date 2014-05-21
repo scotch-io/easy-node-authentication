@@ -237,7 +237,6 @@ module.exports = function(app, passport) {
                             callback       : configAuth.twitterAuth.callbackURL
                         });
 
-                        
                         var type = 'update';
                         var params = {status: content};
                         
@@ -250,9 +249,18 @@ module.exports = function(app, passport) {
                         if (!filePath && data['image_url']) {
                             var imgUrl = data['image_url'];
                             filePath = './uploads/' + Date.now() + imgUrl.substring(imgUrl.lastIndexOf('.')+1, imgUrl.length);
-                            downloadImg(data['image_url'], filePath);
-                        }
+                            request.head(imgUrl, function(err, res, body){
+                                console.log('content-type:', res.headers['content-type']);
+                                console.log('content-length:', res.headers['content-length']);
 
+                                request(imgUrl).pipe(fs.createWriteStream(filePath)).on('close', function(err){
+                                    if (err) {
+                                        console.log("[ERROR] download product image error!");
+                                    }
+                                });
+                            });
+                        }
+                        console.log('>>>'+filePath);
                         if (filePath) {
                             type = 'update_with_media';
                             params.media = new Array(filePath);
