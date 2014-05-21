@@ -144,6 +144,7 @@ module.exports = function(app, passport) {
         data['current_price']     = req.body['current_price'].trim() || '';
         data['seller']            = req.body['seller'].trim() || '';
         data['pb_url']            = req.body['pb_url'].trim() || '';
+        data['image_url']         = req.body['image_url'].trim() || '';
         data['dis_percentage']    = req.body['dis_percentage'].trim() || '';
         data['dis_amount']        = req.body['dis_amount'].trim() || '';
         data['lowest_price']      = req.body['lowest_price'] === 'on' ? 1 : 0;
@@ -151,6 +152,10 @@ module.exports = function(app, passport) {
         data['lowest_time']       = req.body['lowest_time'].trim() || '';
         data['product_desc']      = req.body['product_desc'].trim() || '';
         data['custom_tag']        = req.body['custom_tag'].trim() || '';
+
+        if (data['image_url']) {
+            imgUrls.push(data['image_url']);
+        }
 
         if (!data) {
             var error = 'Product information can not be empty';
@@ -176,6 +181,17 @@ module.exports = function(app, passport) {
             var content  = ejs.render(templateString, {'data': data});
             console.log(content);
             return content;
+        }
+
+        function downloadImg(imgUrl) {
+            var imgPath = '/uploads/' + imgUrl.substring(imgUrl.lastIndexOf('\/')+1, imgUrl.length);
+            try{
+                request(imgUrl).pipe(fs.createWriteStream(imgPath));
+                return imgPath;
+            }catch(ex){
+                console.log("[ERROR] download product image error!");
+                return null;
+            }
         }
 
         function share() {
@@ -229,10 +245,15 @@ module.exports = function(app, passport) {
                             // params.status = content.substring(content.lastIndexOf(' for ')-140, content.length);
                         }
 
-                        if (filePath) {
-                            type = 'update_with_media';
-                            // params.media = imgUrls[0];
-                            params.media = new Array(filePath);
+
+                        if (data['image_url'] || filePath) {
+                            if (!filePath) {
+                                filePath = downloadImg(data['image_url']);
+                            }
+                            if (filePath) {
+                                type = 'update_with_media';
+                                params.media = new Array(filePath);
+                            }
                         }
 
                         twitter.statuses(

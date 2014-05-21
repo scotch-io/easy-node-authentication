@@ -34,6 +34,11 @@
             margin-top: 10px;
         }
 
+        img {
+            margin-left: 122px;
+            margin-top: 10px;
+        }
+
         input[type="file"] {
             display: inline;
         }        
@@ -91,6 +96,10 @@
                         <a href="/connect/weibo" class="btn btn-danger">Refresh Weibo token</a>
                     <% } %>
                         <br/>
+
+                        <label for="pb_url"> Pb Url </label>                        
+                        <input id="pb_url" name="pb_url"><br/>
+
                         <label for="product_name"> Product Name </label>                        
                         <input id="product_name" name="product_name"><br/>
 
@@ -102,9 +111,6 @@
                         
                         <label for="seller"> Seller </label>                        
                         <input id="seller" name="seller"><br/>
-                        
-                        <label for="pb_url"> Pb Url </label>                        
-                        <input id="pb_url" name="pb_url"><br/>
 
                         <label for="dis_amount"> Dis Amount </label>                        
                         <input id="dis_amount" name="dis_amount"><br/>
@@ -127,17 +133,23 @@
                         
                         <label for="product_desc"> Product Desc </label>
                         <textarea id="product_desc" name="product_desc"></textarea><br/>
+                        
+                        <label for="image_url"> Product Image Url </label>
+                        <input name="img-url" id="image_url" type="text"><br/>
 
                         <label for="product_image"> Product Image </label>
-                        <input name="img-0" type="file" class="file-input">
-                        <br/>
+                        <input id="product_image" name="img-0" type="file" class="file-input"><br/>
 
+                        <div>
+                        <img id="image_view" src="" style="display:none">
+                        </div>
+                        
                         <label for="custom_tag"> Custom Tag </label>      
                         <input type="text" id="custom_tag" name="custom_tag"><br/>
 
                     <!-- <button id="btn-pin" type="button">Pinterest</button> -->
                     <span id='txt-count'></span>
-                    <button id="btn-shout" type="button" style="margin-left: 334px;margin-top: 10px">Shout</button>
+                    <button id="btn-shout" type="button" style="margin-left: 706px;margin-top: 10px">Shout</button>
                 </div>
                 <br>
 <!--                 <div id="files">
@@ -208,6 +220,7 @@
         data.append('current_price', $('#current_price').val());
         data.append('seller', $('#seller').val());
         data.append('pb_url', $('#pb_url').val());
+        data.append('image_url', $('#image_url').val());
         data.append('dis_percentage', $('#dis_percentage').val());
         data.append('dis_amount', $('#dis_amount').val());
         data.append('lowest_price', $('#lowest_price').is(':checked') ? 'on' : 'off');
@@ -324,10 +337,27 @@
                 $("#seller").val(sellers[decodeURIComponent(data.skufrom.replace(/(%.{0,1})$/, ''))]);
                 $("#current_price").val(data.price);
                 $("#model_number").val(data.model);
+                $("#image_url").val(data.img);
+                $("#image_url").blur();
             }
         }).error(function(resp) {
             console.log('failed to get product infor');
         });
+    });
+
+    $('#image_url').blur(function() {
+        if (!this.value) {
+            return;
+        }
+
+        $("#image_view").attr('src', this.value);
+        $("#image_view").show();
+    });    
+
+    $('#product_image').on('click', function() {
+        $("#image_url").val(null);
+        $("#image_view").attr('src', null);
+        $("#image_view").hide();
     });
 
     $('#txt-content').on('input', count);
