@@ -220,7 +220,7 @@
         data.append('current_price', $('#current_price').val());
         data.append('seller', $('#seller').val());
         data.append('pb_url', $('#pb_url').val());
-        data.append('image_url', $('#image_url').val());
+        data.append('image_url', $("#product_image").val() ? "" : $('#image_url').val());
         data.append('dis_percentage', $('#dis_percentage').val());
         data.append('dis_amount', $('#dis_amount').val());
         data.append('lowest_price', $('#lowest_price').is(':checked') ? 'on' : 'off');
