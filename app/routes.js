@@ -251,15 +251,13 @@ module.exports = function(app, passport) {
                             // params.status = content.substring(content.lastIndexOf(' for ')-140, content.length);
                         }
 
+                        if (!filePath && data['image_url']) {
+                            filePath = downloadImg(data['image_url']);
+                        }
 
-                        if (data['image_url'] || filePath) {
-                            if (!filePath) {
-                                filePath = downloadImg(data['image_url']);
-                            }
-                            if (filePath) {
-                                type = 'update_with_media';
-                                params.media = new Array(filePath);
-                            }
+                        if (filePath) {
+                            type = 'update_with_media';
+                            params.media = new Array(filePath);
                         }
 
                         twitter.statuses(
