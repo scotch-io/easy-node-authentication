@@ -100,7 +100,7 @@ module.exports = function(passport) {
 
                         newUser.save(function(err) {
                             if (err)
-                                throw err;
+                                return done(err);
 
                             return done(null, newUser);
                         });
@@ -115,7 +115,8 @@ module.exports = function(passport) {
                 user.local.password = user.generateHash(password);
                 user.save(function(err) {
                     if (err)
-                        throw err;
+                        return done(err);
+                        
                     return done(null, user);
                 });
             } else {
@@ -126,7 +127,7 @@ module.exports = function(passport) {
         });
 
     }));
-
+t
     // =========================================================================
     // FACEBOOK ================================================================
     // =========================================================================
@@ -160,7 +161,8 @@ module.exports = function(passport) {
 
                             user.save(function(err) {
                                 if (err)
-                                    throw err;
+                                    return done(err);
+                                    
                                 return done(null, user);
                             });
                         }
@@ -177,7 +179,8 @@ module.exports = function(passport) {
 
                         newUser.save(function(err) {
                             if (err)
-                                throw err;
+                                return done(err);
+                                
                             return done(null, newUser);
                         });
                     }
@@ -194,7 +197,8 @@ module.exports = function(passport) {
 
                 user.save(function(err) {
                     if (err)
-                        throw err;
+                        return done(err);
+                        
                     return done(null, user);
                 });
 
@@ -235,7 +239,8 @@ module.exports = function(passport) {
 
                             user.save(function(err) {
                                 if (err)
-                                    throw err;
+                                    return done(err);
+                                    
                                 return done(null, user);
                             });
                         }
@@ -252,7 +257,8 @@ module.exports = function(passport) {
 
                         newUser.save(function(err) {
                             if (err)
-                                throw err;
+                                return done(err);
+                                
                             return done(null, newUser);
                         });
                     }
@@ -269,7 +275,8 @@ module.exports = function(passport) {
 
                 user.save(function(err) {
                     if (err)
-                        throw err;
+                        return done(err);
+                        
                     return done(null, user);
                 });
             }
@@ -311,7 +318,8 @@ module.exports = function(passport) {
 
                             user.save(function(err) {
                                 if (err)
-                                    throw err;
+                                    return done(err);
+                                    
                                 return done(null, user);
                             });
                         }
@@ -327,7 +335,8 @@ module.exports = function(passport) {
 
                         newUser.save(function(err) {
                             if (err)
-                                throw err;
+                                return done(err);
+                                
                             return done(null, newUser);
                         });
                     }
@@ -344,7 +353,8 @@ module.exports = function(passport) {
 
                 user.save(function(err) {
                     if (err)
-                        throw err;
+                        return done(err);
+                        
                     return done(null, user);
                 });
 
