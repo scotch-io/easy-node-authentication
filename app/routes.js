@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
 	});
 
 	// LOGOUT ==============================
-	app.get('/logout', function(req, res) {
+	app.get('/logout', isLoggedIn, function(req, res) {
 		req.logout();
 		res.redirect('/');
 	});
@@ -27,12 +27,12 @@ module.exports = function(app, passport) {
 	// locally --------------------------------
 		// LOGIN ===============================
 		// show the login form
-		app.get('/login', function(req, res) {
+		app.get('/login', isLoggedOut, function(req, res) {
 			res.render('login.ejs', { message: req.flash('loginMessage') });
 		});
 
 		// process the login form
-		app.post('/login', passport.authenticate('local-login', {
+		app.post('/login', isLoggedOut, passport.authenticate('local-login', {
 			successRedirect : '/profile', // redirect to the secure profile section
 			failureRedirect : '/login', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
@@ -40,12 +40,12 @@ module.exports = function(app, passport) {
 
 		// SIGNUP =================================
 		// show the signup form
-		app.get('/signup', function(req, res) {
+		app.get('/signup', isLoggedOut, function(req, res) {
 			res.render('signup.ejs', { message: req.flash('signupMessage') });
 		});
 
 		// process the signup form
-		app.post('/signup', passport.authenticate('local-signup', {
+		app.post('/signup', isLoggedOut, passport.authenticate('local-signup', {
 			successRedirect : '/profile', // redirect to the secure profile section
 			failureRedirect : '/signup', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
@@ -54,10 +54,11 @@ module.exports = function(app, passport) {
 	// facebook -------------------------------
 
 		// send to facebook to do the authentication
-		app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+		app.get('/auth/facebook', isLoggedOut, passport.authenticate('facebook', { scope : 'email' }));
 
 		// handle the callback after facebook has authenticated the user
 		app.get('/auth/facebook/callback',
+			isLoggedOut,
 			passport.authenticate('facebook', {
 				successRedirect : '/profile',
 				failureRedirect : '/'
@@ -66,10 +67,11 @@ module.exports = function(app, passport) {
 	// twitter --------------------------------
 
 		// send to twitter to do the authentication
-		app.get('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
+		app.get('/auth/twitter', isLoggedOut, passport.authenticate('twitter', { scope : 'email' }));
 
 		// handle the callback after twitter has authenticated the user
 		app.get('/auth/twitter/callback',
+			isLoggedOut,
 			passport.authenticate('twitter', {
 				successRedirect : '/profile',
 				failureRedirect : '/'
@@ -79,10 +81,11 @@ module.exports = function(app, passport) {
 	// google ---------------------------------
 
 		// send to google to do the authentication
-		app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+		app.get('/auth/google', isLoggedOut, passport.authenticate('google', { scope : ['profile', 'email'] }));
 
 		// the callback after google has authenticated the user
 		app.get('/auth/google/callback',
+			isLoggedOut,
 			passport.authenticate('google', {
 				successRedirect : '/profile',
 				failureRedirect : '/'
@@ -93,10 +96,10 @@ module.exports = function(app, passport) {
 // =============================================================================
 
 	// locally --------------------------------
-		app.get('/connect/local', function(req, res) {
+		app.get('/connect/local', isLoggedIn, function(req, res) {
 			res.render('connect-local.ejs', { message: req.flash('loginMessage') });
 		});
-		app.post('/connect/local', passport.authenticate('local-signup', {
+		app.post('/connect/local', isLoggedIn, passport.authenticate('local-signup', {
 			successRedirect : '/profile', // redirect to the secure profile section
 			failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
@@ -105,10 +108,11 @@ module.exports = function(app, passport) {
 	// facebook -------------------------------
 
 		// send to facebook to do the authentication
-		app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+		app.get('/connect/facebook', isLoggedIn, passport.authorize('facebook', { scope : 'email' }));
 
 		// handle the callback after facebook has authorized the user
 		app.get('/connect/facebook/callback',
+			isLoggedIn,
 			passport.authorize('facebook', {
 				successRedirect : '/profile',
 				failureRedirect : '/'
@@ -117,10 +121,11 @@ module.exports = function(app, passport) {
 	// twitter --------------------------------
 
 		// send to twitter to do the authentication
-		app.get('/connect/twitter', passport.authorize('twitter', { scope : 'email' }));
+		app.get('/connect/twitter', isLoggedIn, passport.authorize('twitter', { scope : 'email' }));
 
 		// handle the callback after twitter has authorized the user
 		app.get('/connect/twitter/callback',
+			isLoggedIn,
 			passport.authorize('twitter', {
 				successRedirect : '/profile',
 				failureRedirect : '/'
@@ -130,10 +135,11 @@ module.exports = function(app, passport) {
 	// google ---------------------------------
 
 		// send to google to do the authentication
-		app.get('/connect/google', passport.authorize('google', { scope : ['profile', 'email'] }));
+		app.get('/connect/google', isLoggedIn, passport.authorize('google', { scope : ['profile', 'email'] }));
 
 		// the callback after google has authorized the user
 		app.get('/connect/google/callback',
+			isLoggedIn,
 			passport.authorize('google', {
 				successRedirect : '/profile',
 				failureRedirect : '/'
@@ -192,4 +198,13 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	res.redirect('/');
+}
+
+// route middleware to ensure user is logged out
+function isLoggedOut (req, res, next) {
+    if (req.isUnauthenticated()) {
+        return next();
+    }
+
+    res.redirect('/');
 }
