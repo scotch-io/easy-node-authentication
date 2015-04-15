@@ -14,5 +14,5 @@ results
 npm-debug.log
 node_modules
 
-config/secretDatabase.js
-config/secretAuth.js
+config/database.js
+config/auth.js
