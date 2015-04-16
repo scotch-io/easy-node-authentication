@@ -138,7 +138,7 @@ module.exports = function(app, passport) {
     user.local.email = undefined;
     user.local.password = undefined;
     user.save(function(err) {
-      res.redirect('/profile');
+      res.redirect('/profile.html');
     });
   });
 
@@ -147,7 +147,7 @@ module.exports = function(app, passport) {
     var user = req.user;
     user.facebook.token = undefined;
     user.save(function(err) {
-      res.redirect('/profile');
+      res.redirect('/profile.html');
     });
   });
 
@@ -156,7 +156,7 @@ module.exports = function(app, passport) {
     var user = req.user;
     user.twitter.token = undefined;
     user.save(function(err) {
-      res.redirect('/profile');
+      res.redirect('/profile.html');
     });
   });
 
@@ -165,7 +165,7 @@ module.exports = function(app, passport) {
     var user = req.user;
     user.google.token = undefined;
     user.save(function(err) {
-      res.redirect('/profile');
+      res.redirect('/profile.html');
     });
   });
 
