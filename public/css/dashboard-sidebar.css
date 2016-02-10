@@ -7,7 +7,7 @@
     position: relative;
     display: table-cell;
     width: 60px;
-    height: 36px;
+    /*    height: 36px;*/
     text-align: center;
     vertical-align: middle;
     font-size: 20px;
@@ -71,13 +71,11 @@ nav.main-menu.expanded {
 }
 .logout {
     background-color: #2A3843!important;
-    height: 70px;
-    
+    /*    height: 70px;*/
 }
-.logout a{
-color: #01A9DB!important;
+.logout a {
+    color: #01A9DB!important;
 }
-
 .logout a:hover,
 .logout a:focus {
     color: #fff!important;
@@ -123,33 +121,24 @@ nav.main-menu li.active>a,
 .logout .nav-text {
     font-size: 20px;
 }
-
-.navbar.navbar-custom.navbar-fixed-top{
-        background-color: #2A3843 !important;
-    height: 70px;
+.navbar.navbar-custom.navbar-fixed-top {
+    background-color: #2A3843 !important;
+    height: 60px;
 }
-
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
     color: rgb(1, 169, 219)!important;
-    background-color: #2C3E50 !important
+    background-color: #2C3E50 !important;
 }
-.navbar-toggle.collapsed{
+.navbar-toggle.collapsed {
     margin-top: 20px;
 }
-
-
-
-  #sidebar.affix {
+#sidebar.affix {
     position: fixed;
-    top:70px;
-    width:228px;
-  }
-
-
-
-
-.icon-bar{
+    top: 60px!important;
+    width: 228px;
+}
+.icon-bar {
     background-color: rgb(1, 169, 219);
 }
 @font-face {

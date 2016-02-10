@@ -1,5 +1,5 @@
 {
-  "name": "node-authentication",
+  "name": "online-examination-system",
   "main": "server.js",
   "dependencies" : {
     "express" : "~4.0.0",
