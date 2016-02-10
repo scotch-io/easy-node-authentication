@@ -1,11 +1,43 @@
+var User = require('../app/models/user');
+var Question = require('../app/models/question');
+
+
+
 module.exports = function (app, passport) {
 
-    // normal routes ===============================================================
-
-    // show the home page (will also have our login links)
     app.get('/', function (req, res) {
         res.render('index');
     });
+
+    // addnewquestion SECTION =========================
+    app.post('/addnewquestion', function (req, res) {
+
+        var newQuestion = new Question(req.body);
+        console.log(req.body);
+
+
+        newQuestion.save(function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(data);
+            }
+        });
+
+    });
+
+    // showall SECTION =========================
+    app.get('/showall', function (req, res) {
+        Question.find(function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(data);
+            }
+        });
+
+    });
+
 
     // Dashboard SECTION =========================
     app.get('/dashboard', isLoggedIn, function (req, res) {
@@ -22,12 +54,11 @@ module.exports = function (app, passport) {
     });
 
     // practises SECTION =========================
-    app.get('/practises', isLoggedIn, function (req, res) {
-        res.render('practises.ejs', {
+    app.get('/question', isLoggedIn, function (req, res) {
+        res.render('question.ejs', {
             user: req.user
         });
     });
-
 
     // examstart SECTION =========================
     app.get('/examstart', isLoggedIn, function (req, res) {

@@ -39,6 +39,7 @@ nav.main-menu.expanded {
     position: relative;
     display: block;
     width: 250px;
+    height: 36px;
 }
 .main-menu li>a {
     position: relative;
@@ -70,7 +71,7 @@ nav.main-menu.expanded {
     font-family: 'Titillium Web', sans-serif;
 }
 .logout {
-    background-color: #2A3843!important;
+    /*    background-color: #2A3843!important;*/
     /*    height: 70px;*/
 }
 .logout a {
@@ -117,13 +118,14 @@ nav.main-menu li.active>a,
 .dashboard-page nav.dashboard-menu ul li.active a {
     color: #fff;
     background-color: #5fa2db;
+    height: 35px;
 }
 .logout .nav-text {
     font-size: 20px;
 }
 .navbar.navbar-custom.navbar-fixed-top {
     background-color: #2A3843 !important;
-    height: 60px;
+    /*    height: 60px;*/
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
