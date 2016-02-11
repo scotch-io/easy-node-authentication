@@ -37,6 +37,16 @@ module.exports = function (app, passport) {
         });
     });
 
+    app.get('/showalluser', function (req, res) {
+        User.find(function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(data);
+            }
+        });
+    });
+
 
     app.get('/getarandom', function (req, res) {
         Question.find(function (err, data) {
@@ -57,8 +67,9 @@ module.exports = function (app, passport) {
 
         //if (req.body.id) {
         // res.json('done' + req.body.id);
+
         User.findByIdAndUpdate({
-            _id: '56bc2fb0ee32585115b87684,'
+            _id: req.body.id
         }, {
             isadmin: true
         }, function (err, user) {
@@ -68,9 +79,11 @@ module.exports = function (app, passport) {
                 res.json(user);
             }
         });
+
         //        } else {
         //            res.json('empty body');
         //        }
+
     });
 
 
