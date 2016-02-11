@@ -9,6 +9,7 @@ module.exports = function (app, passport) {
         res.render('index');
     });
 
+
     // addnewquestion SECTION =========================
     app.post('/addnewquestion', function (req, res) {
         var newQuestion = new Question(req.body);
@@ -18,15 +19,13 @@ module.exports = function (app, passport) {
             if (err) {
                 console.log(err);
             } else {
-                //res.send(data);
-                //                refresh();
-                return res.redirect('/question');
+                return res.redirect('/addnewquestion');
             }
         });
     });
 
 
-    // showall SECTION =========================
+    // showall question SECTION =========================
     app.get('/showall', function (req, res) {
         Question.find(function (err, data) {
             if (err) {
@@ -37,6 +36,7 @@ module.exports = function (app, passport) {
         });
     });
 
+    // showall user SECTION =========================
     app.get('/showalluser', function (req, res) {
         User.find(function (err, data) {
             if (err) {
@@ -48,6 +48,7 @@ module.exports = function (app, passport) {
     });
 
 
+    // randomly option will show routes SECTION =========================
     app.get('/getarandom', function (req, res) {
         Question.find(function (err, data) {
             if (err) {
@@ -61,12 +62,9 @@ module.exports = function (app, passport) {
     });
 
 
-
+    // Admin check true ====================
     app.post('/update', function (req, res) {
         console.log(req.body);
-
-        //if (req.body.id) {
-        // res.json('done' + req.body.id);
 
         User.findByIdAndUpdate({
             _id: req.body.id
@@ -79,12 +77,30 @@ module.exports = function (app, passport) {
                 res.json(user);
             }
         });
-
-        //        } else {
-        //            res.json('empty body');
-        //        }
-
     });
+
+
+
+
+
+    // Admin check false =====================
+    app.post('/notadmin', function (req, res) {
+        console.log(req.body);
+
+        User.findByIdAndUpdate({
+            _id: req.body.id
+        }, {
+            isadmin: false
+        }, function (err, user) {
+            if (err) {
+                return (err);
+            } else {
+                res.json(user);
+            }
+        });
+    });
+
+
 
 
 
