@@ -15,16 +15,16 @@ module.exports = function (app, passport) {
         var newQuestion = new Question(req.body);
         console.log(req.body);
 
-
         newQuestion.save(function (err, data) {
             if (err) {
                 console.log(err);
             } else {
-                res.send(data);
+                //res.send(data);
+                return res.redirect('/');
             }
         });
-
     });
+
 
     // showall SECTION =========================
     app.get('/showall', function (req, res) {
