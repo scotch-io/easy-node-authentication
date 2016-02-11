@@ -7,7 +7,8 @@ var questionSchema = mongoose.Schema({
     option1: String,
     option2: String,
     option3: String,
-    option4: String
+    option4: String,
+    answer: String
 });
 
 // create the model for question and expose it to our app

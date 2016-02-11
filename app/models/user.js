@@ -1,4 +1,3 @@
-// load the things we need
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
@@ -31,8 +30,6 @@ var userSchema = mongoose.Schema({
         type: Boolean,
         default: 0
     }
-
-
 });
 
 // generating a hash

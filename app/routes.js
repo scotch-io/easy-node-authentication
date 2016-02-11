@@ -3,15 +3,14 @@ var Question = require('../app/models/question');
 
 
 
-module.exports = function (app, passport) {
 
+module.exports = function (app, passport) {
     app.get('/', function (req, res) {
         res.render('index');
     });
 
     // addnewquestion SECTION =========================
     app.post('/addnewquestion', function (req, res) {
-
         var newQuestion = new Question(req.body);
         console.log(req.body);
 
@@ -20,7 +19,8 @@ module.exports = function (app, passport) {
                 console.log(err);
             } else {
                 //res.send(data);
-                return res.redirect('/');
+                //                refresh();
+                return res.redirect('/question');
             }
         });
     });
@@ -35,16 +35,58 @@ module.exports = function (app, passport) {
                 res.send(data);
             }
         });
+    });
+
+
+    app.get('/getarandom', function (req, res) {
+        Question.find(function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                //                res.json(data.length);
+                var randomNum = Math.floor(Math.random() * data.length) + 1;
+                res.json(data[randomNum]);
+            }
+        });
+    });
+
+
+
+    app.post('/update', function (req, res) {
+        console.log(req.body);
+
+        //if (req.body.id) {
+        // res.json('done' + req.body.id);
+        User.findByIdAndUpdate({
+            _id: '56bc2fb0ee32585115b87684,'
+        }, {
+            isadmin: true
+        }, function (err, user) {
+            if (err) {
+                return next(err);
+            } else {
+                res.json(user);
+            }
+        });
+        //        } else {
+        //            res.json('empty body');
+        //        }
 
     });
 
 
     // Dashboard SECTION =========================
     app.get('/dashboard', isLoggedIn, function (req, res) {
-        res.render('dashboard.ejs', {
-            user: req.user
-        });
+        console.log(req.user);
+
+        if (req.user.isadmin) {
+            res.render('dashboard');
+        } else {
+            res.render('dashboardstudent');
+        }
     });
+
+
 
     // profile SECTION =========================
     app.get('/profile', isLoggedIn, function (req, res) {
