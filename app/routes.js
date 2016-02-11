@@ -63,7 +63,7 @@ module.exports = function (app, passport) {
             isadmin: true
         }, function (err, user) {
             if (err) {
-                return next(err);
+                return (err);
             } else {
                 res.json(user);
             }
@@ -71,8 +71,9 @@ module.exports = function (app, passport) {
         //        } else {
         //            res.json('empty body');
         //        }
-
     });
+
+
 
 
     // Dashboard SECTION =========================
@@ -135,6 +136,7 @@ module.exports = function (app, passport) {
     // LOGOUT ==============================
     app.get('/logout', function (req, res) {
         req.logout();
+        console.log("user logout successfully");
         res.redirect('/');
     });
 
