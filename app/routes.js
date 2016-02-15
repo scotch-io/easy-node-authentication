@@ -1,14 +1,39 @@
 var User = require('../app/models/user');
 var Question = require('../app/models/question');
 
-
-
-
 module.exports = function (app, passport) {
     app.get('/', function (req, res) {
         res.render('index');
     });
 
+
+    //==================================================================
+    //==================================================================
+    // ADMIN part=======================================================
+    //==================================================================
+    //==================================================================
+
+
+    // addadmin SECTION =========================
+    app.get('/addadmin', isLoggedIn, function (req, res) {
+        res.render('addadmin.ejs', {
+            user: req.user
+        });
+    });
+
+    // removeadmin SECTION =========================
+    app.get('/removeadmin', isLoggedIn, function (req, res) {
+        res.render('removeadmin.ejs', {
+            user: req.user
+        });
+    });
+
+    // addnewquestion SECTION =========================
+    app.get('/addnewquestion', isLoggedIn, function (req, res) {
+        res.render('addnewquestion.ejs', {
+            user: req.user
+        });
+    });
 
     // addnewquestion SECTION =========================
     app.post('/addnewquestion', function (req, res) {
@@ -23,44 +48,6 @@ module.exports = function (app, passport) {
             }
         });
     });
-
-
-    // showall question SECTION =========================
-    app.get('/showall', function (req, res) {
-        Question.find(function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(data);
-            }
-        });
-    });
-
-    // showall user SECTION =========================
-    app.get('/showalluser', function (req, res) {
-        User.find(function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(data);
-            }
-        });
-    });
-
-
-    // randomly option will show routes SECTION =========================
-    app.get('/getarandom', function (req, res) {
-        Question.find(function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                //                res.json(data.length);
-                var randomNum = Math.floor(Math.random() * data.length) + 1;
-                res.json(data[randomNum]);
-            }
-        });
-    });
-
 
     // Admin check true ====================
     app.post('/update', function (req, res) {
@@ -78,10 +65,6 @@ module.exports = function (app, passport) {
             }
         });
     });
-
-
-
-
 
     // Admin check false =====================
     app.post('/notadmin', function (req, res) {
@@ -101,8 +84,16 @@ module.exports = function (app, passport) {
     });
 
 
-
-
+    // showall user/admin SECTION =========================
+    app.get('/showalluser', function (req, res) {
+        User.find(function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(data);
+            }
+        });
+    });
 
 
     // Dashboard SECTION =========================
@@ -110,11 +101,110 @@ module.exports = function (app, passport) {
         console.log(req.user);
 
         if (req.user.isadmin) {
-            res.render('dashboard');
+            res.render('dashboardadmin');
         } else {
             res.render('dashboardstudent');
         }
     });
+
+
+    // showallquestion SECTION =========================
+    app.get('/showallquestion', function (req, res) {
+        Question.find({}, function (err, data) {
+            res.send(data);
+        });
+    });
+
+
+
+
+    // removequestion get=====================
+    app.get('/removequestion', isLoggedIn, function (req, res) {
+        res.render('removequestion.ejs', {
+            user: req.user
+        });
+    });
+
+
+    // removequestion post=====================
+    app.post('/removequestion', function (req, res) {
+        console.log(req.body);
+
+        Question.findByIdAndRemove({
+                _id: req.body.id
+            }, {
+
+            },
+            function (err, question) {
+                if (err) {
+                    console.log("Error");
+                    return res.redirect('/removequestion?error=deleting');
+                } else {
+                    console.log("Delete Question Successfully");
+                }
+            });
+    });
+
+
+    //    Model.findByIdAndRemove = function (id, options, callback) {
+    //        if (1 === arguments.length && 'function' == typeof id) {
+    //            var msg = 'Model.findByIdAndRemove(): First argument must not be a function.\n\n' + '  ' + this.modelName + '.findByIdAndRemove(id, callback)\n' + '  ' + this.modelName + '.findByIdAndRemove(id)\n' + '  ' + this.modelName + '.findByIdAndRemove()\n';
+    //            throw new TypeError(msg);
+    //        }
+    //
+    //        return this.findOneAndRemove({
+    //            _id: id
+    //        }, options, callback);
+    //    };
+
+
+
+
+
+    // showall question SECTION =========================
+    //    app.get('/showallquestion', function (req, res) {
+    //        Question.find(function (err, data) {
+    //            if (err) {
+    //                console.log(err);
+    //            } else {
+    //                res.send(data);
+    //            }
+    //        });
+    //    });
+
+
+
+    //==================================================================
+    //==================================================================
+    // USER PART=======================================================
+    //==================================================================
+    //==================================================================
+
+
+
+
+    // randomly option will show routes SECTION =========================
+    app.get('/getarandom', function (req, res) {
+        Question.find(function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                //                res.json(data.length);
+                var randomNum = Math.floor(Math.random() * data.length) + 1;
+                res.json(data[randomNum]);
+            }
+        });
+    });
+
+
+
+    // practises SECTION =========================
+    //    app.get('/question', isLoggedIn, function (req, res) {
+    //        res.render('question.ejs', {
+    //            user: req.user
+    //        });
+    //    });
+
 
 
 
@@ -125,12 +215,6 @@ module.exports = function (app, passport) {
         });
     });
 
-    // practises SECTION =========================
-    app.get('/question', isLoggedIn, function (req, res) {
-        res.render('question.ejs', {
-            user: req.user
-        });
-    });
 
     // examstart SECTION =========================
     app.get('/examstart', isLoggedIn, function (req, res) {

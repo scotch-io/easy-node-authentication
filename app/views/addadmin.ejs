@@ -17,8 +17,7 @@
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <style>
         body {
@@ -30,16 +29,20 @@
 </head>
 
 <body>
-    <% include sidebar/dashboard-sidebar.ejs %>
+    <% include sidebar/dashboard-admin-sidaber.ejs %>
 
 
 
+        <div class="container text-center" style="margin-left:100px; margin-top:100px;">
+            <h3 class="text-center"> add admin true using id </h3>
+            <form action="/update" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="id">
+                </div>
+                <button type="submit" class="btn btn-success btn-block">submit</button>
+            </form>
+        </div>
 
-
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="js/dashboard.js"></script>
 </body>
 
 </html>

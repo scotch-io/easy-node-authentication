@@ -29,31 +29,17 @@
 </head>
 
 <body>
-    <% include sidebar/dashboard-sidebar.ejs %>
-
-        <!--
-
-        <div class="container text-center" style="margin-left:100px; margin-top:100px;">
-            <form action="/update" method="post" enctype="application/x-www-form-urlencoded">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="id">
-                </div>
-                <button type="submit" class="btn btn-success btn-block">submit</button>
-            </form>
-        </div>
-
-
+    <% include sidebar/dashboard-admin-sidaber.ejs %>
 
         <div class="container text-center" style="margin-left:100px; margin-top:100px;">
             <form action="/notadmin" method="post" enctype="application/x-www-form-urlencoded">
+                <h3 class="text-center"> remove admin using id </h3>
                 <div class="form-group">
                     <input type="text" class="form-control" name="id">
                 </div>
                 <button type="submit" class="btn btn-success btn-block">submit</button>
             </form>
         </div>
--->
-
 
 </body>
 

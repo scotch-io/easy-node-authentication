@@ -1,0 +1,58 @@
+<nav class="main-menu" id="sidebar" style="margin-top:59px; position:fixed" ;>
+    <ul class="">
+        <li class="active" id="dashboard"><a href="#"><i class="fa fa-home fa-2x"></i><span class="nav-text">Dashboard</span></a></li>
+        <li id="addnewquestion"><a href="#"><i class="fa fa-laptop fa-2x"></i> <span class="nav-text">Add Question </span></a> </li>
+        <li id="showallquestion"><a href="#"><i class="fa fa-laptop fa-2x"></i> <span class="nav-text">Show Question</span></a> </li>
+        <li id="removequestion"><a href="#"><i class="fa fa-laptop fa-2x"></i> <span class="nav-text">Delete Question</span></a> </li>
+        <li id="addadmin"><a href="#"><i class="fa fa-list fa-2x"></i><span class="nav-text"> add admin  </span></a></li>
+        <li id="removeadmin"><a href="#"><i class="fa fa-folder-open fa-2x"></i><span class="nav-text">Remove Admin </span></a></li>
+    </ul>
+</nav>
+
+
+<nav class="navbar navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href=""><img src="img/online_exam4u_logo.png" alt="OES" width="200px" height="50px"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right text-center logout" id="menu-one-page-menu">
+                <li class="logout"><a href="#"><i class="fa fa-power-off fa-2x"></i><span class="nav-text">Logout</span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<script>
+    $(document).ready(function() {
+
+        $("#dashboard").mouseup(function() {
+            location.href = ('/dashboard');
+        });
+        $("#addnewquestion").mouseup(function() {
+            location.href = ('/addnewquestion');
+        });
+        $("#showallquestion").mouseup(function() {
+            location.href = ('/showallquestion');
+        });
+        $("#removequestion").mouseup(function() {
+            location.href = ('/removequestion');
+        });
+        $("#addadmin").mouseup(function() {
+            location.href = ('/addadmin');
+        });
+        $("#removeadmin").mouseup(function() {
+            location.href = ('/removeadmin');
+        });
+        $(".logout").mouseup(function() {
+            location.href = ('/logout');
+        });
+    });
+
+</script>
