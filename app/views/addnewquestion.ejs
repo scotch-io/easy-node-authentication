@@ -60,56 +60,6 @@
 
 
 
-            <a id="showbtn" class="btn btn-success"> show all Question </a>
-            <br>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Question</th>
-
-                        <th>option1 </th>
-                        <th>option2 </th>
-                        <th>option3 </th>
-                        <th>option4 </th>
-
-                    </tr>
-                </thead>
-                <tbody id="showall_Tbody_id">
-                    <tr>
-                    </tr>
-                </tbody>
-            </table>
-            <!--        </div>-->
-
-            <script>
-                $(document).ready(function() {
-                    $("#showbtn").click(function() {
-                        $.ajax({
-                            type: "GET",
-                            url: "/showallquestion",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            data: "",
-                            success: function(data) {
-                                $("#showall_Tbody_id").empty();
-                                for (var i = 0; i < data.length; i++) {
-                                    $('#showall_Tbody_id').append(
-                                        "<tr><td>" + (data[i].question) +
-                                        "</td><td>" + (data[i].option1) +
-                                        "</td><td>" + (data[i].option2) +
-                                        "</td><td>" + (data[i].option3) +
-                                        "</td><td>" + (data[i].option4) +
-                                        "</td></tr>");
-                                }
-                            }
-                        });
-                    });
-                });
-
-            </script>
-
-
-
 
 
             <!--

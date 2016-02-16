@@ -108,69 +108,54 @@ module.exports = function (app, passport) {
     });
 
 
-    // showallquestion SECTION =========================
-    app.get('/showallquestion', function (req, res) {
-        Question.find({}, function (err, data) {
-            res.send(data);
+
+    // go showallquestionpage page =========================
+    app.get('/showallquestionpage', isLoggedIn, function (req, res) {
+        res.render('showquestion', {
+            user: req.user
         });
     });
 
+
+    // all question show =========================
+    app.get('/getallquestion', function (req, res) {
+
+        Question.find({}, function (err, data) {
+            if (err) {
+                return (err);
+            } else {
+                res.json(data);
+            }
+        });
+
+    });
 
 
 
     // removequestion get=====================
-    app.get('/removequestion', isLoggedIn, function (req, res) {
-        res.render('removequestion.ejs', {
-            user: req.user
-        });
-    });
+    //    app.get('/removequestion', function (req, res) {
+    //        res.render('removequestion.ejs');
+    //    });
 
 
     // removequestion post=====================
     app.post('/removequestion', function (req, res) {
         console.log(req.body);
 
-        Question.findByIdAndRemove({
-                _id: req.body.id
-            }, {
-
+        Question.remove({
+                _id: req.body._id
             },
             function (err, question) {
                 if (err) {
-                    console.log("Error");
-                    return res.redirect('/removequestion?error=deleting');
+                    //console.log(err);
+                    res.json('error');
                 } else {
                     console.log("Delete Question Successfully");
+                    res.json('success');
                 }
             });
     });
 
-
-    //    Model.findByIdAndRemove = function (id, options, callback) {
-    //        if (1 === arguments.length && 'function' == typeof id) {
-    //            var msg = 'Model.findByIdAndRemove(): First argument must not be a function.\n\n' + '  ' + this.modelName + '.findByIdAndRemove(id, callback)\n' + '  ' + this.modelName + '.findByIdAndRemove(id)\n' + '  ' + this.modelName + '.findByIdAndRemove()\n';
-    //            throw new TypeError(msg);
-    //        }
-    //
-    //        return this.findOneAndRemove({
-    //            _id: id
-    //        }, options, callback);
-    //    };
-
-
-
-
-
-    // showall question SECTION =========================
-    //    app.get('/showallquestion', function (req, res) {
-    //        Question.find(function (err, data) {
-    //            if (err) {
-    //                console.log(err);
-    //            } else {
-    //                res.send(data);
-    //            }
-    //        });
-    //    });
 
 
 
@@ -185,6 +170,11 @@ module.exports = function (app, passport) {
 
     // randomly option will show routes SECTION =========================
     app.get('/getarandom', function (req, res) {
+        res.render('getarandom');
+    });
+
+    // randomly option will show routes SECTION =========================
+    app.get('/showquestion', function (req, res) {
         Question.find(function (err, data) {
             if (err) {
                 console.log(err);
@@ -195,6 +185,7 @@ module.exports = function (app, passport) {
             }
         });
     });
+
 
 
 
