@@ -132,13 +132,7 @@ module.exports = function (app, passport) {
 
 
 
-    // removequestion get=====================
-    //    app.get('/removequestion', function (req, res) {
-    //        res.render('removequestion.ejs');
-    //    });
-
-
-    // removequestion post=====================
+    // question delete=====================
     app.post('/removequestion', function (req, res) {
         console.log(req.body);
 
