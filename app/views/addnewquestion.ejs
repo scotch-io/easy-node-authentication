@@ -25,69 +25,62 @@
 
     <% include sidebar/dashboard-admin-sidaber %>
 
-        <div class="containe" style="margin-left:100px; margin-top:100px; margin-right:50px;">
-            <form action="/addnewquestion" method="post">
-                <div class="form-group input-group-lg">
-                    <input type="text" class="form-control" id="question" name="question">
-                </div>
-
-                <h3>add Answers </h3>
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon"><input type="checkbox"></span>
-                    <input name="option1" class="form-control" id="option1" type="text">
-                </div>
-                <br>
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon"><input type="checkbox"></span>
-                    <input name="option2" class="form-control" id="option2" type="text">
-                </div>
-                <br>
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon"><input type="checkbox"></span>
-                    <input name="option3" class="form-control" id="option3" type="text">
-                </div>
-                <br>
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon"><input type="checkbox"></span>
-                    <input name="option4" class="form-control" id="option4" type="text">
-                </div>
-                <br>
-
-                <button type="submit" class="btn btn-success">question submit</button>
-            </form>
-
+        <!--
+        <div class="container" style="margin-left:100px; margin-top:100px; margin-right:50px;">
             <br>
+            <div class="container" style="margin-top:68px;">
+                <button type="button" class="btn btn-info btn-lg addquestionbutton" data-toggle="modal" data-target="#myModal">Add Question</button>
 
+                <div class="modal fade text-center" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Add Question</h2>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/addnewquestion" method="post">
+                                    <div class="form-group input-group-lg">
+                                        <input type="text" class="form-control" id="question" name="question">
+                                    </div>
 
+                                    <h3>add Answers </h3>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <input name="option1" class="form-control" id="option1" type="text">
+                                    </div>
+                                    <br>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <input name="option2" class="form-control" id="option2" type="text">
+                                    </div>
+                                    <br>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <input name="option3" class="form-control" id="option3" type="text">
+                                    </div>
+                                    <br>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <input name="option4" class="form-control" id="option4" type="text">
+                                    </div>
+                                    <br>
 
+                                    <button type="submit" class="btn btn-success">question submit</button>
+                                </form>
+                            </div>
 
+                            <div class="modal-footer">
 
-            <!--
-        <div class="container" style="margin-top:68px;">
-            <button type="button" class="btn btn-info btn-lg addquestionbutton" data-toggle="modal" data-target="#myModal">Add Question</button>
-
-            <div class="modal fade text-center" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h2 class="modal-title">Add Question</h2>
-                        </div>
-                        <div class="modal-body">
-                            <div class="col-md-12">
-                            
-                            </div></div>
-
-                        <div class="modal-footer">
-                           
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
--->
+
 
         </div>
+-->
 </body>
 
 </html>

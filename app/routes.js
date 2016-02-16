@@ -35,6 +35,7 @@ module.exports = function (app, passport) {
         });
     });
 
+
     // addnewquestion SECTION =========================
     app.post('/addnewquestion', function (req, res) {
         var newQuestion = new Question(req.body);
@@ -44,10 +45,12 @@ module.exports = function (app, passport) {
             if (err) {
                 console.log(err);
             } else {
-                return res.redirect('/addnewquestion');
+                console.log("Add successfully");
+                res.json(data);
             }
         });
     });
+
 
     // Admin check true ====================
     app.post('/update', function (req, res) {

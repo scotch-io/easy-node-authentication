@@ -38,6 +38,9 @@
                         <th>option2 </th>
                         <th>option3 </th>
                         <th>option4 </th>
+                        <th>
+                            <button ng-click="addques(question._id)" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"> Add Question </button>
+                        </th>
 
                     </tr>
                 </thead>
@@ -57,44 +60,124 @@
                 </tbody>
             </table>
 
+            <br>
+
+            <div class="container">
+                <div class="modal fade text-center" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Add Question</h2>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group input-group-lg">
+                                    <input type="text" class="form-control" id="question" name="question" ng-model="questions.question">
+                                </div>
+
+                                <h3>add Answers </h3>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <input name="option1" class="form-control" id="option1" type="text" ng-model="questions.option1">
+                                </div>
+                                <br>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <input name="option2" class="form-control" id="option2" type="text" ng-model="questions.option2">
+                                </div>
+                                <br>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <input name="option3" class="form-control" id="option3" type="text" ng-model="questions.option3">
+                                </div>
+                                <br>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <input name="option4" class="form-control" id="option4" type="text" ng-model="questions.option4">
+                                </div>
+                                <br>
+
+                                <button ng-click="addquestion(questions)" type="submit" class="btn btn-success" id="submitquestion">question submit</button>
+
+                            </div>
+
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
         <script>
             var app = angular.module('myApp', []);
 
             app.controller('myCtrl', function($scope, $http) {
 
-                $http.get("/getallquestion")
-                    .then(function(response) {
-                        $scope.allquestion = response.data;
-                        console.log(response.data);
-                    });
+                var refresh = function() {
+                    $http.get("/getallquestion")
+                        .then(function(response) {
+                            $scope.allquestion = response.data;
+                            console.log(response.data);
+                        });
+                }
+
+                refresh();
 
 
+                //for delete question 
                 $scope.deleteques = function(_id) {
                     console.log(_id);
+                    $http({
+                        url: '/removequestion',
+                        method: "POST",
+                        data: {
+                            '_id': _id
+                        }
+                    }).then(function(response) {
+                        console.log(response.data);
+                        refresh();
+                    }, function(response) { // optional
+                        // failed
+                    });
+                };
+
+
+
+
+
+                //for add question 
+                $scope.addquestion = function(questions) {
+                    console.log(questions);
 
                     $http({
-                            url: '/removequestion',
-                            method: "POST",
-                            data: {
-                                '_id': _id
-                            }
-                        })
-                        .then(function(response) {
-                                console.log(response.data);
-                            },
-                            function(response) { // optional
-                                // failed
-                            });
-
-
-
-
+                        url: '/addnewquestion',
+                        method: "POST",
+                        data: questions
+                    }).then(function(response) {
+                        console.log('ijijiji');
+                        refresh();
+                    }, function(response) { // optional
+                        // failed
+                    });
                 };
+
 
 
             });
 
+
+            
+            
+
+            $(document).ready(function() {
+                $('#submitquestion').click(function() { 
+                    $('#myModal').appendTo("body").modal('hide');
+                });
+            });
+            
         </script>
 
 
