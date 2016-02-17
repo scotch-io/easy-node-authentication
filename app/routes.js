@@ -28,15 +28,8 @@ module.exports = function (app, passport) {
         });
     });
 
-    // addnewquestion SECTION =========================
-    app.get('/addnewquestion', isLoggedIn, function (req, res) {
-        res.render('addnewquestion.ejs', {
-            user: req.user
-        });
-    });
 
-
-    // addnewquestion SECTION =========================
+    // add new question SECTION =========================
     app.post('/addnewquestion', function (req, res) {
         var newQuestion = new Question(req.body);
         console.log(req.body);
@@ -163,20 +156,28 @@ module.exports = function (app, passport) {
     //==================================================================
 
 
-
-
-    // randomly option will show routes SECTION =========================
-    app.get('/getarandom', function (req, res) {
-        res.render('getarandom');
+    // go pratcise page =========================
+    app.get('/practisestart', isLoggedIn, function (req, res) {
+        res.render('practisestart.ejs', {
+            user: req.user
+        });
     });
 
-    // randomly option will show routes SECTION =========================
-    app.get('/showquestion', function (req, res) {
+
+    // go pratcise page =========================
+    app.get('/practiserandom', isLoggedIn, function (req, res) {
+        res.render('practiserandom.ejs', {
+            user: req.user
+        });
+    });
+
+
+    // randomly mcq question show ==================
+    app.get('/getarandom', function (req, res) {
         Question.find(function (err, data) {
             if (err) {
                 console.log(err);
             } else {
-                //                res.json(data.length);
                 var randomNum = Math.floor(Math.random() * data.length) + 1;
                 res.json(data[randomNum]);
             }
@@ -184,14 +185,6 @@ module.exports = function (app, passport) {
     });
 
 
-
-
-    // practises SECTION =========================
-    //    app.get('/question', isLoggedIn, function (req, res) {
-    //        res.render('question.ejs', {
-    //            user: req.user
-    //        });
-    //    });
 
 
 
@@ -204,12 +197,14 @@ module.exports = function (app, passport) {
     });
 
 
+
     // examstart SECTION =========================
     app.get('/examstart', isLoggedIn, function (req, res) {
         res.render('examstart.ejs', {
             user: req.user
         });
     });
+
 
     // examrecords SECTION =========================
     app.get('/examrecords', isLoggedIn, function (req, res) {
@@ -218,12 +213,14 @@ module.exports = function (app, passport) {
         });
     });
 
+
     // reports SECTION =========================
     app.get('/reports', isLoggedIn, function (req, res) {
         res.render('reports.ejs', {
             user: req.user
         });
     });
+
 
     // aboutus SECTION =========================
     app.get('/aboutus', isLoggedIn, function (req, res) {

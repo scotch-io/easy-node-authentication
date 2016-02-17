@@ -24,16 +24,13 @@
 <body ng-app="myApp" ng-controller="myCtrl">
     <% include sidebar/dashboard-admin-sidaber %>
 
-
-
-
         <div class="container" style="margin-left:60px; margin-top:80px; margin-right:50px;">
 
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>Categories</th>
                         <th>Question</th>
-
                         <th>option1 </th>
                         <th>option2 </th>
                         <th>option3 </th>
@@ -47,6 +44,7 @@
                 <tbody id="showall_Tbody_id">
                     <tr ng-repeat="question in allquestion">
 
+                        <td> {{ question.categories }} </td>
                         <td> {{ question.question }} </td>
                         <td> {{ question.option1 }} </td>
                         <td> {{ question.option2 }} </td>
@@ -71,6 +69,14 @@
                                 <h2 class="modal-title">Add Question</h2>
                             </div>
                             <div class="modal-body">
+
+                                <select class="form-control">
+                                    <option value="eng" id="categories" ng-model="questions.categories">english</option>
+                                    <option value="tech" id="categories" ng-model="questions.categories">technical</option>
+                                    <option value="math" id="categories" ng-model="questions.categories">math</option>
+                                    <option value="comp" id="categories" ng-model="questions.categories">computer</option>
+                                </select>
+
 
                                 <div class="form-group input-group-lg">
                                     <input type="text" class="form-control" id="question" name="question" ng-model="questions.question">
@@ -169,15 +175,15 @@
             });
 
 
-            
-            
+
+
 
             $(document).ready(function() {
-                $('#submitquestion').click(function() { 
+                $('#submitquestion').click(function() {
                     $('#myModal').appendTo("body").modal('hide');
                 });
             });
-            
+
         </script>
 
 
