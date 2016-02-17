@@ -38,8 +38,10 @@ module.exports = function (app, passport) {
             if (err) {
                 console.log(err);
             } else {
+
                 console.log("Add successfully");
                 res.json(data);
+
             }
         });
     });
@@ -156,24 +158,20 @@ module.exports = function (app, passport) {
     //==================================================================
 
 
-    // go pratcise page =========================
+    // go pratcise 1st page =========================
     app.get('/practisestart', isLoggedIn, function (req, res) {
         res.render('practisestart.ejs', {
             user: req.user
         });
     });
-
-
-    // go pratcise page =========================
+    // random pratcise continue =========================
     app.get('/practiserandom', isLoggedIn, function (req, res) {
         res.render('practiserandom.ejs', {
             user: req.user
         });
     });
-
-
     // randomly mcq question show ==================
-    app.get('/getarandom', function (req, res) {
+    app.get('/getarandomprac', function (req, res) {
         Question.find(function (err, data) {
             if (err) {
                 console.log(err);
@@ -189,22 +187,43 @@ module.exports = function (app, passport) {
 
 
 
+
+    // go examstart 1st page =========================
+    app.get('/examstart', isLoggedIn, function (req, res) {
+        res.render('examstart.ejs', {
+            user: req.user
+        });
+    });
+    // random exam continue =========================
+    app.get('/examrandom', isLoggedIn, function (req, res) {
+        res.render('examrandom.ejs', {
+            user: req.user
+        });
+    });
+    // randomly mcq question show ==================
+    app.get('/getarandomexam', function (req, res) {
+        Question.find(function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                var randomNum = Math.floor(Math.random() * data.length) + 1;
+                res.json(data[randomNum]);
+            }
+        });
+    });
+
+
+
+
+
+
+
     // profile SECTION =========================
     app.get('/profile', isLoggedIn, function (req, res) {
         res.render('profile.ejs', {
             user: req.user
         });
     });
-
-
-
-    // examstart SECTION =========================
-    app.get('/examstart', isLoggedIn, function (req, res) {
-        res.render('examstart.ejs', {
-            user: req.user
-        });
-    });
-
 
     // examrecords SECTION =========================
     app.get('/examrecords', isLoggedIn, function (req, res) {

@@ -13,34 +13,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
 </head>
 
 <body>
 
-    <% include sidebar/dashboard-sidebar.ejs %>
+    <% include sidebar/dashboard-sidebar %>
+
+        <div class="container text-center" style="margin-left:60px; margin-top:80px; margin-right:50px;">
+            <h1> Rules for Exam </h1>
+            <h3>start your Examination</h3>
+            <h4>Choose Examination Categories: </h4>
+
+            <select class="form-control" ng-model="questions.categories" ng-options="">
+                <option value="english" id="categories">english</option>
+                <option value="technical" id="categories">technical</option>
+                <option value="math" id="categories">math</option>
+                <option value="computer" id="categories">computer</option>
+            </select>
+            <br>
+            <a href="/examrandom" class="btn btn-success"> Start Exam </a>
 
 
-
-        <div class="container-fluid" style="margin-left:100px; margin-top:100px;">
-            your exam start now
         </div>
 
-
-
-
-
-
-
-
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="js/dashboard.js"></script>
-        <style CSS>
-            /*            @import url("https://bootswatch.com/flatly/bootstrap.min.css");*/
-
-        </style>
 </body>
 
 </html>

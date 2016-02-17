@@ -84,22 +84,22 @@
 
                                 <h3>add Answers </h3>
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <span class="input-group-addon"><input type="checkbox" ng-model="questions.op1"></span>
                                     <input name="option1" class="form-control" id="option1" type="text" ng-model="questions.option1">
                                 </div>
                                 <br>
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <span class="input-group-addon"><input type="checkbox" ng-model="questions.op2"></span>
                                     <input name="option2" class="form-control" id="option2" type="text" ng-model="questions.option2">
                                 </div>
                                 <br>
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <span class="input-group-addon"><input type="checkbox" ng-model="questions.op3"></span>
                                     <input name="option3" class="form-control" id="option3" type="text" ng-model="questions.option3">
                                 </div>
                                 <br>
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"><input type="checkbox"></span>
+                                    <span class="input-group-addon"><input type="checkbox" ng-model="questions.op4"></span>
                                     <input name="option4" class="form-control" id="option4" type="text" ng-model="questions.option4">
                                 </div>
                                 <br>
@@ -145,11 +145,10 @@
                     }).then(function(response) {
                         console.log(response.data);
                         refresh();
-                    }, function(response) { // optional
-                        // failed
+                    }, function(response) {
+
                     });
                 };
-
 
 
 
@@ -157,11 +156,24 @@
                 //for add question 
                 $scope.addquestion = function(questions) {
                     console.log(questions);
+                    var newquestions = {
+                        question: questions.question,
+                        option1: questions.option1,
+                        option2: questions.option2,
+                        option3: questions.option3,
+                        option4: questions.option4,
+                        answers: {
+                            option1: questions.op1,
+                            option2: questions.op2,
+                            option3: questions.op3,
+                            option4: questions.op4
+                        }
+                    }
 
                     $http({
                         url: '/addnewquestion',
                         method: "POST",
-                        data: questions
+                        data: newquestions
                     }).then(function(response) {
                         console.log('ijijiji');
                         refresh();
@@ -169,12 +181,7 @@
                         // failed
                     });
                 };
-
-
-
             });
-
-
 
 
 

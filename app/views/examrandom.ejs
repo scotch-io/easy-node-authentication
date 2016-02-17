@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Online Examination System</title>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
     <link href="css/dashboard-sidebar.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 
 <body ng-app="myApp" ng-controller="myCtrl">
+
     <% include sidebar/dashboard-sidebar %>
 
 
@@ -51,7 +51,7 @@
             app.controller('myCtrl', function($scope, $http) {
 
                 var refresh = function() {
-                    $http.get("/getarandomprac")
+                    $http.get("/getarandomexam")
                         .then(function(response) {
                             console.log(response.data);
                             $scope.ques = response.data;
@@ -62,7 +62,7 @@
 
                 $scope.nextquestion = function(questions) {
                     console.log("clicked done");
-                    $http.get("/getarandomprac")
+                    $http.get("/getarandomexam")
                         .then(function(response) {
                             console.log(response.data);
                             $scope.ques = response.data;
