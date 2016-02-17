@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var Question = require('./app/models/question');
+//var Question = require('./app/models/question');
 
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
@@ -46,6 +46,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
 
 app.listen(port);
 console.log('The magic happens on port ' + port);

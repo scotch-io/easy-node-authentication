@@ -70,14 +70,14 @@
                             </div>
                             <div class="modal-body">
 
-                                <select class="form-control">
-                                    <option value="eng" id="categories" ng-model="questions.categories">english</option>
-                                    <option value="tech" id="categories" ng-model="questions.categories">technical</option>
-                                    <option value="math" id="categories" ng-model="questions.categories">math</option>
-                                    <option value="comp" id="categories" ng-model="questions.categories">computer</option>
+                                <select class="form-control" ng-model="questions.categories">
+                                    <option value="english" id="categories">english</option>
+                                    <option value="technical" id="categories">technical</option>
+                                    <option value="math" id="categories">math</option>
+                                    <option value="computer" id="categories">computer</option>
                                 </select>
 
-
+                                <br>
                                 <div class="form-group input-group-lg">
                                     <input type="text" class="form-control" id="question" name="question" ng-model="questions.question">
                                 </div>
