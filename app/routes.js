@@ -214,6 +214,33 @@ module.exports = function (app, passport) {
     });
 
 
+    // randomly question show according to categories============
+    app.post('/getarandomquestion', function (req, res) {
+        console.log(req.query.categories);
+
+        //var condition = req.query;
+        var value = req.query.categories;
+
+        Question.find({
+            categories: value
+        }, function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                var randomNum = Math.floor(Math.random() * data.length);
+                console.log(randomNum);
+                console.log(data.length);
+
+                res.json(data[randomNum]);
+                //res.json(data);
+
+            }
+        });
+    });
+
+
+
+
 
 
 

@@ -110,29 +110,77 @@
         <script>
             var app = angular.module('myApp', []);
 
-            app.controller('myCtrl', function($scope, $http) {
+            //            app.controller('myCtrl', function($scope, $http) {
+            //
+            //                var refresh = function() {
+            //                    $http.get("/getarandomexam")
+            //                        .then(function(response) {
+            //                            console.log(response.data);
+            //                            $scope.ques = response.data;
+            //                        });
+            //                }
+            //                refresh();
+            //
+            //
+            //                            $scope.nextquestion = function(questions) {
+            //                                console.log("clicked done");
+            //                                $http.get("/getarandomexam")
+            //                                    .then(function(response) {
+            //                                        console.log(response.data);
+            //                                        $scope.ques = response.data;
+            //            
+            //                                    });
+            //            
+            //                                // initializeClock('clockdiv', deadline);
+            //                            };
+            //
+            //            });
 
+
+
+
+
+            app.controller('myCtrl', function($scope, $http, $location) {
+
+                var valuee = $location.url();
+                var onlyvalue = valuee.slice(1);
+                console.log(onlyvalue);
                 var refresh = function() {
-                    $http.get("/getarandomexam")
-                        .then(function(response) {
+                    $http({
+                        method: 'POST',
+                        url: 'getarandomquestion',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                        },
+                        params: {
+                            categories: onlyvalue
+                        }
+                    }).then(function successCallback(response) {
+                        if (response) {
+                            console.log(response);
+                            if (response.data) {
+                                $scope.ques = response.data;
+                                console.log(response.data);
+                            }
+                        } else {
                             console.log(response.data);
-                            $scope.ques = response.data;
-                        });
+                        }
+
+                    }, function errorCallback(response) {
+
+                        console.log(response);
+                    });
+
                 }
                 refresh();
 
 
+
                 $scope.nextquestion = function(questions) {
                     console.log("clicked done");
-                    $http.get("/getarandomexam")
-                        .then(function(response) {
-                            console.log(response.data);
-                            $scope.ques = response.data;
-
-                        });
-
-                    // initializeClock('clockdiv', deadline);
+                    refresh();
                 };
+
 
             });
 
