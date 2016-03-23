@@ -15,23 +15,21 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body>
-
+<body ng-app="myApp" ng-controller="myCtrl">
     <% include sidebar/dashboard-sidebar %>
 
+
         <div class="container text-center" style="margin-left:60px; margin-top:80px; margin-right:50px;">
-            <h1> Rules for Exam </h1>
-            <h3>start your Examination</h3>
             <h4>Choose Examination Categories: </h4>
 
-            <select class="form-control" ng-model="questions.categories" ng-options="">
+            <select class="form-control" ng-submit="ques.categories">
                 <option value="english" id="categories">english</option>
                 <option value="technical" id="categories">technical</option>
                 <option value="math" id="categories">math</option>
                 <option value="computer" id="categories">computer</option>
             </select>
             <br>
-            <a href="/examrandom" class="btn btn-success"> Start Exam </a>
+            <a href="/examrandom" class="btn btn-success"> Save & Start </a>
 
 
         </div>

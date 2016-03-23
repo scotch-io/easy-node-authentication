@@ -26,6 +26,7 @@
 
         <div class="container" style="margin-left:60px; margin-top:80px; margin-right:50px;">
 
+            <br>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -119,7 +120,6 @@
 
         <script>
             var app = angular.module('myApp', []);
-
             app.controller('myCtrl', function($scope, $http) {
 
                 var refresh = function() {
@@ -157,6 +157,7 @@
                 $scope.addquestion = function(questions) {
                     console.log(questions);
                     var newquestions = {
+                        categories: questions.categories,
                         question: questions.question,
                         option1: questions.option1,
                         option2: questions.option2,

@@ -21,11 +21,73 @@
 
 
 <body ng-app="myApp" ng-controller="myCtrl">
-
     <% include sidebar/dashboard-sidebar %>
 
 
+
+        <!--
+        <div class="Myclock">
+            <h4>Time</h4>
+            <div id="clockdiv">
+                <div>
+                    <span class="minutes"></span>
+                    <div class="smalltext">Minutes</div>
+                </div>
+                <div>
+                    <span class="seconds"></span>
+                    <div class="smalltext">Seconds</div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .Myclock {
+                float: right;
+            }
+            
+            h4 {
+                color: #396;
+                font-weight: 100;
+                font-size: 20px;
+                margin: 0px 0px 10px;
+            }
+            
+            #clockdiv {
+                font-family: sans-serif;
+                color: #fff;
+                display: inline-block;
+                font-weight: 100;
+                text-align: center;
+                font-size: 20px;
+            }
+            
+            #clockdiv > div {
+                padding: 10px;
+                border-radius: 3px;
+                background: #00BF96;
+                display: inline-block;
+            }
+            
+            #clockdiv div > span {
+                padding: 15px;
+                border-radius: 3px;
+                background: #00816A;
+                display: inline-block;
+            }
+            
+            .smalltext {
+                padding-top: 5px;
+                font-size: 16px;
+            }
+
+        </style>
+-->
+
+
+
+
         <div class="container text-center" style="margin-left:60px; margin-top:80px; margin-right:50px;">
+
+            <h5> category : {{ques.categories}} </h5>
 
             <h2> {{ques.question}} </h2>
             <p>
@@ -66,13 +128,56 @@
                         .then(function(response) {
                             console.log(response.data);
                             $scope.ques = response.data;
+
                         });
+
+                    // initializeClock('clockdiv', deadline);
                 };
 
-
-
-
             });
+
+
+
+
+
+
+
+
+
+            //            function getTimeRemaining(endtime) {
+            //                var t = Date.parse(endtime) - Date.parse(new Date());
+            //                var seconds = Math.floor((t / 1000) % 60);
+            //                var minutes = Math.floor((t / 1000 / 60) % 60);
+            //                return {
+            //                    'total': t,
+            //                    'minutes': minutes,
+            //                    'seconds': seconds
+            //                };
+            //            }
+            //
+            //            function initializeClock(id, endtime) {
+            //                var clock = document.getElementById(id);
+            //                var minutesSpan = clock.querySelector('.minutes');
+            //                var secondsSpan = clock.querySelector('.seconds');
+            //
+            //                function updateClock() {
+            //                    var t = getTimeRemaining(endtime);
+            //
+            //                    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            //                    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+            //
+            //                    if (t.total <= 0) {
+            //                        clearInterval(timeinterval);
+            //                    }
+            //                }
+            //                updateClock();
+            //                var timeinterval = setInterval(updateClock, 1000);
+            //            }
+            //
+            //
+            //
+            //            var deadline = new Date(Date.parse(new Date()) + 1 * 60 * 1000);
+            //            initializeClock('clockdiv', deadline);
 
         </script>
 

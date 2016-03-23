@@ -159,28 +159,28 @@ module.exports = function (app, passport) {
 
 
     // go pratcise 1st page =========================
-    app.get('/practisestart', isLoggedIn, function (req, res) {
-        res.render('practisestart.ejs', {
-            user: req.user
-        });
-    });
+    //    app.get('/practisestart', isLoggedIn, function (req, res) {
+    //        res.render('practisestart.ejs', {
+    //            user: req.user
+    //        });
+    //    });
     // random pratcise continue =========================
-    app.get('/practiserandom', isLoggedIn, function (req, res) {
-        res.render('practiserandom.ejs', {
-            user: req.user
-        });
-    });
+    //    app.get('/practiserandom', isLoggedIn, function (req, res) {
+    //        res.render('practiserandom.ejs', {
+    //            user: req.user
+    //        });
+    //    });
     // randomly mcq question show ==================
-    app.get('/getarandomprac', function (req, res) {
-        Question.find(function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                var randomNum = Math.floor(Math.random() * data.length) + 1;
-                res.json(data[randomNum]);
-            }
-        });
-    });
+    //    app.get('/getarandomprac', function (req, res) {
+    //        Question.find(function (err, data) {
+    //            if (err) {
+    //                console.log(err);
+    //            } else {
+    //                var randomNum = Math.floor(Math.random() * data.length) + 1;
+    //                res.json(data[randomNum]);
+    //            }
+    //        });
+    //    });
 
 
 
@@ -208,6 +208,7 @@ module.exports = function (app, passport) {
             } else {
                 var randomNum = Math.floor(Math.random() * data.length) + 1;
                 res.json(data[randomNum]);
+                //                console.log(data.length);
             }
         });
     });
