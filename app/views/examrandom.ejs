@@ -16,79 +16,70 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 
-
 </head>
+<style>
+    h3 {
+        color: #396;
+    }
+    
+    #form1 {
+        font-family: sans-serif;
+        color: #fff;
+        display: inline-block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    #form1 > div {
+        padding: 10px;
+        border-radius: 10px;
+        background: #00BF96;
+        display: inline-block;
+    }
+    
+    #form1 div > span {
+        padding: 15px;
+        border-radius: 10px;
+        background: #00816A;
+        display: inline-block;
+    }
+
+</style>
 
 
-<body ng-app="myApp" ng-controller="myCtrl">
+
+
+<body ng-app="myApp" ng-controller="myCtrl" onload="f1()">
     <% include sidebar/dashboard-sidebar %>
 
 
-
-        <!--
-        <div class="Myclock">
-            <h4>Time</h4>
-            <div id="clockdiv">
-                <div>
-                    <span class="minutes"></span>
-                    <div class="smalltext">Minutes</div>
-                </div>
-                <div>
-                    <span class="seconds"></span>
-                    <div class="smalltext">Seconds</div>
-                </div>
+        <form id="form1" runat="server" style="margin-left:100px; margin-top:60px;">
+            <div class="container text-center">
+                <table width="100%" align="center">
+                    <tr>
+                        <td colspan="2">
+                            <h3>Your time start now</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="starttime"></div>
+                            <div id="endtime"></div>
+                            <div id="showtime"></div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-        </div>
-        <style>
-            .Myclock {
-                float: right;
-            }
-            
-            h4 {
-                color: #396;
-                font-weight: 100;
-                font-size: 20px;
-                margin: 0px 0px 10px;
-            }
-            
-            #clockdiv {
-                font-family: sans-serif;
-                color: #fff;
-                display: inline-block;
-                font-weight: 100;
-                text-align: center;
-                font-size: 20px;
-            }
-            
-            #clockdiv > div {
-                padding: 10px;
-                border-radius: 3px;
-                background: #00BF96;
-                display: inline-block;
-            }
-            
-            #clockdiv div > span {
-                padding: 15px;
-                border-radius: 3px;
-                background: #00816A;
-                display: inline-block;
-            }
-            
-            .smalltext {
-                padding-top: 5px;
-                font-size: 16px;
-            }
-
-        </style>
--->
+        </form>
 
 
 
 
-        <div class="container text-center" style="margin-left:60px; margin-top:80px; margin-right:50px;">
+
+        <div class="container text-center" style="margin-left:60px; margin-top:30px; margin-right:50px;">
 
             <h5> category : {{ques.categories}} </h5>
-
             <h2> {{ques.question}} </h2>
             <p>
                 <input type="checkbox"> {{ques.option1}}
@@ -109,36 +100,6 @@
 
         <script>
             var app = angular.module('myApp', []);
-
-            //            app.controller('myCtrl', function($scope, $http) {
-            //
-            //                var refresh = function() {
-            //                    $http.get("/getarandomexam")
-            //                        .then(function(response) {
-            //                            console.log(response.data);
-            //                            $scope.ques = response.data;
-            //                        });
-            //                }
-            //                refresh();
-            //
-            //
-            //                            $scope.nextquestion = function(questions) {
-            //                                console.log("clicked done");
-            //                                $http.get("/getarandomexam")
-            //                                    .then(function(response) {
-            //                                        console.log(response.data);
-            //                                        $scope.ques = response.data;
-            //            
-            //                                    });
-            //            
-            //                                // initializeClock('clockdiv', deadline);
-            //                            };
-            //
-            //            });
-
-
-
-
 
             app.controller('myCtrl', function($scope, $http, $location) {
 
@@ -190,42 +151,38 @@
 
 
 
+            //timer setup
+            var tim;
+            var min = 2;
+            var sec = 60;
+            var f = new Date();
 
+            function f1() {
+                f2();
+                document.getElementById("starttime").innerHTML = "Your started your Exam at " + f.getHours() + ":" + f.getMinutes();
+            }
 
-            //            function getTimeRemaining(endtime) {
-            //                var t = Date.parse(endtime) - Date.parse(new Date());
-            //                var seconds = Math.floor((t / 1000) % 60);
-            //                var minutes = Math.floor((t / 1000 / 60) % 60);
-            //                return {
-            //                    'total': t,
-            //                    'minutes': minutes,
-            //                    'seconds': seconds
-            //                };
-            //            }
-            //
-            //            function initializeClock(id, endtime) {
-            //                var clock = document.getElementById(id);
-            //                var minutesSpan = clock.querySelector('.minutes');
-            //                var secondsSpan = clock.querySelector('.seconds');
-            //
-            //                function updateClock() {
-            //                    var t = getTimeRemaining(endtime);
-            //
-            //                    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-            //                    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-            //
-            //                    if (t.total <= 0) {
-            //                        clearInterval(timeinterval);
-            //                    }
-            //                }
-            //                updateClock();
-            //                var timeinterval = setInterval(updateClock, 1000);
-            //            }
-            //
-            //
-            //
-            //            var deadline = new Date(Date.parse(new Date()) + 1 * 60 * 1000);
-            //            initializeClock('clockdiv', deadline);
+            function f2() {
+                if (parseInt(sec) > 0) {
+                    sec = parseInt(sec) - 1;
+                    document.getElementById("showtime").innerHTML = "Your Left Time  is :" + min + " Minutes ," + sec + " Seconds";
+                    tim = setTimeout("f2()", 1000);
+                } else {
+                    if (parseInt(sec) == 0) {
+                        min = parseInt(min) - 1;
+                        if (parseInt(min) == 0) {
+                            clearTimeout(tim);
+                            location.href = "reports";
+                        } else {
+                            sec = 60;
+                            document.getElementById("showtime").innerHTML = "Your Left Time  is :" + min + " Minutes ," + sec + " Seconds";
+                            tim = setTimeout("f2()", 1000);
+                        }
+                    }
+
+                }
+            }
+            //timer setup
 
         </script>
 
