@@ -23,7 +23,33 @@
 
 
         <div class="container-fluid" style="margin-left:100px; margin-top:100px;">
-            total reports
+
+            <h2>Quiz Result</h2>
+
+            <div class="table_">
+                <table>
+                    <tr>
+                        <td class="table_td">Quiz :</td>
+                        <td>Linux :</td>
+                    </tr>
+                    <tr>
+                        <td>Starting Time :</td>
+                        <td>2015/01/08 15:03:57 PM</td>
+                    </tr>
+                    <tr>
+                        <td>No. of Questions :</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>No. of correct answer :</td>
+                        <td>5</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2> Failed </h2>
+            <h1> <a href="#">Take Another Exam</a></h1>
+
         </div>
 
 
@@ -39,6 +65,53 @@
         <script src="js/dashboard.js"></script>
         <style CSS>
             /*            @import url("https://bootswatch.com/flatly/bootstrap.min.css");*/
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 90%;
+                font-family: times, "times new roman", serif;
+                background: #F9F9F9;
+            }
+            
+            h2 {
+                text-align: center;
+                margin-top: 30px;
+            }
+            
+            h1 {
+                text-align: center;
+                margin-top: 30px;
+                text-decoration: underline;
+                color: #000cff;
+            }
+            
+            h1:hover {
+                cursor: pointer;
+            }
+            
+            .table_ {
+                margin: 20px 0;
+                margin-left: 26%;
+                font-size: 1.5em;
+                max-width: 600px;
+                text-align: left;
+                border: 1px solid #000;
+                background: #fff;
+            }
+            
+            .table_ table {
+                width: 100%;
+                border-spacing: 4px;
+                border-collapse: separate;
+            }
+            
+            .table_ td {
+                width: 42%;
+                border: 1px solid #333;
+                line-height: 2em;
+                padding-left: .51em;
+            }
 
         </style>
 </body>
