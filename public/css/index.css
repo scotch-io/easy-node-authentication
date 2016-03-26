@@ -1,0 +1,7 @@
+.index{
+    position:relative;
+    background-image: url("img/ready.png") ;
+    z-index:100;
+    background-size:cover;
+    /*     background-repeat: no-repeat;*/
+}
