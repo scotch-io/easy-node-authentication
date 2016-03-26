@@ -61,7 +61,7 @@
                 <table width="100%" align="center">
                     <tr>
                         <td colspan="2">
-                            <h3>Your time start now</h3>
+                            <h3>Your time start now </h3>
                         </td>
                     </tr>
                     <tr>
@@ -78,10 +78,9 @@
 
 
 
-
         <div class="container text-center" style="margin-left:60px; margin-top:30px; margin-right:50px;">
 
-            <h5> category : {{ques.categories}} </h5>
+            <h4> your topic : {{ques.categories}} </h4>
             <h2> {{ques.question}} </h2>
             <p>
                 <input type="checkbox"> {{ques.option1}}
@@ -142,6 +141,32 @@
                 $scope.nextquestion = function(questions) {
                     console.log("clicked done");
                     refresh();
+
+
+                    //score count
+                    function getScore() {
+                        var score = 0;
+                        var numQuestions = 10;
+
+                        for (var i = 0; i < numQuestions; i++) {
+                            if (userInput[i] == answers[i]) {
+                                score += 1;
+                            } else {
+                                score += 0;
+                            }
+
+                        }
+                        return score;
+                    }
+
+                    function returnScore() {
+                        alert("Your score is " + getScore() + "/10");
+                    }
+
+                    //score count
+
+
+
                 };
 
 

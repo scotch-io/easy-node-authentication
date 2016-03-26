@@ -254,11 +254,11 @@ module.exports = function (app, passport) {
     });
 
     // examrecords SECTION =========================
-    app.get('/examrecords', isLoggedIn, function (req, res) {
-        res.render('examrecords.ejs', {
-            user: req.user
-        });
-    });
+    //    app.get('/examrecords', isLoggedIn, function (req, res) {
+    //        res.render('examrecords.ejs', {
+    //            user: req.user
+    //        });
+    //    });
 
 
     // reports SECTION =========================
