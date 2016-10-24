@@ -142,15 +142,9 @@ module.exports = function(passport) {
     // =========================================================================
     // FACEBOOK ================================================================
     // =========================================================================
-    passport.use(new FacebookStrategy({
-
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
-        profileFields   : ['id', 'name', 'email'],
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
-    },
+    var fbStrategy = configAuth.facebookAuth;
+    fbStrategy.passReqToCallback = true;  // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+    passport.use(new FacebookStrategy(fbStrategy,
     function(req, token, refreshToken, profile, done) {
 
         // asynchronous
