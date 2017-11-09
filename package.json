@@ -4,7 +4,7 @@
   "dependencies" : {
     "express": "~4.14.0",
     "ejs": "~2.5.2",
-    "mongoose": "~4.6.1",
+    "mongoose": "~4.13.1",
     "passport": "~0.3.2",
     "passport-local" : "~1.0.0",
     "passport-facebook": "~2.1.1",
