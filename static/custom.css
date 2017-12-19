@@ -1,0 +1,61 @@
+/* Insert your pool's unique css here */
+.alert-primary {
+	color: #004085;
+	background-color: #cce5ff;
+	border-color: #b8daff;
+}
+.alert-warning {
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
+
+
+
+.btn-primary {
+	background-color: #23bee2;
+	border-color: #13acd0;
+}
+.btn-primary:hover {
+	background-color: #13acd0;
+	border-color: #13acd0;
+}
+
+.container{
+	font-size: 14px!important;
+}
+
+.float-right {
+	float: right;
+}
+
+
+
+/* Custom margins */
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+
+
+
+
+.navbar-inverse {
+	background-color: #091b26;
+}
+.navbar-brand {
+	height: 70px;
+	padding: 10px 15px;
+}
+.navbar-brand img {
+	height: 100%;
+	display: inline-block;
+}
+.navbar-nav>li>a {
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+#stats_updated {
+	line-height: 70px!important;
+}

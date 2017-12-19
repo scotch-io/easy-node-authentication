@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        res.render('index.ejs', { req : req, res : res });
     });
 
     // PROFILE SECTION =========================
@@ -28,26 +28,36 @@ module.exports = function(app, passport) {
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
+            res.render('auth.ejs', { 
+                message: req.flash('loginMessage').toString(),
+                action: "login",
+                actionTitle: " Login ",
+                promptLocation: "../static/pages/signup.html"
+            });
         });
 
         // process the login form
         app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            successRedirect : '/#profile', // redirect to the secure profile section
+            failureRedirect : '/#login', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
 
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
+            res.render('auth.ejs', { 
+                message: req.flash('signupMessage').toString(),
+                action: "signup",
+                actionTitle: " Signup ",
+                promptLocation: "../static/pages/login.html"
+            });
         });
 
         // process the signup form
         app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/signup', // redirect back to the signup page if there is an error
+            successRedirect : '/#profile', // redirect to the secure profile section
+            failureRedirect : '/#signup', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
 
@@ -191,5 +201,5 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/login');
 }

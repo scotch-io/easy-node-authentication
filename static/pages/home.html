@@ -1,0 +1,489 @@
+<style>
+	.marketFooter{
+		font-size: 10px;
+		opacity: 0.6;
+	}
+	#networkLastReward{
+		text-transform: uppercase;
+	}
+	#lastHash{
+		font-family: 'Inconsolata', monospace;
+		font-size: 0.8em;
+	}
+	#poolDonations{
+		font-size: 0.75em;
+	}
+	#miningProfitCalc{
+		margin: 35px 0;
+	}
+	#calcHashDropdown{
+		border-radius: 0;
+		border-left: 0;
+		border-right: 0;
+	}
+	#calcHashHolder{
+		width: 590px;
+		max-width: 100%;
+	}
+	#calcHashRate{
+		z-index: inherit;
+		font-family: 'Inconsolata', monospace;
+	}
+	#calcHashAmount{
+		font-family: 'Inconsolata', monospace;
+	}
+	#calcHashResultsHolder{
+		min-width: 145px;
+		max-width: 145px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	#yourStatsInput{
+		z-index: inherit;
+		font-family: 'Inconsolata', monospace;
+	}
+	#yourAddressDisplay > span {
+		font-family: 'Inconsolata', monospace;
+	}
+	#lookUp > span:nth-child(2){
+		display: none;
+	}
+	.yourStats{
+		display: none;
+	}
+	#yourAddressDisplay{
+		display: inline-block;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		vertical-align: middle;
+		font-family: 'Inconsolata', monospace;
+		font-size: 0.9em;
+	}
+	#addressError{
+		color: red;
+	}
+
+
+	#payments_rows > tr > td{
+		vertical-align: middle;
+		font-family: 'Inconsolata', monospace;
+		font-size: 0.95em;
+		text-align: center;
+	}
+	#payments_rows > tr > td:nth-child(2){
+		text-align: left;
+	}
+
+</style>
+
+
+<div id="siteInfo">
+	<!-- Description or information about this pool -->
+	<div class="container">
+		<div class="row mb-20">
+			<h1 class="mb-20">Getting started</h1>
+			<div class="col-md-4">
+				<p><small class="text-muted">Step 1</small></p>
+				<h4>Download a miner</h4>
+				<p>First of all you'll need to download a mining program in order to allow your computer to mine Electroneum.</p>
+				<a data-page="downloads" href="#downloads" class="btn btn-primary">View downloads</a>
+			</div>
+			<div class="col-md-4">
+				<p><small class="text-muted">Step 2</small></p>
+				<h4>Connect to a mining pool</h4>
+				<p>Once you've chosen a miner you need to connect it to this mining pool.</p>
+				<a data-page="downloads" href="#downloads" class="btn btn-primary">View instructions</a>
+			</div>
+			<div class="col-md-4">
+				<p><small class="text-muted">Step 3</small></p>
+				<h4>Earn Electroneum</h4>
+				<p>After you've connected to the mining pool simply sit back and watch the Electroneum getting mined.</p>
+				<a data-page="pool_blocks.html" href="#pool_blocks" class="btn btn-primary">Pool blocks</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">What is a mining pool?
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				</h5>
+			</div>
+			<div class="modal-body">
+				<p>A mining pool is a way of being able to mine cryptocurrency quicker by multiple miners working together rather than individually.</p>
+
+				<p>Normally you would mine cyrptocurrency from your own machine and it might take a while before you receive any currency as it might take a while before the calculations required to mine a block are completed. What the mining pool does is distribute the processing power needed to mine each block. This means that blocks can be mined quicker and the appropriate amount of currency is allocated depending on how much work your machine has put in.</p>
+			</div>
+			<div class="modal-footer">
+			<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<h1 class="mb-20">Mining Pool stats <button type="button" class="btn btn-secondary btn-sm float-right" data-toggle="modal" data-target="#exampleModal">What is a mining pool?</button></h1>
+	<div class="col-md-4 stats">
+		<h3>This Pool</h3>
+		<div><i class="fa fa-tachometer"></i> Hash Rate: <span id="poolHashrate"></span></div>
+		<div><i class="fa fa-clock-o"></i> Block Found: <span id="poolLastBlockFound"></span><span id="poolLastBlockFoundTs" style="font-size:x-small"></span></div>
+		<div><i class="fa fa-users"></i> Connected Miners: <span id="poolMiners"></span></div>
+		<div><i class="fa fa-random"></i> Round Hashes: <span id="poolRoundHashes"></span></div>
+		<div><i class="fa fa-money"></i> Total Pool Fee: <span id="poolFee"></span></div>
+		<div><i class="fa fa-history"></i> Block Found Every: <span id="blockSolvedTime"></span> (est.)</div>
+	</div>
+
+	<div class="col-md-4 stats">
+		<h3>Electroneum Pool Network</h3>
+		<div><i class="fa fa-tachometer"></i> Hash Rate: <span id="networkHashrate"></span></div>
+		<div><i class="fa fa-clock-o"></i> Block Found: <span id="networkLastBlockFound"></span><span id="networkLastBlockFoundTs" style="font-size:x-small"></span></div>
+		<div><i class="fa fa-unlock-alt"></i> Difficulty: <span id="networkDifficulty"></span></div>
+		<div><i class="fa fa-bars"></i> Blockchain Height: <span id="blockchainHeight"></span></div>
+		<div><i class="fa fa-money"></i> Last Reward: <span id="networkLastReward"></span></div>
+		<div><i class="fa fa-paw"></i> Last Hash: <a id="lastHash" target="_blank"></a></div>
+	</div>
+
+	<div class="col-md-4 stats" id="topPools">
+		<h3>Top Electroneum Pools</h3>
+		<div><i class="fa fa-users"></i></div>
+	</div>
+</div>
+
+<hr>
+
+<div id="miningProfitCalc">
+	<h3>Estimate Mining Profits</h3>
+	<div id="calcHashHolder">
+		<div class="input-group">
+			<input type="number" class="form-control" id="calcHashRate" placeholder="Enter Your Hash Rate">
+			<div class="input-group-btn">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="calcHashDropdown">
+					<span id="calcHashUnit" data-mul="1">KH/s</span> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
+					<li><a href="#" data-mul="0">H/s</a></li>
+					<li><a href="#" data-mul="1">KH/s</a></li>
+					<li><a href="#" data-mul="2">MH/s</a></li>
+				</ul>
+			</div>
+			<span class="input-group-addon">=</span>
+			<span class="input-group-addon" id="calcHashResultsHolder"><span id="calcHashAmount"></span> <span id="calcHashSymbol"></span>/day</span>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<h1 class="mb-20">Your Stats & Payment History</h1>
+	<div class="stats">
+
+		<div class="input-group">
+			<input class="form-control" id="yourStatsInput" type="text" placeholder="Enter Your Wallet Address">
+			<span class="input-group-btn"><button class="btn btn-default" type="button" id="lookUp">
+				<span><i class="fa fa-search"></i> Lookup</span>
+				<span><i class="fa fa-refresh fa-spin"></i> Searching...</span>
+			</button></span>
+		</div>
+
+		<div id="addressError"></div>
+		<div class="yourStats"><i class="fa fa-key"></i> Wallet Address: <span id="yourAddressDisplay"></span></div>
+		<div class="yourStats"><i class="fa fa-bank"></i> Pending Balance: <span id="yourPendingBalance"></span></div>
+		<div class="yourStats"><i class="fa fa-money"></i> Total Paid: <span id="yourPaid"></span></div>
+		<div class="yourStats"><i class="fa fa-clock-o"></i> Last Share Submitted: <span id="yourLastShare"></span></div>
+		<div class="yourStats"><i class="fa fa-tachometer"></i> Hash Rate: <span id="yourHashrateHolder"></span></div>
+		<div class="yourStats"><i class="fa fa-cloud-upload"></i> Total Hashes Submitted: <span id="yourHashes"></span></div>
+
+		<br class="yourStats">
+
+		<h4 class="yourStats">Payments</h4>
+		<div class="yourStats table-responsive">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th><i class="fa fa-clock-o"></i> Time Sent</th>
+					<th><i class="fa fa-paw"></i> Transaction Hash</th>
+					<th><i class="fa fa-money"></i> Amount</th>
+					<th><i class="fa fa-sitemap"></i> Mixin</th>
+				</tr>
+				</thead>
+				<tbody id="payments_rows">
+
+				</tbody>
+			</table>
+		</div>
+		<p class="yourStats text-center">
+			<button type="button" class="btn btn-default" id="loadMorePayments">Load More</button>
+		</p>
+
+	</div>
+</div>
+
+<script>
+
+
+	currentPage = {
+		destroy: function(){
+			$('#networkLastBlockFound,#poolLastBlockFound,#yourLastShare,#marketLastUpdated').timeago('dispose');
+			if (xhrAddressPoll) xhrAddressPoll.abort();
+			if (addressTimeout) clearTimeout(addressTimeout);
+			if (xhrGetPayments) xhrGetPayments.abort();
+		},
+		update: function(){
+			var ts = new Date(lastStats.network.timestamp * 1000).toISOString(), lastHsh;
+			$('#networkLastBlockFound').timeago('update', ts);
+			$('#networkLastBlockFoundTs').html('<br/>' + ts);
+
+			updateText('networkHashrate', getReadableHashRateString(lastStats.network.difficulty / 60) + '/sec');
+			updateText('networkDifficulty', lastStats.network.difficulty.toString());
+			updateText('blockchainHeight', lastStats.network.height.toString());
+			updateText('networkLastReward', getReadableCoins(lastStats.network.reward, coinDecimalPlaces));
+			lastHsh = updateText('lastHash', lastStats.network.hash.substr(0, 13) + '...');
+			if(lastHsh) {
+				lastHsh.setAttribute('href',
+					blockchainExplorer + lastStats.network.hash
+				);
+			}
+
+			updateText('poolHashrate', getReadableHashRateString(lastStats.pool.hashrate) + '/sec');
+
+			if (lastStats.pool.lastBlockFound){
+				var d = new Date(parseInt(lastStats.pool.lastBlockFound)).toISOString();
+				$('#poolLastBlockFound').timeago('update', d);
+				$('#poolLastBlockFoundTs').html("<br/>" + d);
+			}
+			else {
+				$('#poolLastBlockFound').removeAttr('title').data('ts', '').update('Never');
+				$('#poolLastBlockFoundTs').text("");
+			}
+
+			updateText('poolMiners', lastStats.pool.miners.toString());
+			updateText('poolRoundHashes', lastStats.pool.roundHashes.toString());			
+
+
+			var totalFee = lastStats.config.fee;
+			/*
+			if (lastStats.config.doDonations){
+				totalFee += lastStats.config.donation;
+				totalFee += lastStats.config.coreDonation;
+				var feeText = [];
+				if (lastStats.config.donation > 0) feeText.push(lastStats.config.donation + '% to pool dev');
+				if (lastStats.config.coreDonation > 0) feeText.push(lastStats.config.coreDonation + '% to core devs');
+				updateText('poolDonations', feeText.join(', '));
+			}
+			else{
+				updateText('poolDonations', '');
+			}
+			*/
+
+			updateText('poolFee', totalFee + '%');
+
+
+			updateText('blockSolvedTime', getReadableTime(lastStats.network.difficulty / lastStats.pool.hashrate));
+		    updateText('calcHashSymbol', lastStats.config.symbol);
+
+			calcEstimateProfit();
+			
+			setTimeout(function(){
+
+			}, 10);
+		}
+	};
+
+
+	$('#networkLastBlockFound,#poolLastBlockFound,#yourLastShare,#marketLastUpdated').timeago();
+
+
+	function getReadableTime(seconds){
+
+		var units = [ [60, 'second'], [60, 'minute'], [24, 'hour'],
+			[7, 'day'], [4, 'week'], [12, 'month'], [1, 'year'] ];
+
+		function formatAmounts(amount, unit){
+			var rounded = Math.round(amount);
+			return '' + rounded + ' ' + unit + (rounded > 1 ? 's' : '');
+		}
+
+		var amount = seconds;
+		for (var i = 0; i < units.length; i++){
+			if (amount < units[i][0])
+				return formatAmounts(amount, units[i][1]);
+			amount = amount / units[i][0];
+		}
+		return formatAmounts(amount,  units[units.length - 1][1]);
+	}
+
+	function getReadableHashRateString(hashrate){
+		var i = 0;
+		var byteUnits = [' H', ' KH', ' MH', ' GH', ' TH', ' PH' ];
+		while (hashrate > 1000){
+			hashrate = hashrate / 1000;
+			i++;
+		}
+		return hashrate.toFixed(2) + byteUnits[i];
+	}
+
+
+	/* Hash Profitability Calculator */
+
+	$('#calcHashRate').keyup(calcEstimateProfit).change(calcEstimateProfit);
+
+	$('#calcHashUnits > li > a').click(function(e){
+		e.preventDefault();
+		$('#calcHashUnit').text($(this).text()).data('mul', $(this).data('mul'));
+		calcEstimateProfit();
+	});
+
+	function calcEstimateProfit(){
+		try {
+			var rateUnit = Math.pow(1000,parseInt($('#calcHashUnit').data('mul')));
+			var inp2 = parseFloat($('#calcHashRate').val()) * rateUnit;
+			var resl = ( lastStats.network.reward / coinUnits) / ((lastStats.network.difficulty / inp2) / 86400  );
+			if (!isNaN(resl)) {
+				updateText('calcHashAmount', (Math.round(resl * 100) / 100).toString());
+				return;
+			}
+		}
+		catch(e){ }
+		updateText('calcHashAmount', '');
+	}
+
+
+
+
+
+	/* Stats by mining address lookup */
+
+	function getPaymentCells(payment){
+		return '<td>' + formatDate(payment.time) + '</td>' +
+				'<td>' + formatPaymentLink(payment.hash) + '</td>' +
+				'<td>' + getReadableCoins(payment.amount, coinDecimalPlaces, true) + '</td>' +
+				'<td>' + payment.mixin + '</td>';
+	}
+
+	var xhrAddressPoll;
+	var addressTimeout;
+
+	$('#lookUp').click(function(){
+
+		var address = $('#yourStatsInput').val().trim();
+		if (!address){
+			$('#yourStatsInput').focus();
+			return;
+		}
+
+		$('#addressError').hide();
+		$('.yourStats').hide();
+		$('#payments_rows').empty();
+
+		$('#lookUp > span:first-child').hide();
+		$('#lookUp > span:last-child').show();
+
+
+		if (xhrAddressPoll) xhrAddressPoll.abort();
+		if (addressTimeout) clearTimeout(addressTimeout);
+
+		function fetchAddressStats(longpoll){
+			xhrAddressPoll = $.ajax({
+				url: api + '/stats_address',
+				data: {
+					address: address,
+					longpoll: longpoll
+				},
+				dataType: 'json',
+				cache: 'false',
+				success: function(data){
+
+					$('#lookUp > span:last-child').hide();
+					$('#lookUp > span:first-child').show();
+
+					if (!data.stats){
+						$('.yourStats').hide();
+						$('#addressError').text(data.error).show();
+
+						if (addressTimeout) clearTimeout(addressTimeout);
+						addressTimeout = setTimeout(function(){
+							fetchAddressStats(false);
+						}, 2000);
+
+						return;
+					}
+
+
+					$('#addressError').hide();
+					updateText('yourAddressDisplay', address);
+
+					if (data.stats.lastShare)
+						$('#yourLastShare').timeago('update', new Date(parseInt(data.stats.lastShare) * 1000).toISOString());
+					else
+						updateText('yourLastShare', 'Never');
+
+					updateText('yourHashrateHolder', (data.stats.hashrate || '0 H') + '/sec');
+					updateText('yourHashes', (data.stats.hashes || 0).toString());
+					updateText('yourPaid', getReadableCoins(data.stats.paid));
+					updateText('yourPendingBalance', getReadableCoins(data.stats.balance));
+
+					renderPayments(data.payments);
+
+					$('.yourStats').show();
+
+					docCookies.setItem('mining_address', address, Infinity);
+
+					fetchAddressStats(true);
+
+				},
+				error: function(e){
+					if (e.statusText === 'abort') return;
+					$('#lookUp').html(lookupBtnHtml);
+					$('#addressError').text('Connection error').show();
+
+					if (addressTimeout) clearTimeout(addressTimeout);
+					addressTimeout = setTimeout(function(){
+						fetchAddressStats(false);
+					}, 2000);
+				}
+			});
+		}
+		fetchAddressStats(false);
+	});
+
+	var address = docCookies.getItem('mining_address');
+
+	if (address){
+		$('#yourStatsInput').val(address);
+		$('#lookUp').click();
+	}
+
+	$('#yourStatsInput').keyup(function(e){
+		if(e.keyCode === 13)
+			$('#lookUp').click();
+	});
+
+	var xhrGetPayments;
+	$('#loadMorePayments').click(function(){
+		if (xhrGetPayments) xhrGetPayments.abort();
+		xhrGetPayments = $.ajax({
+			url: api + '/get_payments',
+			data: {
+				time: $('#payments_rows').children().last().data('time'),
+				address: address
+			},
+			dataType: 'json',
+			cache: 'false',
+			success: function(data){
+				renderPayments(data);
+			}
+		});
+	});
+
+</script>

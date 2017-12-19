@@ -1,0 +1,24 @@
+<div class="container">
+<div class="col-sm-6 col-sm-offset-3">
+
+    <% if (message) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+    <!-- LOGIN FORM -->
+    <form action="<%= action %>" method="post">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+
+        <button class="btn btn-primary" onclick="validateCredentials(event)"><%= actionTitle %></button>
+    </form>
+    <hr>
+    <p><% include ../static/pages/recaptcha.html %><%- include(promptLocation) %></p>
+</div>
+</div>
