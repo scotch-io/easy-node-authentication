@@ -17,6 +17,10 @@
     "passport-facebook": "~2.1.1",
     "passport-google-oauth": "~1.0.0",
     "passport-local": "~1.0.0",
-    "passport-twitter": "~1.0.4"
+    "passport-twitter": "~1.0.4",
+    "request": "~2.83.0"
+  },
+  "devDependencies": {
+    "electron": "~1.7.10"
   }
 }

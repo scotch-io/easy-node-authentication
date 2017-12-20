@@ -16,3 +16,8 @@ node_modules
 
 config/database.js
 config/auth.js
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

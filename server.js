@@ -14,8 +14,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var secretFolder = typeof(process.env.SecretFolder) != "undefined" ? process.env.SecretFolder : '../secrets/';
-var configDB = require(secretFolder + 'database.js');
+global.secretFolder = typeof(process.env.SecretFolder) != "undefined" ? process.env.SecretFolder : '../secrets/';
+var configDB = require(global.secretFolder + 'database.js');
 
 // configuration ===============================================================
 mongoose.connect(configDB.url, { useMongoClient: true }); // connect to our database

@@ -1,10 +1,8 @@
 <div class="container">
 <div class="col-sm-6 col-sm-offset-3">
-
     <% if (message) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
-
     <!-- LOGIN FORM -->
     <form action="<%= action %>" method="post">
         <div class="form-group">
@@ -17,8 +15,8 @@
         </div>
 
         <button class="btn btn-primary" onclick="validateCredentials(event)"><%= actionTitle %></button>
+        <hr>
+        <p><% include ../static/pages/recaptcha.html %><%- include(promptLocation) %></p>
     </form>
-    <hr>
-    <p><% include ../static/pages/recaptcha.html %><%- include(promptLocation) %></p>
 </div>
 </div>
