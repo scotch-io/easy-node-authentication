@@ -32,6 +32,7 @@
 
 	<script src="config.js"></script>
 	<script src="custom.js"></script>
+	<script src="snowfall.jquery.min.js"></script>
 
 	<link href="custom.css" rel="stylesheet">
 
@@ -302,6 +303,10 @@
 			updateIndex();
 			routePage(fetchLiveStats);
 		});
+		$("body>div.navbar.navbar-inverse.navbar-fixed-top").snowfall({
+			image :"images/flake.png", minSize: 5, maxSize:10,
+			maxSpeed: 1, flakeCount: 3, collect: "body>div.container"
+		});
 	});
 
 
@@ -332,7 +337,7 @@
 				</a></li>
 
 				<li><a class="hot_link" data-page="pool_blocks.html" href="#pool_blocks">
-					<i class="fa fa-cubes"></i> Pool Blocks
+					<i class="fa fa-cubes"></i> Pool blocks
 				</a></li>
 
 				<li><a class="hot_link" data-page="payments.html" href="#payments">
@@ -340,9 +345,9 @@
 				</a></li>
 
 				<li><% if(req.isAuthenticated()) { %><a class="hot_link" data-page="../profile" href="#profile">
-					<i class="fa fa-user"></i> Profile
+					<i class="fa fa-user"></i> User profile
                 </a><% } else {%><a class="hot_link" data-page="../login" href="#login">
-					<i class="fa fa-sign-in"></i> Login
+					<i class="fa fa-sign-in"></i> Login / Signup
                 </a><%} %></li>
 			</ul>
 			<div id="stats_updated">Stats Updated &nbsp;<i class="fa fa-bolt"></i></div>

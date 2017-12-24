@@ -5,6 +5,9 @@ environment-defaults:
   Default-Environment:
     branch: null
     repository: null
+  node-express-env:
+    branch: master
+    repository: pool-web
 global:
   application_name: My First Elastic Beanstalk Application
   branch: null

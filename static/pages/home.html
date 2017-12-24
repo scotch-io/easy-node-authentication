@@ -13,16 +13,13 @@
 	#poolDonations{
 		font-size: 0.75em;
 	}
-	#miningProfitCalc{
-		margin: 35px 0;
-	}
 	#calcHashDropdown{
 		border-radius: 0;
 		border-left: 0;
 		border-right: 0;
 	}
 	#calcHashHolder{
-		width: 590px;
+		width: 360px;
 		max-width: 100%;
 	}
 	#calcHashRate{
@@ -33,7 +30,6 @@
 		font-family: 'Inconsolata', monospace;
 	}
 	#calcHashResultsHolder{
-		min-width: 145px;
 		max-width: 145px;
 		white-space: nowrap;
 		overflow: hidden;
@@ -153,31 +149,47 @@
 		<div><i class="fa fa-paw"></i> Last Hash: <a id="lastHash" target="_blank"></a></div>
 	</div>
 
-	<div class="col-md-4 stats" id="topPools">
-		<h3>Top Electroneum Pools</h3>
-		<div><i class="fa fa-users"></i></div>
-	</div>
-</div>
-
-<hr>
-
-<div id="miningProfitCalc">
-	<h3>Estimate Mining Profits</h3>
-	<div id="calcHashHolder">
-		<div class="input-group">
-			<input type="number" class="form-control" id="calcHashRate" placeholder="Enter Your Hash Rate">
-			<div class="input-group-btn">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="calcHashDropdown">
-					<span id="calcHashUnit" data-mul="1">KH/s</span> <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
-					<li><a href="#" data-mul="0">H/s</a></li>
-					<li><a href="#" data-mul="1">KH/s</a></li>
-					<li><a href="#" data-mul="2">MH/s</a></li>
-				</ul>
+	<div class="col-md-4 stats">
+		<script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+		<div class="coinmarketcap-currency-widget" data-currency="electroneum" data-base="USD" data-secondary="BTC">
+			<div style="border:2px solid #E4E6EB;border-radius: 10px;font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;min-width:285px;">
+				<div>
+					<div style="float:right;width:67%;border: 0px solid #000;text-align:left;padding:5px 0px;line-height:25px;">
+						<span style="font-size: 18px;"><a href="http://coinmarketcap.com/currencies/electroneum/?utm_medium=widget&amp;utm_campaign=cmcwidget&amp;utm_source=etn.rustylock.club&amp;utm_content=electroneum" target="_blank" style="text-decoration: none; color: rgb(66, 139, 202);">Electroneum (ETN)</a></span>
+						<br><span style="font-size: 16px;"><span style="color:#093"></span></span>
+						<br><span style="font-size: 12px; color:gray"></span>
+					</div>
+					<div style="text-align:center;padding:5px 0px;width:33%;"><img src="https://files.coinmarketcap.com/static/img/coins/64x64/electroneum.png"></div>
+				</div>
+				<div style="border-top: 1px solid #E4E6EB;clear:both;">
+					<div style="text-align:center;float:left;width:33%;font-size:12px;padding:12px 0;border-right:1px solid #E4E6EB;line-height:1.25em;">                        RANK                        <br>
+						<br><span style="font-size: 17px; ">46</span>
+					</div>
+					<div style="text-align:center;float:left;width:33%;font-size:12px;padding:12px 0 16px 0;border-right:1px solid #E4E6EB;line-height:1.25em;">                        MARKET CAP                        <br>
+						<br><span style="font-size: 14px; "><span style="font-size:9px">USD</span></span>
+					</div>
+					<div style="text-align:center;float:left;width:33%;font-size:12px;padding:12px 0 16px 0;line-height:1.25em;">                        VOLUME (24H)                        <br>
+						<br><span style="font-size: 14px; "><span style="font-size:9px">USD</span></span>
+					</div>
+				</div>
+				<div style="border-top: 1px solid #E4E6EB;text-align:center;clear:both;font-size:10px;font-style:italic;padding:5px 0;">        <a href="http://coinmarketcap.com?utm_medium=widget&amp;utm_campaign=cmcwidget&amp;utm_source=etn.rustylock.club&amp;utm_content=electroneum" target="_blank" style="text-decoration: none; color: rgb(66, 139, 202);">Powered by CoinMarketCap</a>
+				</div>
 			</div>
-			<span class="input-group-addon">=</span>
-			<span class="input-group-addon" id="calcHashResultsHolder"><span id="calcHashAmount"></span> <span id="calcHashSymbol"></span>/day</span>
+		</div>
+		<div id="calcHashHolder">
+			<div class="input-group">
+				<input type="number" class="form-control" id="calcHashRate" placeholder="Enter Your Hash Rate">
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="calcHashDropdown">
+						<span id="calcHashUnit" data-mul="1">KH/s</span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
+						<li><a href="#" data-mul="0">H/s</a></li>
+						<li><a href="#" data-mul="1">KH/s</a></li>
+						<li><a href="#" data-mul="2">MH/s</a></li>
+					</ul>
+				</div><span class="input-group-addon" id="calcHashResultsHolder">=&nbsp;<span id="calcHashAmount"></span> <span id="calcHashSymbol"></span>/day</span>
+			</div>
 		</div>
 	</div>
 </div>
@@ -242,7 +254,7 @@
 		update: function(){
 			var ts = new Date(lastStats.network.timestamp * 1000).toISOString(), lastHsh;
 			$('#networkLastBlockFound').timeago('update', ts);
-			$('#networkLastBlockFoundTs').html('<br/>' + ts);
+			$('#networkLastBlockFound').parent().attr("title", ts);
 
 			updateText('networkHashrate', getReadableHashRateString(lastStats.network.difficulty / 60) + '/sec');
 			updateText('networkDifficulty', lastStats.network.difficulty.toString());
@@ -260,11 +272,11 @@
 			if (lastStats.pool.lastBlockFound){
 				var d = new Date(parseInt(lastStats.pool.lastBlockFound)).toISOString();
 				$('#poolLastBlockFound').timeago('update', d);
-				$('#poolLastBlockFoundTs').html("<br/>" + d);
+				$('#poolLastBlockFound').parent().attr("title", d);
 			}
 			else {
 				$('#poolLastBlockFound').removeAttr('title').data('ts', '').update('Never');
-				$('#poolLastBlockFoundTs').text("");
+				$('#poolLastBlockFound').parent().removeAttr("title");
 			}
 
 			updateText('poolMiners', lastStats.pool.miners.toString());

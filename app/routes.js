@@ -1,6 +1,7 @@
 module.exports = function(app, passport) {
 
     var recaptcha = require("./recaptcha");
+    var User       = require('../app/models/user');
 
 // normal routes ===============================================================
 
@@ -12,7 +13,8 @@ module.exports = function(app, passport) {
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
-            user : req.user
+            user : req.user,
+            message : req.flash('profileMessage').toString()
         });
     });
 
@@ -69,6 +71,34 @@ module.exports = function(app, passport) {
             res.redirect('/#signup');
         }));
 
+        // change password
+        app.post('/changepass', function(req, res, done) {
+            if(req.body.password1 !== req.body.password2 || !isValidPassword(req.body.password1, req.user)) {
+                req.flash('profileMessage', req.body.password1 !== req.body.password2 ? "Passwords do not match" : 
+                    "Incorrect password. Expected minimum 8 characters including 1 upper case letter, 1 lower case letter and 1 number. Password should not be the same as user name.");
+                res.redirect('/#profile');
+                return;
+            }
+            
+            User.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
+                // if there are any errors, return the error
+                if (err)
+                    return done(err);
+
+                // if no user is found, return the message
+                if (!user)
+                    return done(null, false, req.flash('loginMessage', 'No user found.'));
+
+                user.local.password = user.generateHash(req.body.password1);
+
+                user.save(function(err) {
+                    if (err)
+                        return done(err);
+                    res.send('Ok');
+                });
+            });
+        });
+
     // facebook -------------------------------
 
         // send to facebook to do the authentication
@@ -110,7 +140,7 @@ module.exports = function(app, passport) {
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
 
-    // locally --------------------------------
+    /* locally --------------------------------
         app.get('/connect/local', function(req, res) {
             res.render('connect-local.ejs', { message: req.flash('loginMessage') });
         });
@@ -119,7 +149,8 @@ module.exports = function(app, passport) {
             failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
-
+    */
+    
     // facebook -------------------------------
 
         // send to facebook to do the authentication
@@ -164,7 +195,7 @@ module.exports = function(app, passport) {
 // for local account, remove email and password
 // user account will stay active in case they want to reconnect in the future
 
-    // local -----------------------------------
+    /* local -----------------------------------
     app.get('/unlink/local', isLoggedIn, function(req, res) {
         var user            = req.user;
         user.local.email    = undefined;
@@ -173,6 +204,7 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
+    */
 
     // facebook -------------------------------
     app.get('/unlink/facebook', isLoggedIn, function(req, res) {
@@ -200,8 +232,6 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
-
-
 };
 
 // route middleware to ensure user is logged in
@@ -210,4 +240,16 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/login');
+}
+
+function isValidPassword(pwd, usr){
+    var ucase = new RegExp("[A-Z]+"),
+        lcase = new RegExp("[a-z]+"),
+        num = new RegExp("[0-9]+");
+        
+    if(pwd && pwd.length >= 8) {
+        return pwd.toLowerCase() !== usr.local.email.toLowerCase() && ucase.test(pwd) && lcase.test(pwd) && num.test(pwd);
+    }
+
+    return false;
 }

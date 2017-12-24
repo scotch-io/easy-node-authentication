@@ -14,11 +14,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-global.secretFolder = typeof(process.env.SecretFolder) != "undefined" ? process.env.SecretFolder : '../secrets/';
-var configDB = require(global.secretFolder + 'database.js');
-
 // configuration ===============================================================
-mongoose.connect(configDB.url, { useMongoClient: true }); // connect to our database
+mongoose.connect(process.env.rustyDbUrl, { useMongoClient: true }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -32,7 +29,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({
-    secret: 'ilovescotchscotchyscotchscotch', // session secret
+    secret: process.env.rustySessionSecret, // session secret
     resave: true,
     saveUninitialized: true
 }));

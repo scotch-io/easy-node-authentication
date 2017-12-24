@@ -5,14 +5,13 @@ module.exports = function(success, failure)
     return function(req, res, next) {
         if(req.body["g-recaptcha-response"]){
 
-            var secret = require(global.secretFolder + "secret.js"),
-                request = require('request');
+            var request = require('request');
     
             request.post({
                 url: 'https://www.google.com/recaptcha/api/siteverify',
                 form: {
                     response: req.body["g-recaptcha-response"],
-                    secret: secret.reCaptchaKey,
+                    secret: process.env.rustyReCaptchaKey,
                     remoteip: req.headers['X-Forwarded-For'] || 
                         req.connection.remoteAddress
                 }

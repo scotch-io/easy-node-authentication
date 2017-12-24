@@ -1,4 +1,7 @@
 <div class="container">
+    <% if (message) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
 
     <div class="page-header">
         <a href="/logout" class="btn btn-default btn-danger">&nbsp;&nbsp;Logout&nbsp;&nbsp;</a>
@@ -9,7 +12,9 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Email &amp; password <a href="/unlink/local" class="btn btn-default">Unlink</a></h3>
+                <h3><span class="fa fa-user"></span> Email &amp; password <!--<a href="/unlink/local" class="btn btn-default">Unlink</a>-->
+                    <a href="#" class="btn btn-default" id="changePass" onclick="$('#changePassForm').show(); $('#changePass').hide(); mess.hide(); return false;">Change password</a>
+                </h3>
 
                 <% if (user.local.email) { %>
                     <p>
@@ -19,7 +24,18 @@
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
-
+                <p style="color:#FF0004;display:none;" id="changePassMessage"></p>
+                <div id="changePassForm" style="display:none;"><div class="row">
+                    <div class="col-sm-12">
+                    <p>Your password cannot be the same as your user name (email).</p>
+                    <form method="post" id="passwordForm" action="/changepass">
+                    <% include ../static/pages/password.html %>
+                    <input type="submit" class="btn btn-primary" data-loading-text="Changing Password..." value="Change password" id="submitPass" disabled="disabled">
+                    <input type="buton" class="btn btn-default" value="Cancel" onclick="$('#changePass').show(); $('#changePassForm').hide(); return false;">
+                    </form>
+                    </div><!--/col-sm-6-->
+                    </div><!--/row-->
+                </div>
             </div>
         </div>
 
@@ -62,7 +78,7 @@
 
                     <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
                 <% } else { %>
-                    <a href="/connect/twitter" class="btn btn-info"disabled="disabled">Connect Twitter</a> coming soon...
+                    <a href="/connect/twitter" class="btn btn-info" disabled="disabled">Connect Twitter</a> coming soon...
                 <% } %>
 
             </div>
@@ -91,3 +107,40 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+
+var btn = $("#submitPass"),
+        mess = $("#changePassMessage");
+
+$("#passwordForm").submit(function(e){
+
+    e.preventDefault();
+    
+    if(!valid) {
+        return false;
+    }
+
+    mess.hide();
+
+    $.ajax({
+           type: "POST",
+           url: "/changepass",
+           data: $("#passwordForm").serialize(), // serializes the form's elements.
+           success: function(data) {
+               mess.css("color","#00A41E");
+               mess.text("Password changed successfully");
+               $('#changePass').show(); $('#changePassForm').hide();
+               mess.show();
+           },
+           error: function(settings) {
+               mess.css("color","#FF0004");
+               mess.text("Failed to change password");
+               mess.show();
+           }
+         });
+
+    return false;
+});
+
+</script>
