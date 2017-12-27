@@ -1,7 +1,9 @@
 module.exports = function(app, passport) {
 
     var recaptcha = require("./recaptcha");
-    var User       = require('../app/models/user');
+    var User = require('../app/models/user');
+    var userProfile = require('./userprofile');
+    var wallets = require('./wallets')();
 
 // normal routes ===============================================================
 
@@ -11,10 +13,16 @@ module.exports = function(app, passport) {
     });
 
     // PROFILE SECTION =========================
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user,
-            message : req.flash('profileMessage').toString()
+    app.get('/profile', isLoggedIn, function(req, res, done) {
+        wallets.getUserWallets(req.user.id, function(results)
+        {
+            res.render('profile.ejs', {
+                user : req.user,
+                message : req.flash('profileMessage').toString(),
+                wallets : results
+            });
+        }, function(err) {
+            done(err);
         });
     });
 
@@ -72,32 +80,9 @@ module.exports = function(app, passport) {
         }));
 
         // change password
-        app.post('/changepass', function(req, res, done) {
-            if(req.body.password1 !== req.body.password2 || !isValidPassword(req.body.password1, req.user)) {
-                req.flash('profileMessage', req.body.password1 !== req.body.password2 ? "Passwords do not match" : 
-                    "Incorrect password. Expected minimum 8 characters including 1 upper case letter, 1 lower case letter and 1 number. Password should not be the same as user name.");
-                res.redirect('/#profile');
-                return;
-            }
-            
-            User.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
-                // if there are any errors, return the error
-                if (err)
-                    return done(err);
+        app.post('/changepass', userProfile().changePassword);
 
-                // if no user is found, return the message
-                if (!user)
-                    return done(null, false, req.flash('loginMessage', 'No user found.'));
-
-                user.local.password = user.generateHash(req.body.password1);
-
-                user.save(function(err) {
-                    if (err)
-                        return done(err);
-                    res.send('Ok');
-                });
-            });
-        });
+        app.post('/savewallets', userProfile().saveWallets);
 
     // facebook -------------------------------
 
@@ -240,16 +225,4 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/login');
-}
-
-function isValidPassword(pwd, usr){
-    var ucase = new RegExp("[A-Z]+"),
-        lcase = new RegExp("[a-z]+"),
-        num = new RegExp("[0-9]+");
-        
-    if(pwd && pwd.length >= 8) {
-        return pwd.toLowerCase() !== usr.local.email.toLowerCase() && ucase.test(pwd) && lcase.test(pwd) && num.test(pwd);
-    }
-
-    return false;
 }

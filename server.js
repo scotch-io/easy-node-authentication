@@ -13,11 +13,20 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
+var redis        = require('redis');
+
+require('./app/configReader.js');
 
 // configuration ===============================================================
 mongoose.connect(process.env.rustyDbUrl, { useMongoClient: true }); // connect to our database
 
+global.redisClient = redis.createClient(config.redis.port, config.redis.host);
+
 require('./config/passport')(passport); // pass passport for configuration
+
+global.logSystem = 'poolweb';
+require('./app/logger.js');
+require('./app/exceptionWriter.js')();
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console

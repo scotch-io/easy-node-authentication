@@ -7,6 +7,19 @@
         <a href="/logout" class="btn btn-default btn-danger">&nbsp;&nbsp;Logout&nbsp;&nbsp;</a>
     </div>
 
+    <div class="row"> <!-- User settings -->
+        <div class="col-sm-12">
+            <div class="well">
+                <h3>MANDATORY! Wallet addresses of your miner(s)</h3>
+                <span>One address per line</span>
+                <div>
+                    <textarea id="wallets" style="width:100%" rows="4"><%= wallets.join('\n') %></textarea>
+                </div>
+                <button id="saveWallets" class="btn btn-default">&nbsp;Save&nbsp;</button>&nbsp;&nbsp;
+                <span style="color:#FF0004;" id="saveWalletsMessage"></span>
+            </div>
+        </div>
+    </div>
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
@@ -141,6 +154,25 @@ $("#passwordForm").submit(function(e){
          });
 
     return false;
+});
+
+$("#wallets").keyup(function(){
+    $("#saveWalletsMessage").text("");
+});
+
+$("#saveWallets").click(function(){
+    var wallets = $("#wallets").val().trim(),
+        mess = $("#saveWalletsMessage");
+
+    if(wallets == "") {
+        mess.text("List of wallets cannot be empty");
+        return false;
+    }
+
+    $.post("/savewallets", { 
+        "wallets": wallets.split("\n")
+    }).done(function() { mess.css("color","#00A41E"); mess.text("Saved successfully!"); })
+    .fail(function() { mess.css("color","#FF0004"); mess.text("Failed to save wallet address(es)"); } );
 });
 
 </script>
