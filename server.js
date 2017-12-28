@@ -16,6 +16,9 @@ var session      = require('express-session');
 var redis        = require('redis');
 
 require('./app/configReader.js');
+config.redis.host = process.env.redisHost || config.redis.host;
+config.redis.port = process.env.redisPort || config.redis.port;
+config.redis.auth = process.env.redisAuth || config.redis.auth;
 
 // configuration ===============================================================
 mongoose.connect(process.env.rustyDbUrl, { useMongoClient: true }); // connect to our database
