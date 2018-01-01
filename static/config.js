@@ -1,4 +1,4 @@
-var api = "http://etn.rustylock.club:8117";
+var api = "https://etn.rustylock.club:8118";
 
 var coinUnits = 100;
 var coinDecimalPlaces = 2;
