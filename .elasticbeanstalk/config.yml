@@ -1,0 +1,24 @@
+branch-defaults:
+  master:
+    environment: node-express-env
+environment-defaults:
+  Default-Environment:
+    branch: null
+    repository: null
+  node-express-env:
+    branch: master
+    repository: pool-web
+global:
+  application_name: My First Elastic Beanstalk Application
+  branch: null
+  default_ec2_keyname: null
+  default_platform: node.js
+  default_region: eu-central-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: git
+  workspace_type: Application

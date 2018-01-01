@@ -1,0 +1,188 @@
+<style>
+	hr{
+		border-top-color: #d9d9d9 !important;
+		margin-top: 40px !important;
+		margin-bottom: 40px !important;
+	}
+	#miningPorts > .stats{
+		width: auto !important;
+		margin-right: 70px;
+		margin-left: 15px;
+		display: inline-block;
+	}
+	#miningPorts > .stats:last-child{
+		margin-right: 0;
+	}
+	.getting_started_windows{
+		line-height: 40px;
+	}
+	#getting_started_list > li{
+		margin-bottom: 20px;
+	}
+	#mining_apps > tr:first-child > td{
+		padding-top: 35px;
+	}
+	#mining_apps > tr > td{
+		border-top: none;
+	}
+	#mining_apps > tr:nth-child(even) > td{
+		border-bottom: 1px solid #e5e5e5;
+		padding-bottom: 20px;
+	}
+	#mining_apps > tr:nth-child(odd) > td{
+		padding-top: 20px;
+	}
+	#mining_apps{
+		margin-top: 10px;
+	}
+	.miningAppTitle{
+		font-weight: bold;
+	}
+	.exampleAddress{
+		font-style: italic;
+	}
+	#cpuminer_code{
+		display: inline-block;
+		white-space: normal;
+	}
+</style>
+
+<h3>Mining Pool Connection Details</h3>
+<div class="stats">
+	<div><i class="fa fa-cloud"></i> Mining Pool Address: <span id="miningPoolHost"></span></div>
+</div>
+
+<h4>Mining Ports</h4>
+<div id="miningPorts" class="row">
+	<div class="stats">
+		<div><i class="fa fa-tachometer"></i> Port: <span class="miningPort"></span></div>
+		<div><i class="fa fa-unlock-alt"></i> Starting Difficulty: <span class="miningPortDiff"></span></div>
+		<div><i class="fa fa-question"></i> Description: <span class="miningPortDesc"></span></div>
+	</div>
+</div>
+
+<hr>
+
+<h3>Pool Mining Software</h3>
+<p>If you are a crypto mining pro then you'll probably prefer these options.</p>
+<div class="yourStats table-responsive">
+	<table class="table">
+		<thead>
+		<tr>
+			<th><i class="fa fa-book"></i> App Name</th>
+			<th><i class="fa fa-car"></i> Architecture</th>
+			<th><i class="fa fa-download"></i> Downloads</th>
+			<th><i class="fa fa-comments"></i> Discussion</th>
+			<th><i class="fa fa-file-code-o"></i> Source Code</th>
+		</tr>
+		</thead>
+		<tbody id="mining_apps">
+		<tr>
+			<td class="miningAppTitle">CPUMiner (forked by LucasJones & Wolf)</td>
+			<td>CPU</td>
+			<td><a target="_blank" href="https://bitcointalk.org/index.php?topic=632724">BitcoinTalk</a></td>
+			<td><a target="_blank" href="https://bitcointalk.org/index.php?topic=632724">BitcoinTalk</a></td>
+			<td><a target="_blank" href="https://github.com/wolf9466/cpuminer-multi">Github</a></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<span>Example:</span>
+				<code>minerd -a cryptonight -o stratum+tcp://<span class="exampleHost"></span>:<span class="examplePort"></span> -u <span class="exampleAddress">YOUR_WALLET_ADDRESS</span> -p x</code>
+			</td>
+		</tr>
+		<tr>
+			<td class="miningAppTitle">YAM Miner (by yvg1900)</td>
+			<td>CPU</td>
+			<td><a target="_blank" href="https://mega.co.nz/#F!UlkU0RyR!E8n4CFkqVu0WoOnsJnQkSg">MEGA</a></td>
+			<td><a target="_blank" href="https://twitter.com/yvg1900">Twitter</a></td>
+			<td>Proprietary <i class="fa fa-frown-o"></i></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<span>Example:</span>
+				<code>yam -c x -M stratum+tcp://<span class="exampleAddress">YOUR_WALLET_ADDRESS</span>:x@<span class="exampleHost"></span>:<span class="examplePort"></span>/xmr</code>
+			</td>
+		</tr>
+		<tr>
+			<td class="miningAppTitle">Claymore CPU Miner</td>
+			<td>CPU</td>
+			<td><a target="_blank" href="https://bitcointalk.org/index.php?topic=647251.0">BitcoinTalk</a></td>
+			<td><a target="_blank" href="https://bitcointalk.org/index.php?topic=647251.0">BitcoinTalk</a></td>
+			<td>Proprietary <i class="fa fa-frown-o"></i></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<span>Example:</span>
+				<code>NsCpuCNMiner64 -o stratum+tcp://<span class="exampleHost"></span>:<span class="examplePort"></span> -u <span class="exampleAddress">YOUR_WALLET_ADDRESS</span> -p x</code>
+			</td>
+		</tr>
+		<tr>
+			<td class="miningAppTitle">Claymore GPU Miner</td>
+			<td>OpenCL (AMD)</td>
+			<td><a target="_blank" href="https://bitcointalk.org/index.php?topic=638915.0">BitcoinTalk</a></td>
+			<td><a target="_blank" href="https://bitcointalk.org/index.php?topic=638915.0">Discussion</a></td>
+			<td>Proprietary <i class="fa fa-frown-o"></i></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<span>Example:</span>
+				<code>NsGpuCNMiner -o stratum+tcp://<span class="exampleHost"></span>:<span class="examplePort"></span> -u <span class="exampleAddress">YOUR_WALLET_ADDRESS</span> -p x</code>
+			</td>
+		</tr>
+		<tr>
+			<td class="miningAppTitle">ccminer (forked by tsiv)</td>
+			<td>CUDA (Nvidia)</td>
+			<td><a target="_blank" href="https://github.com/tsiv/ccminer-cryptonight/releases">Github</a></td>
+			<td><a target="_blank" href="https://bitcointalk.org/index.php?topic=656841.msg7487737#msg7487737">BitcoinTalk</a></td>
+			<td><a target="_blank" href="https://github.com/tsiv/ccminer-cryptonight">Github</a></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<span>Example:</span>
+				<code>ccminer -o stratum+tcp://<span class="exampleHost"></span>:<span class="examplePort"></span> -u <span class="exampleAddress">YOUR_WALLET_ADDRESS</span> -p x</code>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<hr/>
+
+<script>
+
+	currentPage = {
+		destroy: function(){
+
+		},
+		update: function(){
+
+			var portsJson = JSON.stringify(lastStats.config.ports);
+			if (lastPortsJson !== portsJson) {
+				lastPortsJson = portsJson;
+				var $miningPortChildren = [];
+				for (var i = 0; i < lastStats.config.ports.length; i++) {
+					var portData = lastStats.config.ports[i];
+					var $portChild = $(miningPortTemplate);
+					$portChild.find('.miningPort').text(portData.port);
+					$portChild.find('.miningPortDiff').text(portData.difficulty);
+					$portChild.find('.miningPortDesc').text(portData.desc);
+					$miningPortChildren.push($portChild);
+				}
+				$miningPorts.empty().append($miningPortChildren);
+			}
+
+			updateTextClasses('exampleHost', poolHost);
+			updateTextClasses('examplePort', lastStats.config.ports[0].port.toString());
+
+		}
+	};
+
+	// document.getElementById('easyminer_link').setAttribute('href', easyminerDownload);
+	document.getElementById('miningPoolHost').textContent = poolHost;
+
+	var lastPortsJson = '';
+	var $miningPorts = $('#miningPorts');
+	var miningPortTemplate = $miningPorts.html();
+	$miningPorts.empty();
+
+</script>

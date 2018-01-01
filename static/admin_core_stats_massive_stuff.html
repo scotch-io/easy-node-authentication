@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.0/jquery.timeago.min.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        #statsHolder{
+            margin-bottom: 0;
+        }
+        .luckGood{
+            color: darkgreen;
+        }
+        .luckBad{
+            color: darkred;
+        }
+    </style>
+
+    <script src="config.js"></script>
+
+    <script>
+
+
+        $(function(){
+            getStats();
+        });
+
+
+        var docCookies = {
+            getItem: function (sKey) {
+                return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+            },
+            setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+                if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
+                var sExpires = "";
+                if (vEnd) {
+                    switch (vEnd.constructor) {
+                        case Number:
+                            sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+                            break;
+                        case String:
+                            sExpires = "; expires=" + vEnd;
+                            break;
+                        case Date:
+                            sExpires = "; expires=" + vEnd.toUTCString();
+                            break;
+                    }
+                }
+                document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+                return true;
+            },
+            removeItem: function (sKey, sPath, sDomain) {
+                if (!sKey || !this.hasItem(sKey)) { return false; }
+                document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + ( sDomain ? "; domain=" + sDomain : "") + ( sPath ? "; path=" + sPath : "");
+                return true;
+            },
+            hasItem: function (sKey) {
+                return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+            }
+        };
+
+
+        function getReadableCoins(coins){
+            return (parseInt(coins || 0) / coinUnits).toFixed(coinUnits.toString().length - 1);
+        }
+
+        function getStats(promptPassword){
+
+            var password = docCookies.getItem('password');
+
+
+            if (!password || promptPassword)
+                password = prompt('Enter admin password');
+
+
+            $('#loading').show();
+            $.ajax({
+                url: api + '/admin_stats',
+                data: {password: password},
+                success: function(data){
+                    docCookies.setItem('password', password, Infinity);
+                    $('#loading').hide();
+                    renderData(data);
+                },
+                error: function(e){
+                    docCookies.removeItem('password');
+                    getStats(true);
+                }
+            });
+        }
+
+        var formatLuck = function(difficulty, shares){
+
+            if (difficulty > shares){
+                var percent = 100 - Math.round(shares / difficulty * 100);
+                return '<span class="luckGood">' + percent + '%</span>';
+            }
+            else{
+                var percent = (100 - Math.round(difficulty / shares * 100)) * -1;
+                return '<span class="luckBad">' + percent + '%</span>';
+            }
+
+        };
+
+        function renderData(data){
+            $('#totalOwed').text(getReadableCoins(data.totalOwed));
+            $('#totalPaid').text(getReadableCoins(data.totalPaid));
+            $('#totalMined').text(getReadableCoins(data.totalRevenue));
+            $('#profit').text(getReadableCoins(data.totalRevenue - data.totalOwed - data.totalPaid));
+            $('#averageLuck').html(formatLuck(data.totalDiff, data.totalShares));
+            $('#orphanPercent').text((data.blocksOrphaned / data.blocksUnlocked * 100).toFixed(2));
+            $('#registeredAddresses').text(data.totalWorkers);
+        }
+
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Admin Center <i id="loading" class="fa fa-circle-o-notch fa-spin"></i></h3>
+
+    <hr>
+
+    <h4>Stats</h4>
+    <dl class="dl-horizontal" id="statsHolder">
+        <dt>Total Owed</dt><dd id="totalOwed">...</dd>
+        <dt>Total Paid</dt><dd id="totalPaid">...</dd>
+        <dt>Total Mined</dt><dd id="totalMined">...</dd>
+        <dt>Profit (before tx fees)</dt><dd id="profit">...</dd>
+        <dt>Average Luck</dt><dd id="averageLuck">...</dd>
+        <dt>Orphan Percent</dt><dd id="orphanPercent">...</dd>
+        <dt>Registered Addresses</dt><dd id="registeredAddresses">...</dd>
+    </dl>
+    <br>
+
+    <hr>
+
+    <h4>Miner Lookup</h4>
+
+
+</div>
+
+</body>
+</html>

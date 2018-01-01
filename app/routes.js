@@ -1,16 +1,28 @@
 module.exports = function(app, passport) {
 
+    var recaptcha = require("./recaptcha");
+    var User = require('../app/models/user');
+    var userProfile = require('./userprofile');
+    var wallets = require('./wallets')();
+
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        res.render('index.ejs', { req : req, res : res });
     });
 
     // PROFILE SECTION =========================
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user
+    app.get('/profile', isLoggedIn, function(req, res, done) {
+        wallets.getUserWallets(req.user.id, function(results)
+        {
+            res.render('profile.ejs', {
+                user : req.user,
+                message : req.flash('profileMessage').toString(),
+                wallets : results
+            });
+        }, function(err) {
+            done(err);
         });
     });
 
@@ -28,28 +40,49 @@ module.exports = function(app, passport) {
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
+            res.render('auth.ejs', { 
+                message: req.flash('loginMessage').toString(),
+                action: "login",
+                actionTitle: " Login ",
+                promptLocation: "../static/pages/signup.html"
+            });
         });
 
         // process the login form
-        app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-        }));
+        app.post('/login', recaptcha(passport.authenticate('local-login', {
+                successRedirect : '/#profile', // redirect to the secure profile section
+                failureRedirect : '/#login', // redirect back to the signup page if there is an error
+                failureFlash : true // allow flash messages
+            }), function(req, res, next, errText) {
+                req.flash('loginMessage', errText);
+                res.redirect('/#login');
+            }));
 
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
+            res.render('auth.ejs', { 
+                message: req.flash('signupMessage').toString(),
+                action: "signup",
+                actionTitle: " Signup ",
+                promptLocation: "../static/pages/login.html"
+            });
         });
 
         // process the signup form
-        app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        app.post('/signup', recaptcha(passport.authenticate('local-signup', {
+            successRedirect : '/#profile', // redirect to the secure profile section
+            failureRedirect : '/#signup', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
+        }), function(req, res, next, errText) {
+            req.flash('signupMessage', errText);
+            res.redirect('/#signup');
         }));
+
+        // change password
+        app.post('/changepass', userProfile().changePassword);
+
+        app.post('/savewallets', userProfile().saveWallets);
 
     // facebook -------------------------------
 
@@ -92,7 +125,7 @@ module.exports = function(app, passport) {
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
 
-    // locally --------------------------------
+    /* locally --------------------------------
         app.get('/connect/local', function(req, res) {
             res.render('connect-local.ejs', { message: req.flash('loginMessage') });
         });
@@ -101,7 +134,8 @@ module.exports = function(app, passport) {
             failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
-
+    */
+    
     // facebook -------------------------------
 
         // send to facebook to do the authentication
@@ -146,7 +180,7 @@ module.exports = function(app, passport) {
 // for local account, remove email and password
 // user account will stay active in case they want to reconnect in the future
 
-    // local -----------------------------------
+    /* local -----------------------------------
     app.get('/unlink/local', isLoggedIn, function(req, res) {
         var user            = req.user;
         user.local.email    = undefined;
@@ -155,6 +189,7 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
+    */
 
     // facebook -------------------------------
     app.get('/unlink/facebook', isLoggedIn, function(req, res) {
@@ -182,8 +217,6 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
-
-
 };
 
 // route middleware to ensure user is logged in
@@ -191,5 +224,5 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/login');
 }

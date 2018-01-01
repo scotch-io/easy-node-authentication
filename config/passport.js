@@ -71,7 +71,7 @@ module.exports = function(passport) {
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
-        passwordField : 'password',
+        passwordField : 'password1',
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
@@ -80,6 +80,12 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
+            var emailValid = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if(!emailValid.test(email)){
+                return done(null, false, req.flash('signupMessage', 'Email format is invalid.'));
+            }
+
             // if the user is not already logged in:
             if (!req.user) {
                 User.findOne({ 'local.email' :  email }, function(err, user) {

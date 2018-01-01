@@ -1,40 +1,54 @@
-<!doctype html>
-<html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body         { padding-top:80px; word-wrap:break-word; }
-    </style>
-</head>
-<body>
 <div class="container">
+    <% if (message) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    <div class="page-header">
+        <a href="/logout" class="btn btn-default btn-danger">&nbsp;&nbsp;Logout&nbsp;&nbsp;</a>
     </div>
 
+    <div class="row"> <!-- User settings -->
+        <div class="col-sm-12">
+            <div class="well">
+                <h3>MANDATORY! Wallet addresses of your miner(s)</h3>
+                <span>One address per line</span>
+                <div>
+                    <textarea id="wallets" style="width:100%" rows="4"><%= wallets.join('\n') %></textarea>
+                </div>
+                <button id="saveWallets" class="btn btn-default">&nbsp;Save&nbsp;</button>&nbsp;&nbsp;
+                <span style="color:#FF0004;" id="saveWalletsMessage"></span>
+            </div>
+        </div>
+    </div>
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h3><span class="fa fa-user"></span> Email &amp; password <!--<a href="/unlink/local" class="btn btn-default">Unlink</a>-->
+                    <a href="#" class="btn btn-default" id="changePass" onclick="$('#changePassForm').show(); $('#changePass').hide(); mess.hide(); return false;">Change password</a>
+                </h3>
 
                 <% if (user.local.email) { %>
                     <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
+                        <!--strong>id</strong>: <%= user._id %><br>-->
+                        <strong>email</strong>: <%= user.local.email %> 
                     </p>
-                    
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
-
+                <p style="color:#FF0004;display:none;" id="changePassMessage"></p>
+                <div id="changePassForm" style="display:none;"><div class="row">
+                    <div class="col-sm-12">
+                    <p>Your password cannot be the same as your user name (email).</p>
+                    <form method="post" id="passwordForm" action="/changepass">
+                    <% include ../static/pages/password.html %>
+                    <input type="submit" class="btn btn-primary" data-loading-text="Changing Password..." value="Change password" id="submitPass" disabled="disabled">
+                    <input type="buton" class="btn btn-default" value="Cancel" onclick="$('#changePass').show(); $('#changePassForm').hide(); return false;">
+                    </form>
+                    </div><!--/col-sm-6-->
+                    </div><!--/row-->
+                </div>
             </div>
         </div>
 
@@ -54,7 +68,7 @@
 
                     <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
                 <% } else { %>
-                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                    <a href="/connect/facebook" class="btn btn-primary" disabled="disabled">Connect Facebook</a> coming soon...
                 <% } %>
 
             </div>
@@ -77,7 +91,7 @@
 
                     <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
                 <% } else { %>
-                    <a href="/connect/twitter" class="btn btn-info">Connect Twitter</a>
+                    <a href="/connect/twitter" class="btn btn-info" disabled="disabled">Connect Twitter</a> coming soon...
                 <% } %>
 
             </div>
@@ -98,18 +112,67 @@
 
                     <a href="/unlink/google" class="btn btn-danger">Unlink</a>
                 <% } else { %>
-                    <a href="/connect/google" class="btn btn-danger">Connect Google</a>
+                    <a href="/connect/google" class="btn btn-danger" disabled="disabled">Connect Google</a> coming soon...
                 <% } %>
 
             </div>
         </div>
     </div>
 
-    <div class="text-center">
-        <p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-        <p>Visit the <a href="http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local">tutorial</a>.</p>
-    </div>
-
 </div>
-</body>
-</html>
+
+<script type="text/javascript">
+
+var btn = $("#submitPass"),
+        mess = $("#changePassMessage");
+
+$("#passwordForm").submit(function(e){
+
+    e.preventDefault();
+    
+    if(!valid) {
+        return false;
+    }
+
+    mess.hide();
+
+    $.ajax({
+           type: "POST",
+           url: "/changepass",
+           data: $("#passwordForm").serialize(), // serializes the form's elements.
+           success: function(data) {
+               mess.css("color","#00A41E");
+               mess.text("Password changed successfully");
+               $('#changePass').show(); $('#changePassForm').hide();
+               mess.show();
+           },
+           error: function(settings) {
+               mess.css("color","#FF0004");
+               mess.text("Failed to change password");
+               mess.show();
+           }
+         });
+
+    return false;
+});
+
+$("#wallets").keyup(function(){
+    $("#saveWalletsMessage").text("");
+});
+
+$("#saveWallets").click(function(){
+    var wallets = $("#wallets").val().trim(),
+        mess = $("#saveWalletsMessage");
+
+    if(wallets == "") {
+        mess.text("List of wallets cannot be empty");
+        return false;
+    }
+
+    $.post("/savewallets", { 
+        "wallets": wallets.split("\n")
+    }).done(function() { mess.css("color","#00A41E"); mess.text("Saved successfully!"); })
+    .fail(function() { mess.css("color","#FF0004"); mess.text("Failed to save wallet address(es)"); } );
+});
+
+</script>

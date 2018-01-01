@@ -1,0 +1,21 @@
+{
+    "coin": "electroneum",
+    "symbol": "ETN",
+    "logging": {
+        "files": {
+            "level": "info",
+            "directory": "logs",
+            "flushInterval": 5
+        },
+
+        "console": {
+            "level": "info",
+            "colors": true
+        }
+    },
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 6379,
+        "auth": null
+    }
+}
