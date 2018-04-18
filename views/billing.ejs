@@ -1,0 +1,39 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body 		{ padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Billing</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/profile" class="btn btn-default btn-sm">Profile</a>
+
+    </div>
+    <div id="servicebot-management-form"></div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://servicebot.io/js/servicebot-embed.js" type="text/javascript"></script>
+    <script  type="text/javascript">
+        Servicebot.init({
+            url : "http://localhost:3000",
+            selector : document.getElementById('servicebot-management-form'),
+            type : "manage",
+            token: "<%= userToken %>",
+            handleResponse: (response) => {
+                //determine what to do on certain events...
+            }
+        })
+    </script>
+
+
+</div>
+</body>
+</html>

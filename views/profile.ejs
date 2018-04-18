@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
+	<title>Servicebot Integration</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
@@ -15,6 +15,7 @@
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
 		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+		<a href="/billing" class="btn btn-default btn-sm">Billing</a>
 	</div>
 
 	<div class="row">
@@ -28,9 +29,11 @@
 						<strong>id</strong>: <%= user._id %><br>
 						<strong>email</strong>: <%= user.local.email %><br>
 						<strong>password</strong>: <%= user.local.password %>
+						<strong>status</strong>: <%= user.status %>
 					</p>
 
 			</div>
+
 		</div>
 
 	</div>

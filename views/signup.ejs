@@ -2,45 +2,66 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <style>
+        body {
+            padding-top: 80px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
 
-<div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3">
 
-	<h1><span class="fa fa-sign-in"></span> Signup</h1>
+        <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
-	<!-- show any messages that come back with authentication -->
-	<% if (message.length > 0) { %>
-		<div class="alert alert-danger"><%= message %></div>
-	<% } %>
+        <!-- show any messages that come back with authentication -->
+        <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+        <% } %>
 
-	<!-- LOGIN FORM -->
-	<form action="/signup" method="post">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" class="form-control" name="email">
-		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password">
-		</div>
+        <!-- LOGIN FORM -->
 
-		<button type="submit" class="btn btn-warning btn-lg">Signup</button>
-	</form>
+        <hr>
 
-	<hr>
+        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Or go <a href="/">home</a>.</p>
 
-	<p>Already have an account? <a href="/login">Login</a></p>
-	<p>Or go <a href="/">home</a>.</p>
+    </div>
 
-</div>
+    <div id="servicebot-request-form"></div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://servicebot.io/js/servicebot-embed.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var signup = function(response) {
+            fetch("http://localhost:8080/signup",
+                {
+                    method: "POST",
+                    headers: {"content-type": "application/json"},
+                    credentials : "include",
+                    body: JSON.stringify({"email": response.request.email, "password": "hello"})
+                }).then(response => {
+                    window.location = "/profile";
+                    console.log(response)
+            });
+        }
+        Servicebot.init({
+            templateId: 1,
+            url: "http://localhost:3000",
+            selector: document.getElementById('servicebot-request-form'),
+            handleResponse: signup,
+            type: "request",
+            spk:"pk_test_2AlebAqTCykOvGc6WGDO5irD",
+            forceCard: false //set to true if you want credit card to be a required field for the customer
+        })
+    </script>
+
 
 </div>
 </body>

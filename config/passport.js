@@ -40,13 +40,14 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
-
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
         User.findOne({ 'local.email' :  email }, function(err, user) {
             // if there are any errors, return the error
-            if (err)
+            if (err) {
+                console.log(err);
                 return done(err);
+            }
 
             // check to see if theres already a user with that email
             if (user) {
@@ -60,9 +61,11 @@ module.exports = function(passport) {
                 // set the user's local credentials
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
-
+                newUser.status = "active";
 				// save the user
+                console.log(newUser);
                 newUser.save(function(err) {
+                    console.log(err, newUser);
                     if (err)
                         throw err;
                     return done(null, newUser);
