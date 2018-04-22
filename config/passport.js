@@ -62,6 +62,8 @@ module.exports = function(passport) {
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
                 newUser.status = "active";
+                newUser.tier = req.body.tier;
+                newUser.business = req.body.business;
 				// save the user
                 console.log(newUser);
                 newUser.save(function(err) {

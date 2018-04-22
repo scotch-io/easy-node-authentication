@@ -39,17 +39,19 @@
     <script src="https://servicebot.io/js/servicebot-embed.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        var signup = function(response) {
-            fetch("http://localhost:8080/signup",
+        let signup = function(response) {
+            let props = response.request.references.service_template_properties.reduce((arr, prop) => {
+                arr[prop.name] = prop.data.value;
+                return arr;
+            }, {});
+
+            return fetch("/signup",
                 {
                     method: "POST",
                     headers: {"content-type": "application/json"},
                     credentials : "include",
-                    body: JSON.stringify({"email": response.request.email, "password": "hello"})
-                }).then(response => {
-                    window.location = "/profile";
-                    console.log(response)
-            });
+                    body: JSON.stringify({"business" : props["business-name"], "tier": props["tier"], "email": response.request.email, "password": response.request.password})
+                });
         }
         Servicebot.init({
             templateId: 1,
@@ -58,6 +60,11 @@
             handleResponse: signup,
             type: "request",
             spk:"pk_test_2AlebAqTCykOvGc6WGDO5irD",
+            setPassword: true,
+            redirect: "/profile",
+            propertyOverrides: {
+              tier: "<%= tier %>"
+            },
             forceCard: false //set to true if you want credit card to be a required field for the customer
         })
     </script>

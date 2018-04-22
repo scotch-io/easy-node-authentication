@@ -1,6 +1,9 @@
 // app/routes.js
 module.exports = function (app, passport) {
 
+    // =====================================
+    // SERVICEBOT WEBHOOK INTEGRATION ======
+    // =====================================
     app.post("/servicebot-webhook", async function (req, res) {
         let User = require('./models/user');
         let eventData = req.body.event_data;
@@ -54,10 +57,16 @@ module.exports = function (app, passport) {
     // =====================================
     // show the signup form
     app.get('/signup', function (req, res) {
+        let tier = req.query.tier || "Basic";
+        // render the page and pass in any flash data if it exists
+        res.render('signup.ejs', {tier, message: req.flash('signupMessage')});
+    });
+    app.get('/pricing', function (req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('signup.ejs', {message: req.flash('signupMessage')});
+        res.render('pricing.ejs', {message: req.flash('signupMessage')});
     });
+
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
