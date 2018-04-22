@@ -38,6 +38,24 @@
 			</div>
 
 		</div>
+        <%if (user.tier === "Enterprise") { %>
+		<div class="col-sm-6">
+			<div class="well">
+				<h3>Special Enterprise Box!</h3>
+			</div>
+
+		</div>
+        <% } %>
+        <%if (user.tier === "Enterprise" || user.tier === "Advanced") { %>
+		<div class="col-sm-6">
+			<div class="well">
+				<h3>Advanced tier users get this box!</h3>
+			</div>
+
+		</div>
+        <% } %>
+
+
 
 	</div>
 

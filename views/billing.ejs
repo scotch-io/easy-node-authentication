@@ -23,7 +23,7 @@
     <script src="https://servicebot.io/js/servicebot-embed.js" type="text/javascript"></script>
     <script  type="text/javascript">
         Servicebot.init({
-            url : "http://localhost:3000",
+            url : "<%= servicebotUrl %>",
             selector : document.getElementById('servicebot-management-form'),
             type : "manage",
             token: "<%= userToken %>",

@@ -16,7 +16,7 @@
 <body>
 <div class="container">
 
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-offset-3">
 
         <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
@@ -55,7 +55,7 @@
         }
         Servicebot.init({
             templateId: 1,
-            url: "http://localhost:3000",
+            url: "<%= servicebotUrl %>",
             selector: document.getElementById('servicebot-request-form'),
             handleResponse: signup,
             type: "request",
