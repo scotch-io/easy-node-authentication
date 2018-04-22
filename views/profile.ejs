@@ -38,7 +38,15 @@
 			</div>
 
 		</div>
-        <%if (user.tier === "Enterprise") { %>
+		<% if(user.status === "suspended") {%>
+		<div class="col-sm-6">
+			<div class="well">
+				<h3 style="color: red">USER IS SUSPENDED</h3>
+			</div>
+		</div>
+        <% } %>
+
+        <%if (user.tier === "Enterprise" && user.status !== "suspended") { %>
 		<div class="col-sm-6">
 			<div class="well">
 				<h3>Special Enterprise Box!</h3>
@@ -46,7 +54,7 @@
 
 		</div>
         <% } %>
-        <%if (user.tier === "Enterprise" || user.tier === "Advanced") { %>
+        <%if ((user.tier === "Enterprise" || user.tier === "Advanced") && user.status !== "suspended") { %>
 		<div class="col-sm-6">
 			<div class="well">
 				<h3>Advanced tier users get this box!</h3>

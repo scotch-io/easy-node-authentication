@@ -26,6 +26,7 @@ module.exports = function (app, passport) {
                     res.json({"message": "properties updated"});
                     break;
                 case "post_decommission":
+                    user.status ="suspended";
                     await user.save();
                     res.json({"message": "user suspended"});
                     break;
@@ -111,7 +112,7 @@ module.exports = function (app, passport) {
             var hmac = crypto.createHmac('sha256', key);
 
             var payload = {
-                "email": email
+                "email": email.toLowerCase()
             };
             var header = {
                 "alg": "HS256",
