@@ -2,14 +2,72 @@
 <!doctype html>
 <html>
 <head>
-	<title>Servicebot Integration</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<style>
-		body 		{ padding-top:80px; word-wrap:break-word; }
-	</style>
+	<!-- Site information -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SaaS Trade  - Software & SaaS Startups Template</title>
+	<meta name="description" content="SaaS Trade Description">
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="assets/css/owl.transitions.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/responsive.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,800" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600" rel="stylesheet">
+
+
+	<!-- Favicon -->
+	<link rel="icon" href="images/favicon.png">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
+
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.min.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
+<!-- Header -->
+<nav class="navbar navbar-default theme-bg-nav" data-spy="affix" data-offset-top="60">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/"><img src="images/logo-white.png" alt="SaaS Trade Logo"></a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/pricing">Overview</a></li>
+				<li><a href="/pricing">Pricing</a></li>
+				<li><a href="/pricing">Contact</a></li>
+				<li class="solid-item"><a href="/login">Login</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<!-- Header End -->
+
+<!-- Page header -->
+<div class="page-header section section-padding">
+</div>
+
+
 <div class="container">
 
 	<div class="page-header text-center">
@@ -26,14 +84,14 @@
 				<h3>Account: <%= user.status %></h3>
 				<h3><span class="fa fa-user"></span> Local</h3>
 
-					<p>
-						<strong>id</strong>: <%= user._id %><br>
-						<strong>email</strong>: <%= user.local.email %><br>
-						<strong>password</strong>: <%= user.local.password %><br>
-						<strong>business</strong>: <%= user.business %><br>
-						<strong>tier</strong>: <%= user.tier %><br>
+				<p>
+					<strong>id</strong>: <%= user._id %><br>
+					<strong>email</strong>: <%= user.local.email %><br>
+					<strong>password</strong>: <%= user.local.password %><br>
+					<strong>business</strong>: <%= user.business %><br>
+					<strong>tier</strong>: <%= user.tier %><br>
 
-					</p>
+				</p>
 
 			</div>
 
@@ -42,5 +100,77 @@
 	</div>
 
 </div>
+
+<!-- footer -->
+<footer class="footer-widget section-padding gray-bg bottom-0">
+	<div class="container">
+		<div class="footer-widget-area">
+			<div class="row">
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget logo-widget">
+						<a class="footer-logo" href="app-landing.html">
+							<img src="images/footer-logo.png" alt="...">
+						</a>
+						<p class="copyright">©  2018, SaaS trade</p>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget custom-menu-widget">
+						<h4 class="widget-title">Solutions</h4>
+						<ul class="widget-menu">
+							<li><a href="#">Software program</a></li>
+							<li><a href="#">Apps solutions</a></li>
+							<li><a href="#">Business analycis</a></li>
+							<li><a href="#">Plans & signuo</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget custom-menu-widget">
+						<h4 class="widget-title">Company</h4>
+						<ul class="widget-menu">
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Our services</a></li>
+							<li><a href="#">Our team</a></li>
+							<li><a href="#">Testimonials</a></li>
+							<li><a href="#">Our clients</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget contact-widget">
+						<h4 class="widget-title">Contact</h4>
+						<p>9000 Regency Parkway, Suite 400 Cary, NC 27518</p>
+						<p><strong>E:</strong>  supportsaasapp@gmail.com</p>
+						<p><strong>P:</strong>  +000 1456 6978 111</p>
+						<ul class="widget-social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-google"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Script -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-migrate-3.0.1.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.nav.js"></script>
+<script src="assets/js/owl.carousel.js"></script>
+<script src="assets/js/visible.js"></script>
+<script src="assets/js/jquery.countTo.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
+<script src="js/map.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>

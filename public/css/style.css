@@ -2287,14 +2287,21 @@ Feature
   color: #fff;
 }
 
+.navbar .container { margin-top: 0;}
+
+.container {
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
 /*------------------------------------
 Page
 ------------------------------------*/
 .page-header {
   background-image: -webkit-gradient(linear, left top, right top, from(#3aa6fe), to(#49deff));
   background-image: linear-gradient(90deg, #3aa6fe 0%, #49deff 100%);
-  margin: 0;
-  padding: 270px 0 130px;
+  margin: 0 0 0 0;
+  padding: 40px 0 130px;
   text-align: center;
 }
 .page-header .page-title {
