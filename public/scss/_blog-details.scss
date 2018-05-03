@@ -1,0 +1,223 @@
+/*------------------------------------
+Blog details
+------------------------------------*/
+.blog-details {}
+
+
+.blog-details-main {
+	.details-thumb {
+		margin-bottom: 40px;
+	}
+	.post-date {
+		text-transform: uppercase;
+		font-size: 18px;
+		font-family: $headingFont;
+		color: #757575;
+		margin-bottom: 0;
+	}
+	.post-title {
+		font-size: 30px;
+		line-height: 45px;
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+	.news-entry {}
+}
+
+
+.details-footer {
+	float: left;
+	width: 100%;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	margin-top: 40px;
+	.news-tag {
+		label {
+			border-right: 1px solid #e1e1e1;
+			padding: 5px 15px;
+			margin-bottom: 0;
+			font-size: 18px;
+			font-weight: 400;
+			color: #505050;
+		}
+		a {
+			color: #757575;
+			font-size: 16px;
+			&:hover {
+				color: $primaryColor;
+			}
+		}
+	}
+	.news-share {
+		float: left;
+		width: 100%;
+		text-align: right;
+		label {
+			border-left: 1px solid #e1e1e1;
+			padding: 5px 0px 5px 15px;
+			margin-bottom: 0;
+			font-size: 18px;
+			font-weight: 400;
+			color: #505050;
+		}
+		.share-social {
+			display: inline-block;
+			a {
+				display: inline-block;
+				color: #757575;
+				font-size: 14px;
+				margin-right: 20px;
+				&:hover {
+					color: $primaryColor;
+				}
+			}
+		}
+
+	}
+}
+
+
+
+
+.given-comment {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin-top: 70px;
+    .given-comment-title {
+        font-size: 2.4rem;
+        margin: 0;
+        color: #222;
+        float: left;
+        width: 100%;
+    }
+    .comments {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        float: left;
+        width: 100%;
+        clear: both;
+    }
+    .child-comments {
+        padding-left: 110px;
+    }
+    .comment {
+        width: 100%;
+        float: left;
+    }
+    .comment-wrap {
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 40px 0;
+    }
+    .commenter-thumb {
+        border-radius: 50%;
+        height: 80px;
+        width: 80px;
+        float: left;
+        overflow: hidden;
+        margin-right: 30px;
+        img {
+            max-width: 100%;
+        }
+    }
+    .comment-body {
+        float: left;
+        width: calc(100% - 110px);
+    }
+    .comment-title {
+        margin: 0;
+        font-family: $baseFont;
+        .commenter-name {
+            font-size: 18px;
+            color: #222222;
+            font-weight: 400;
+        }
+        .comment-date {
+            font-size: 15px;
+            color: #757575;
+            font-weight: 300;
+        }
+    }
+    .comment-content {
+        margin-top: 15px;
+    }
+    .comment-reply {
+        font-weight: 600;
+        color: $primaryColor;;
+        text-transform: uppercase;
+        border: 1px solid #e6e6e6;
+        letter-spacing: 1px;
+        font-family: $headingFont;
+        font-size: 14px;
+        width: 100px;
+        height: 35px;
+        line-height: 35px;
+        border-radius: 17px;
+        text-align: center;
+        display: inline-block;
+        margin-top: 10px;
+    }
+}
+
+.commenting-wrap {
+    float: left;
+    width: 100%;
+    clear: both;
+    margin-top: 100px;
+    .comment-form-title {
+        float: left;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+    p {
+        margin-bottom: 22px;
+        float: left;
+        width: 100%;
+    }
+}
+
+.comment-form {
+    float: left;
+    width: 100%;
+     ::-webkit-input-placeholder {
+        color: $baseFontColor;
+        opacity: 1;
+    }
+     ::-moz-placeholder {
+        color: $baseFontColor;
+        opacity: 1;
+    }
+     :-ms-input-placeholder {
+        color: $baseFontColor;
+        opacity: 1;
+    }
+     :-moz-placeholder {
+        color: $baseFontColor;
+        opacity: 1;
+    }
+    input, textarea{
+        line-height: 40px;
+        padding: 0 20px;
+        border: 1px solid #e8e8e8;
+        margin-bottom: 30px;
+    }
+    [type=submit]{
+        font-weight: 600;
+        font-size: 14px;
+        font-family: $headingFont;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-transform: uppercase;
+        border: none;
+        width: 170px;
+        text-align: center;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 25px;
+        background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+    }
+}

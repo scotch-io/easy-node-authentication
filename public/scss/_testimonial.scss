@@ -1,0 +1,235 @@
+/*------------------------------------
+Testimonial
+------------------------------------*/
+
+.testimonial {
+
+    .testimonial-item {
+        max-width: 630px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 20px 25px 0px rgba(58, 167, 254, 0.15);
+        border-radius: 10px;
+        margin: 0px auto 30px auto;
+        text-align: center;
+        padding: 20px 45px;
+        .reviewer-pic {
+            .reviewer-background {
+                background: url(../images/client/reviewer-pic-bg.png) no-repeat center center;
+                img {
+                    max-width: 80px;
+                    border-radius: 50%;
+                }
+            }
+        }
+        .reviewer-name {
+            font-size: 24px;
+            font-weight: 400;
+            color: #222;
+            margin-top: 16px;
+        }
+        blockquote {
+            font-size: 17px;
+            line-height: 28px;
+            font-weight: 300;
+            color: #505050;
+            border: none;
+            padding: 15px;
+            margin-bottom: 10px;
+            &:before {
+                content: none;
+            }
+        }
+        .star-rating {
+            .star {
+                display: inline-block;
+                margin-right: 3px;
+                position: relative;
+                &:before {
+                    content: "\f005";
+                    font-family: "FontAwesome";
+                    font-size: 1.6rem;
+                    color: #808080;
+                }
+                &.on {
+                    &:before {
+                        color: #ffc000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.testimonials-area {
+    &.testimonials-text-img {
+        .testimonial-slider {
+            width: 470px;
+            min-height: 520px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+            .testimonial-item {
+                padding: 60px 30px 35px;
+                color: #262626;
+                margin: 40px 15px 10px;
+                background-color: #fff;
+                position: relative;
+                width: 470px;
+                border: 1px dashed #d6d6d6;
+                blockquote {
+                    font-family: $headingFont;
+                    font-size: 24px;
+                    line-height: 40px;
+                    border: none;
+                    padding: 0;
+                    margin-top: 65px;
+                    margin-bottom: 0;
+                    &:before {
+                        content: url(../images/icons/quote.png);
+                        position: absolute;
+                        top: -70px;
+                        left: 0;
+                    }
+                }
+                .reviewer-info {
+                    float: left;
+                    width: 100%;
+                    margin-top: 35px;
+                    .commenter-pic {
+                        float: left;
+                        width: 75px;
+                        height: 75px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        img {
+                            min-width: 75px;
+                        }
+                    }
+                    .commenter {
+                        float: left;
+                        margin-left: 20px;
+                        margin-top: 10px;
+                        .reviewer-name {
+                            font-size: 18px;
+                            font-weight: 500;
+                            text-transform: uppercase;
+                            margin-top: 0;
+                            margin-bottom: 0;
+                        }
+                        .reviewer-position {
+                            font-family: $headingFont;
+                            font-size: 16px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+.testimonial-carousel-1 {
+	.owl-pagination {
+		margin: 10px 0 0;
+	    padding: 0;
+	    text-align: center;
+	    .owl-page {
+	    	display: inline-block;
+	    	background-color: #d3d3d3;
+	    	width: 10px;
+		    height: 10px;
+		    border-radius: 50%;
+		    border: none;
+		    padding: 0;
+		    transition: all 0.3s ease;
+		    margin: 0 5px;
+		    &.active {
+		    	width: 15px;
+		    	height: 15px;
+		    	background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+		    }
+	    }
+	}
+}
+.testimonial-banner-slider{
+    width: 970px;
+    height: 370px;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    .testimonial-banner-item {
+        position: relative;
+        .testimonial-banner-img {
+            &:after {
+                content: ' ';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.4);
+            }
+        }
+       .testimonial-banner-btn {
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            a {
+                background-color: transparent;
+                border: 1px solid rgba(255,255,255,.2);
+                width: 70px;
+                height: 70px;
+                position: absolute;
+                border-radius: 50%;
+                line-height: 70px;
+                color: #fff;
+                i {
+                    font-size: 18px;
+                    background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+                    width: 55px;
+                    height: 55px;
+                    line-height: 55px;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+.client-logo-area {
+    margin-top: 110px;
+    text-align: center;
+    margin-bottom: -50px;
+    .client-logo {
+        height: 60px;
+        width: 210px;
+        position: relative;
+        margin: auto 30px 50px;
+        opacity: 0.22;
+        display: inline-block;
+        img {
+            max-width: 100%;
+        }
+        &:hover {
+            opacity: 1;
+        }
+    }
+    &.style-2{
+        margin-top: 0;
+        text-align: left;
+        .client-logo {
+            margin: auto 15px 50px;
+            width: auto;
+            height: auto;
+            img {
+                max-width: 140px;
+            }
+        }
+    }
+}
+
+.client-logo-2 {
+    margin-bottom: -50px;
+}

@@ -1,3 +1,6 @@
+var express = require('express');
+var path = require('path');
+
 // app/routes.js
 module.exports = function (app, passport) {
 
@@ -133,6 +136,10 @@ module.exports = function (app, passport) {
         req.logout();
         res.redirect('/');
     });
+
+    app.use(express.static(path.join(__dirname, '../public')));
+
+
 };
 
 // route middleware to make sure

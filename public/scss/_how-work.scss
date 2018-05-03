@@ -1,0 +1,44 @@
+/*------------------------------------
+How Work
+------------------------------------*/
+.how-it-works {
+	margin-bottom: -40px;
+	.how-work-item {
+		margin-bottom: 40px;
+	}
+}
+.how-work-item {
+	text-align: center;
+	.how-work-icon {
+		margin: 0 auto;
+		width: 135px;
+	    height: 135px;
+	    text-align: center;
+	    border-radius: 50%;
+	    background: rgba(240,244,246,1);
+	    line-height: 130px;
+	    background-image: url(../images/feature/elements.png);
+	    background-repeat: no-repeat;
+	    background-position: center;
+	    img {
+		    background-color: #fff;
+		    border-radius: 50%;
+		    padding: 20px;
+		    width: 84px;
+		    height: 84px;
+	    }
+	}
+	.how-work-title {
+		font-size: 24px;
+		font-weight: 400;
+		margin-top: 15px;
+		margin-bottom: 20px;
+	}
+
+	&:hover {
+		.how-work-title {
+			color: $primaryColor;
+		}
+	}
+}
+

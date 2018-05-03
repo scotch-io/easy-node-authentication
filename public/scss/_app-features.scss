@@ -1,0 +1,137 @@
+/*------------------------------------
+App Features
+------------------------------------*/
+
+.lola{
+    color: #000;
+}
+
+
+.app-features {}
+
+.features-side-img {
+    margin: 0 auto;
+}
+
+/*** Mocked featured ***/
+
+.mocked-features {
+    zoom: 1;
+    overflow: hidden;
+    position: relative;
+    .feature-item {
+        margin-top: 22px;
+        +.feature-item {
+            margin-top: 25px;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            line-height: 1;
+            span {
+                line-height: 1;
+            }
+        }
+        .feature-title {
+            font-size: 1.8rem;
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+        p {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+    }
+    .col-md-4:first-child .feature-item {
+        text-align: right;
+    }
+}
+
+/*** Mocked featured 3 ***/
+.mocked-features {
+    &.style-1 {
+        margin-bottom: -40px;
+        .section-title{
+            font-size: 4.8rem;
+        }
+        .feature-item {
+            float: left;
+            width: 100%;
+            + .feature-item{
+                margin-top: 60px;
+            }
+            .feature-icon {
+                border-radius: 50%;
+                background-color: #def0ff;
+                width: 70px;
+                height: 70px;
+                line-height: 60px;
+                text-align: center;
+                font-size: 2.6rem;
+                float: left;
+                margin-right: 30px;
+                margin-top: 30px;
+                color: $primaryColor;
+                img {
+                    max-width: 30px;
+                }
+                + .feature-body{
+                    width: calc(100% - 100px);
+                    margin-top: -7px;
+                }
+            }
+            .feature-body{
+                width: 100%;
+                float: left;
+                .feature-title{
+                    margin-top: 0;
+                    margin-bottom: 15px;
+                    font-size: 24px;
+                    font-weight: 400;
+                }
+            }
+        }
+        .col-md-4:first-child{
+            .feature-item{
+                .feature-icon{
+                    float: right;
+                    margin-right: 0;
+                    margin-left: 30px;
+                }
+                .feature-body{
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
+.slack-feature {
+    border-top: 1px solid #dedede;
+}
+
+
+/*** Feature box ***/
+.ride-futures {
+    margin-bottom: -40px;
+    .future-box {
+        text-align: center;
+        margin-bottom: 40px;
+        .icon {
+            margin-bottom: 30px;
+        }
+        .future-title {
+            font-size: 24px;
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .future-text {
+            
+        }
+        &:hover {
+          .future-title {
+            color: $primaryColor;
+          }  
+        }
+    }
+}

@@ -1,0 +1,101 @@
+/*------------------------------------
+App About
+------------------------------------*/
+
+.app-about {
+	color: #fff;
+	.section-header {
+		margin-bottom: 35px;
+		.section-title {
+			color: #fff;
+		}
+	}
+	.about {
+		.about-text {
+			p {
+				margin-bottom: 25px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+		.app-download-icon {
+			margin-top: 55px;
+			a {
+				img {
+					max-width: 100%;
+				}
+			}
+			a + a {
+				margin-left: 25px;
+			}
+
+		}
+	}
+}
+
+
+.counter-items {
+	.counter-item {
+		position: absolute;
+		background: #fff;
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.15);
+		text-align: center;
+		color: #505050;
+		&:nth-child(1) {
+			left: 185px;
+			top: 0;
+		}		
+		&:nth-child(2) {
+			left: 50px;
+			top: 200px;
+		}		
+		&:nth-child(3) {
+			top: 130px;
+			right: 0px;
+		}	
+
+		&:nth-child(4) {
+			left: 250px;
+			top: 260px;
+		}
+	    &.small {
+	    	width: 160px;
+	    	height: 160px;
+	    }
+	    .counter-content {
+			top: 50%;
+		    transform: translateY(-50%);
+		    position: relative;
+		    .counter-icon {
+		    	i {
+		    	    background-image: -webkit-linear-gradient(left, #00aff0, #99dff9);
+		    	    background-image: -o-linear-gradient(left, #00aff0, #99dff9);
+		    	    background-image: linear-gradient(to right, #00aff0, #99dff9);
+		    	    -webkit-text-fill-color: transparent;
+		    	    -webkit-background-clip: text;
+		    	    font-size: 30px;
+		    	}
+		    }
+		    .counter-body {
+		    	font-family: $headingFont;
+		    	.fact-number {
+		    		font-size: 30px;
+		    		font-weight: 600;
+		    		margin: 5px 0 0 0;
+		    		color: #505050;
+		    	}
+		    	.fact-text {
+		    		font-size: 18px;
+		    		font-weight: 400;
+		    	}
+		    }
+	    }
+	}
+}
+
+

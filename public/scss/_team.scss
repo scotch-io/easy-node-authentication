@@ -1,0 +1,53 @@
+/*------------------------------------
+Team
+------------------------------------*/
+
+.member {
+    text-align: center;
+    .member-image {
+        margin-bottom: 20px;
+        img {
+            max-width: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    }
+    .member-content {
+        .member-title {
+            font-size: 20px;
+            margin: 0;
+            a {
+                color: #222;
+                transition: all 0.3s ease;
+            }
+        }
+        .member-position {
+            font-weight: 400;
+        }
+        .social {
+            line-height: 1;
+            a {
+                color: #a5a5a5;
+                font-size: 15px;
+                + a {
+                    padding-left: 8px;
+                }
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+    &:hover {
+        .member-content {
+            .member-title {
+                a {
+                    background-image: -webkit-gradient(linear, left top, right top, from(#00aff0), to(#99dff9));
+                    background-image: linear-gradient(to right, #00aff0, #99dff9);
+                    -webkit-text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                }
+            }
+        }
+    }
+}

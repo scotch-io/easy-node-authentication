@@ -1,0 +1,249 @@
+/*------------------------------------
+Tab
+------------------------------------*/
+/*---How it works TAB---*/
+.how-it-work-tabs {
+	.tab-navs-area {
+		border-bottom: 1px solid rgba(58,166,254,.2);
+	}
+	.nav-tabs {
+	    margin-bottom: 0;
+	    border: none;
+		li {
+		    margin-bottom: 0;
+		    display: inline-block;
+		    float: left;
+		    width: 33.333%;
+		    transition: all 0.3s ease;
+			a {
+			    margin: 0 !important;
+			    border: none !important;
+			    text-align: center;
+			    font-size: 22px;
+			    font-weight: 400;
+			    font-family: $headingFont;
+			    color: #222;
+			    border-top-left-radius: 10px;
+    			border-top-right-radius: 10px;
+			    padding: 40px 10px;
+			    position: relative;
+				i{
+                    font-size: 3.6rem;
+                    display: block;
+                    margin-bottom: 20px;
+                    background-image: -webkit-gradient(linear, left top, right top, from(#00aff0), to(#99dff9));
+                    background-image: linear-gradient(to right, #00aff0, #99dff9);
+                    -webkit-text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                }
+			}
+			&.active {
+				a {
+					background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+					color: #fff;
+					i{
+                        background-image: none;
+                        -webkit-text-fill-color: #ffffff;
+                    }
+				}
+			}
+		}
+	}
+	.tab-content {
+		margin-top: 60px;
+		.tab-pane {
+			h3 {
+				font-size: 30px;
+				font-weight: 400;
+				margin-top: 0;
+				margin-bottom: 25px;
+			}
+			.list-items {
+				list-style: none;
+			    margin: 0;
+			    padding: 0;
+			    margin-top: 15px;
+			    li {
+			    	line-height: 3rem;
+			    	.fa {
+						margin-right: 15px;
+			    	    background-image: -webkit-linear-gradient(left, #00aff0, #99dff9);
+			    	    background-image: -o-linear-gradient(left, #00aff0, #99dff9);
+			    	    background-image: linear-gradient(to right, #00aff0, #99dff9);
+			    	    -webkit-text-fill-color: transparent;
+			    	    -webkit-background-clip: text;
+			    	}
+			    }
+			}
+		}
+	}
+}
+
+/*---Skype fetures TAB---*/
+.features-tab {
+	.tab-navs-area {
+		border-bottom: 1px solid rgba(58,166,254,.2);
+	}
+	.nav-tabs {
+	    margin-bottom: 0;
+	    border: none;
+		li {
+		    margin-bottom: 0;
+		    display: inline-block;
+		    float: left;
+		    width: 25%;
+		    transition: all 0.3s ease;
+			a {
+			    margin: 0 !important;
+			    border: none !important;
+			    text-align: center;
+			    font-size: 22px;
+			    font-weight: 400;
+			    font-family: $headingFont;
+			    color: #222;
+			    border-top-left-radius: 10px;
+    			border-top-right-radius: 10px;
+			    padding: 40px 10px;
+			    position: relative;
+			    .fa {
+				    display: block;
+				    font-size: 3.5rem;
+				    margin-bottom: 5px;
+				    color: $primaryColor;
+				}
+			}
+			&.active {
+				a {
+					background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+					color: #fff;
+					.fa {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+	.tab-content {
+		margin-top: 60px;
+		.tab-pane {
+			h3 {
+				font-size: 30px;
+				font-weight: 400;
+				margin-top: 0;
+				margin-bottom: 25px;
+			}
+			.list-items {
+				list-style: none;
+			    margin: 0;
+			    padding: 0;
+			    margin-top: 15px;
+			    li {
+			    	line-height: 3rem;
+			    	.fa {
+						margin-right: 15px;
+			    	    background-image: -webkit-linear-gradient(left, #00aff0, #99dff9);
+			    	    background-image: -o-linear-gradient(left, #00aff0, #99dff9);
+			    	    background-image: linear-gradient(to right, #00aff0, #99dff9);
+			    	    -webkit-text-fill-color: transparent;
+			    	    -webkit-background-clip: text;
+			    	}
+			    }
+			}
+		}
+	}
+}
+
+
+
+/*--- fetures TAB 2---*/
+.features-tab-2 {
+	.tab-navs-area {
+	  background-color: rgb(255, 255, 255);
+	  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+	  border-top: 1px solid rgba(0, 0, 0, 0.1);
+		.nav {
+			li {
+				width: 25%;
+				a {
+					font-family: $headingFont;
+					font-size: 20px;
+					font-weight: 500;
+					color: #222;
+					text-align: center;
+					padding: 35px 0;
+				}
+				&.active{
+					a {
+						border: none;
+						border-bottom: 2px solid $primaryColor;
+						border-radius: 0;
+					}
+				}
+				&:hover {
+					a{
+						background-color: transparent;
+						border-color: #fff;
+					}
+				}
+			}
+		}
+	}
+	.tab-content-area {
+		.tab-content {
+			padding: 100px 0;
+			.tab-pane {
+				img {
+					max-width: 100%;
+				}
+				h3 {
+					font-size: 30px;
+					margin-top: 25px;
+					margin-bottom: 35px;
+					font-weight: 400;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+/*---download TAB---*/
+.download-tab {
+	.tab-navs-area {
+		margin: 50px 0; 
+	}
+	.tab-content-area {}
+
+	.nav-tabs {
+		border: none;
+		li {
+			a {
+				border: 1px solid rgba(255,255,255,.3);
+				border-radius: 0;
+				margin-right: 15px;
+				font-size: 18px;
+				color: #fff;
+				font-weight: 400;
+				padding: 8px 25px;
+				.fa {
+					margin-right: 10px;
+				}
+			}
+			&.active, &.focus, &:hover {
+				a {
+					background-color: rgba(255,255,255,.3);
+					border: 1px solid rgba(255,255,255,.3);
+					color: #fff;
+				}
+			}
+		}
+	}
+	.tab-content {
+
+	}
+}
+

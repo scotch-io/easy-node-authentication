@@ -1,0 +1,252 @@
+/*------------------------------------
+ Header
+------------------------------------*/
+
+.navbar-default {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 980;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    margin: 0;
+    min-height: 80px;
+    .navbar-brand {
+        margin-top: 50px;
+        margin-bottom: 5px;
+        height: 70px;
+        padding: 10px 0;
+    }
+    .navbar-nav {
+        margin-top: 60px;
+        margin-bottom: 0;
+        transition: all 0.3s ease;
+        >li {
+            >a {
+                font-family: $headingFont;
+                color: $baseFontColor;
+                font-size: 14px;
+                font-weight: 600;
+                text-transform: uppercase;
+    			letter-spacing: 1px;
+                padding-left: 20px;
+                padding-right: 20px;
+                &:hover {
+                	color: $primaryColor;
+                }
+            }
+            &.solid-item {
+                a {
+                    color: #ffffff;
+                    border-radius: 20px;
+                    padding: 10px 38px;
+                    margin: 4px 15px;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+        .dropdown {
+            .dropdown-menu {
+                display: block;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+                border: none;
+                padding: 15px 10px;
+                left: 0;
+                right: auto;
+                white-space: nowrap;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+                .dropdown-menu {
+                    right: 100%;
+                    left: auto;
+                    top: 0;
+                }
+                >li {
+                    >a {
+                        color: $baseFontColor;
+                        font-family: $headingFont;
+                        padding: 5px 10px;
+                        text-transform: capitalize;
+                        font-weight: 500;
+                    }
+                    &:hover {
+                        >a {
+                            color: $primaryColor;
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                >.dropdown-menu {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+        >.dropdown {
+            &:last-child,
+            &:nth-last-child(2) {
+                .dropdown-menu {
+                    right: 0;
+                    left: auto;
+                }
+            }
+        }
+        
+        &.navbar-buttons{
+            .solid-item {   
+                a {
+                    color: #505050;
+                }
+                + .solid-item {
+                    background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+                    border-radius: 25px;
+                    a {
+                        color: #fff;
+                        padding: 10px 30px;
+                    }
+                }
+                &:nth-child(1) {
+                    a {
+                        margin-left: 100px;
+                    }
+                }
+                &:last-child {
+                    &:hover {
+                        background: $primaryColor;
+                    }
+                }
+
+            }
+        }
+    }
+    &.affix {
+        min-height: 60px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        .navbar-brand {
+            margin-top: 0;
+            margin-bottom: 0;
+            height: 60px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .navbar-nav {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            > li{
+                >a {
+                    color: #505050;
+                &:hover {
+                    color: $primaryColor;
+                }
+                }
+            }
+        }
+    }
+
+
+
+    &.software-landing-nav {
+        .navbar-nav {
+            .solid-item {
+                a {
+                    background-color: #fff;
+                    color: #505050;
+                }
+            }
+        }
+        .navbar-nav > li > a {
+            color: #fff;
+        }
+        &.affix {
+            .navbar-nav .solid-item a {
+                background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+                color: #fff !important;
+            }
+        }
+    }
+
+    &.slack-nav {
+        .navbar-nav {
+            .solid-item {
+                a {
+                    background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+                    color: #fff;
+                }
+            }
+        }
+    }    
+
+    &.default-bg-nav {
+        .navbar-nav {
+            > li > a {
+                color: #fff;
+            }
+            .solid-item {
+                a {
+                    background-color: #fff;
+                    color: #222;
+                }
+            }
+        }
+        &.affix {
+            .navbar-nav {
+                > li > a {
+                    color: #505050;
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                }
+            }
+            .solid-item {
+                a {
+                    background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+                    color: #fff !important;
+                    &:hover {
+                        color: #222 !important;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.theme-bg-nav {
+        .navbar-nav {
+            > li > a {
+                color: #fff;
+            }
+            .solid-item {
+                a {
+                    background-color: #fff;
+                    color: #222;
+                }
+            }
+        }
+        &.affix {
+            background-color: $primaryColor;
+            .navbar-nav {
+                > li > a {
+                    color: #ffffff;
+                    &:hover{
+                        color: #505050;
+                    }
+                }
+            }
+            .navbar-nav > li.solid-item {
+                >a {
+                    color: #222;
+                    &:hover {
+                        color: #222 !important;
+                    }
+                }
+            }
+        }
+    }
+}

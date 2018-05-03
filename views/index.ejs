@@ -2,26 +2,281 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+	<title>Sample SaaS software</title>
+	<!-- Site information -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="SaaS Trade Description">
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="assets/css/owl.transitions.css">
+	<link rel="stylesheet" href="assets/css/slick.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/responsive.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="icon" href="images/favicon.png">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
 </head>
 <body>
-<div class="container">
+<!-- Header -->
+<nav class="navbar navbar-default default-bg-nav" data-spy="affix" data-offset-top="60">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img src="images/logo.png" alt="SaaS Trade Logo"></a>
+		</div>
 
-	<div class="jumbotron text-center">
-		<h1><span class="fa fa-lock"></span> Servicebot SaaS Integration Example</h1>
+		<div class="collapse navbar-collapse " id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#banner">Overview</a></li>
+				<li class="dropdown"><a href="#">Features</a>
+					<ul class="dropdown-menu">
+						<li><a href="features_skype.html">Features Skype</a></li>
+						<li><a href="features_saas.html">Features SaaS</a></li>
+						<li><a href="features_slack.html">Features Slack</a></li>
+						<li><a href="features_ride_share.html">Features Ride Share</a></li>
+						<li class="dropdown"><a href="#">DropDown</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">DropDown 1</a></li>
+								<li><a href="#">DropDown 2</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="pricing.html">Pricing</a></li>
+				<li><a href="contact.html">Contact</a></li>
+				<li class="solid-item"><a href="#">Login</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 
-		<p>Login or Register:</p>
+<!-- Banner -->
+<div class="banner" id="banner">
+	<div class="banner-item banner-item-style-4">
 
-		<a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
-		<a href="/pricing" class="btn btn-default"><span class="fa fa-user"></span>Pricing</a>
+		<div class="bg-round-1"></div>
+		<div class="bg-round-2"></div>
+
+		<div class="banner-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-5 col-sm-12">
+						<h1 class="banner-title">Complete <br/>Software Solutions</h1>
+						<p class="banner-text">When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+						<div class="banner-button">
+							<a class="btn btn-primary primary-gradient-bg" href="#">Get Started</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
+	<div class="banner-image-style-2 hidden-sm hidden-xs">
+		<img class="img-responsive" src="images/banner/software-landing-1.png" alt="Banner Mock">
+	</div>
 </div>
+
+<!-- How it works tab -->
+<div class="section section-padding bottom-0 how-it-work-tabs features-tab-area" id="how-it-work-tab">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-xs-12">
+				<div class="section-header text-center">
+					<h3 class="section-title">How It Work ?</h3>
+					<p class="section-text">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="how-it-work-tabs ">
+		<div class="tab-navs-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#exclusive-design" aria-controls="exclusive-design" role="tab" data-toggle="tab"><i class="ti-paint-bucket"></i>Exclusive Design</a></li>
+							<li role="presentation"><a href="#life-time-supports" aria-controls="life-time-supports" role="tab" data-toggle="tab"><i class="ti-support"></i>Life Time Supports</a></li>
+							<li role="presentation"><a href="#extreme-security" aria-controls="extreme-security" role="tab" data-toggle="tab"><i class="ti-shield"></i>Extreme Security</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-content-area">
+			<div class="container">
+				<div class="row col-sm-12">
+					<!-- Tab panes -->
+					<div class="tab-content">
+
+						<div role="tabpanel" class="tab-pane active" id="exclusive-design">
+							<div class="row">
+								<div class="col-md-5 col-md-offset-1 col-xs-12">
+									<img class="img-responsive" src="images/feature/how-it-work-tab-1.png" alt="">
+								</div>
+								<div class="col-md-6 col-xs-12 sm-bottom-30">
+									<h3>Powerful Tool for your <br> Customer</h3>
+									<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing</p>
+									<ul class="list-items">
+										<li><i class="fa fa-check"></i>It is a long established fact that</li>
+										<li><i class="fa fa-check"></i>There are many variations of passages</li>
+										<li><i class="fa fa-check"></i>Contrary to popular belief</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="life-time-supports">
+							<div class="row">
+								<div class="col-md-5 col-md-offset-1 col-xs-12">
+									<img class="img-responsive" src="images/feature/how-it-work-tab-1.png" alt="">
+								</div>
+								<div class="col-md-6 col-xs-12 sm-bottom-30">
+									<h3>Powerful Tool for your <br> Customer</h3>
+									<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing</p>
+									<ul class="list-items">
+										<li><i class="fa fa-check"></i>It is a long established fact that</li>
+										<li><i class="fa fa-check"></i>There are many variations of passages</li>
+										<li><i class="fa fa-check"></i>Contrary to popular belief</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="extreme-security">
+							<div class="row">
+								<div class="col-md-5 col-md-offset-1 col-xs-12">
+									<img  class="img-responsive" src="images/feature/how-it-work-tab-1.png" alt="">
+								</div>
+								<div class="col-md-6 col-xs-12 sm-bottom-30">
+									<h3>Powerful Tool for your <br> Customer</h3>
+									<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing</p>
+									<ul class="list-items">
+										<li><i class="fa fa-check"></i>It is a long established fact that</li>
+										<li><i class="fa fa-check"></i>There are many variations of passages</li>
+										<li><i class="fa fa-check"></i>Contrary to popular belief</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Subscribe box -->
+<div class="subscribe-area-2 section section-padding" id="subscribe">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-xs-12">
+				<h3 class="subscribe-title">Over <strong>100M+</strong> Peoples using SaaS trade, Join now</h3>
+				<form class="subscription style-2" id="subscription" action="#" method="post">
+					<input type="email" name="EMAIL" placeholder="Type your email address">
+					<button type="submit">Start Use it</button>
+					<div class="clearfix"></div>
+					<p class="newsletter-success"></p>
+					<p class="newsletter-error"></p>
+				</form>
+				<p class="subscription-info">30 days free, No credit card required</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- footer -->
+<footer class="footer-widget section-padding gray-bg bottom-0">
+	<div class="container">
+		<div class="footer-widget-area">
+			<div class="row">
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget logo-widget">
+						<a class="footer-logo" href="app-landing.html">
+							<img src="images/footer-logo.png" alt="...">
+						</a>
+						<p class="copyright">©  2018, SaaS trade</p>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget custom-menu-widget">
+						<h4 class="widget-title">Solutions</h4>
+						<ul class="widget-menu">
+							<li><a href="#">Software program</a></li>
+							<li><a href="#">Apps solutions</a></li>
+							<li><a href="#">Business analycis</a></li>
+							<li><a href="#">Plans & signuo</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget custom-menu-widget">
+						<h4 class="widget-title">Company</h4>
+						<ul class="widget-menu">
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Our services</a></li>
+							<li><a href="#">Our team</a></li>
+							<li><a href="#">Testimonials</a></li>
+							<li><a href="#">Our clients</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="widget contact-widget">
+						<h4 class="widget-title">Contact</h4>
+						<p>9000 Regency Parkway, Suite 400 Cary, NC 27518</p>
+						<p><strong>E:</strong>  supportsaasapp@gmail.com</p>
+						<p><strong>P:</strong>  +000 1456 6978 111</p>
+						<ul class="widget-social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-google"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Script -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-migrate-3.0.1.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.nav.js"></script>
+<script src="assets/js/owl.carousel.js"></script>
+<script src="assets/js/visible.js"></script>
+<script src="assets/js/jquery.countTo.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
+<script src="js/map.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>
