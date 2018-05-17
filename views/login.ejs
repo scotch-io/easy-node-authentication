@@ -1,47 +1,99 @@
 <!-- views/login.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+	<!-- Site information -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SaaS Trade  - Software & SaaS Startups Template</title>
+	<meta name="description" content="SaaS Trade Description">
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="assets/css/owl.transitions.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/responsive.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,800" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600" rel="stylesheet">
+
+
+	<!-- Favicon -->
+	<link rel="icon" href="images/favicon.png">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
+
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.min.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
-<div class="container">
 
-<div class="col-sm-6 col-sm-offset-3">
+<!-- Sign up form -->
+<div class="signup-area login-area section section-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+				<div class="signup-form signup-login-bg">
 
-	<h1><span class="fa fa-sign-in"></span> Login</h1>
 
-	<!-- show any messages that come back with authentication -->
-	<% if (message.length > 0) { %>
-		<div class="alert alert-danger"><%= message %></div>
-	<% } %>
+					<!-- show any messages that come back with authentication -->
+                    <% if (message.length > 0) { %>
+					<div class="alert alert-danger"><%= message %></div>
+                    <% } %>
 
-	<!-- LOGIN FORM -->
-	<form action="/login" method="post">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" class="form-control" name="email">
+					<!-- LOGIN FORM -->
+					<form id="loginForm" class="account-form signin-form" action="#" method="post">
+						<div class="form-header">
+							<h4 class="title">Sign in</h4>
+							<p class="link">Or <a href="/pricing">create an account</a></p>
+						</div>
+
+						<input type="text" name="email" placeholder="Username" required>
+						<input type="password" name="password" placeholder="Password" required>
+
+						<div class="forget-tearm">
+							<label class="remember"><input type="checkbox" name="remember-pass">
+								Remember me
+							</label>
+							<a href="#">Forget password?</a>
+						</div>
+						<button class="signup-btn" type="submit">Login In</button>
+					</form>
+
+				</div>
+			</div>
+
 		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password">
-		</div>
-
-		<button type="submit" class="btn btn-warning btn-lg">Login</button>
-	</form>
-
-	<hr>
-
-	<p>Need an account? <a href="/signup">Signup</a></p>
-	<p>Or go <a href="/">home</a>.</p>
-
+	</div>
 </div>
 
-</div>
+<!-- Script -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-migrate-3.0.1.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.nav.js"></script>
+<script src="assets/js/owl.carousel.js"></script>
+<script src="assets/js/visible.js"></script>
+<script src="assets/js/jquery.countTo.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
+<script src="js/map.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>

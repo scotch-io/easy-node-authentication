@@ -82,6 +82,9 @@ module.exports = function (app, passport) {
         // render the page and pass in any flash data if it exists
         res.render('pricing.ejs', {message: req.flash('signupMessage')});
     });
+    app.get('/features', function(req, res) {
+        res.render('features.ejs', {message: req.flash('featuresMessage')});
+    });
 
 
     // process the signup form

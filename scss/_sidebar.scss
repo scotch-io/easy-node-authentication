@@ -1,0 +1,158 @@
+/*------------------------------------
+Sidebar
+------------------------------------*/
+
+
+.sidebar {
+	float: left;
+	width: 100%;
+    .widget {
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 40px;
+        margin-bottom: 50px;
+        + .widget{
+            margin-top: 0;
+        }
+        &:last-child{
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .widget-title {
+            margin-top: 0;
+            font-size: 18px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 19px;
+            padding: 0px 0px 10px 0;
+            margin-bottom: 20px;
+        }
+        form {
+            position: relative;
+            input:not([type=submit]):not([type=radio]):not([type=checkbox]),
+            select,
+            textarea {
+                font-size: 1.4rem;
+                font-family: $baseFont;
+                font-weight: 400;
+                line-height: 2rem;
+                border: 1px solid #e2e2e2;
+                padding: 12px 20px;
+                border-radius: 3px;
+                margin-bottom: 0;
+            }
+        }
+        label {
+            font-family: $baseFont;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .sidebar-search {
+            [type=submit] {
+                position: absolute;
+                top: 0;
+                right: 0;
+                line-height: 20px;
+                padding: 12px 20px;
+                border: 1px solid transparent;
+                background-color: transparent;
+            }
+        }
+        .widget-subscription {
+            [type=submit] {
+                position: absolute;
+                top: 0;
+                right: 0;
+                line-height: 20px;
+                padding: 12px 20px;
+                border: 1px solid transparent;
+                background-color: transparent;
+            }
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                a {
+                    display: inline-block;
+                    color: $baseFontColor;
+                    line-height: 40px;
+                    color: #505050;
+                    font-size: 17px;
+                    &:before {
+                        content: "\f1db";
+                        font-family: "FontAwesome";
+                        margin-right: 6px;
+                        font-size: 12px;
+                        color: #505050;
+                    }
+                    &:hover {
+                    	color: $primaryColor;
+                    	&:before {
+                    		color: $primaryColor;
+                    	}
+                    }
+                }
+            }
+        }
+    }
+    .widget-posts {
+        float: left;
+        width: 100%;
+        .widget-post {
+            float: left;
+            width: 100%;
+            +.widget-post {
+                margin-top: 25px;
+            }
+            .widget-thumb {
+                display: inline-block;
+                width: 70px;
+                float: left;
+                margin-right: 20px;
+                +.widget-post-content {
+                    float: left;
+                    width: calc(100% - 90px);
+                }
+            }
+            .widget-post-title {
+                font-size: 17px;
+                line-height: 24px;
+                font-weight: 400;
+                color: #222;
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+            .widget-post-date {
+                margin-top: 5px;
+                margin-bottom: 0;
+                font-size: 15px;
+                color: #505050;
+            }
+        }
+    }
+    .tags {
+        a {
+            display: inline-block;
+            font-size: 15px;
+            color: $baseFontColor;
+            border: 1px solid #e1e1e1;
+            line-height: 23px;
+            padding: 5px 25px;
+            margin-right: 6px;
+            margin-bottom: 10px;
+            &:hover {
+            	color: $primaryColor;
+            	border-color: $primaryColor;
+            }
+        }
+    }
+
+}

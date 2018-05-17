@@ -1,0 +1,105 @@
+/*------------------------------------
+Subscribe
+------------------------------------*/
+
+.subscribe-area {
+	text-align: center;
+}
+.subscribe-area-2 {
+	text-align: center;
+	.subscribe-title {
+		font-size: 25px;
+		margin-bottom: 35px;
+		margin-top: 0;
+	}
+	.subscription {
+		input:not([type=submit]) {
+			width: calc(100% - 150px) !important;
+			float: left;
+			display: inline-block;
+			line-height: 45px;
+			padding: 0 30px;
+		}
+		[type=submit] {
+			background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+		    width: 140px;
+		    margin-left: 10px;
+		    float: left;
+		    color: #fff;
+		    text-transform: uppercase;
+		}
+	}
+	.subscription-info {
+		float: left;
+		width: 100%;
+		color: #bcbcbc;
+		font-size: 14px;
+		font-weight: 400;
+	}
+}
+
+form {
+    position: relative;
+}
+
+.subscribe-form {
+	width: 100%;
+	max-width: 570px;
+	margin: 37px auto 0;
+	border: 1px solid #ffffff;
+	border-radius: 25px;
+	overflow: hidden;
+	input:not([type=submit]) {
+	    background-color: transparent !important;
+	    border: none !important;
+	    line-height: 50px !important;
+	    width: calc(100% - 130px) !important;
+	    display: inline-block !important;
+	    float: left !important;
+	    margin-bottom: 0 !important;
+	    padding: 0 30px !important;
+	}
+	[type=submit] {
+		font-family: $headingFont;
+	    background-color: #ffffff;
+	    color: #222;
+	    font-weight: 600;
+	    font-size: 14px;
+	    width: 130px;
+	    letter-spacing: 1px;
+	    border-top-left-radius: 0;
+    	border-bottom-left-radius: 0;
+	    float: left;
+	    line-height: 50px;
+	    border: none;
+	    transition: all 0.3s ease;
+	}
+	::-webkit-input-placeholder { color: white; }
+	:-moz-placeholder           { color: white; }
+	::-moz-placeholder          { color: white; }
+	:-ms-input-placeholder      { color: white; } 
+}
+
+.subscribe-body {
+	.logo {
+		margin-bottom: 30px;
+	}
+	.subscribe-heading {
+		font-size: 35px;
+		line-height: 48px;
+		color: #fff;
+		margin-bottom: 20px;
+		span {
+			font-weight: 800;
+		}
+	}
+}
+
+
+
+.subscription {
+	&.style-2 {
+		max-width: 500px;
+		margin: 0 auto;
+	}
+}

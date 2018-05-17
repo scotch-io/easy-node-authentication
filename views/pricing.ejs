@@ -1,233 +1,384 @@
-<!-- views/profile.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>Pricing</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body 		{ padding-top:80px; word-wrap:break-word; }
+    <!-- Site information -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TicketR</title>
+    <meta name="description" content="TicketR Description">
 
-        #pricing-table {
-            margin: 100px auto;
-            text-align: center;
-            width: 540px !important; /* total computed width = 222 x 3 + 226 */
-        }
+    <!-- External CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/owl.transitions.css">
 
-        #pricing-table .plan {
-            font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
-            text-shadow: 0 1px rgba(255,255,255,.8);
-            background: #fff;
-            border: 1px solid #ddd;
-            color: #333;
-            padding: 20px;
-            width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */
-            float: left;
-            position: relative;
-        }
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
-        #pricing-table #most-popular {
-            z-index: 2;
-            top: -13px;
-            border-width: 3px;
-            padding: 30px 20px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border-radius: 5px;
-            -moz-box-shadow: 20px 0 10px -10px rgba(0, 0, 0, .15), -20px 0 10px -10px rgba(0, 0, 0, .15);
-            -webkit-box-shadow: 20px 0 10px -10px rgba(0, 0, 0, .15), -20px 0 10px -10px rgba(0, 0, 0, .15);
-            box-shadow: 20px 0 10px -10px rgba(0, 0, 0, .15), -20px 0 10px -10px rgba(0, 0, 0, .15);
-        }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,800" rel="stylesheet">
 
-        #pricing-table .plan:nth-child(1) {
-            -moz-border-radius: 5px 0 0 5px;
-            -webkit-border-radius: 5px 0 0 5px;
-            border-radius: 5px 0 0 5px;
-        }
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600" rel="stylesheet">
 
-        #pricing-table .plan:nth-child(4) {
-            -moz-border-radius: 0 5px 5px 0;
-            -webkit-border-radius: 0 5px 5px 0;
-            border-radius: 0 5px 5px 0;
-        }
 
-        /* --------------- */
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
 
-        #pricing-table h3 {
-            font-size: 20px;
-            font-weight: normal;
-            padding: 20px;
-            margin: -20px -20px 50px -20px;
-            background-color: #eee;
-            background-image: -moz-linear-gradient(#fff,#eee);
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
-            background-image: -webkit-linear-gradient(#fff, #eee);
-            background-image: -o-linear-gradient(#fff, #eee);
-            background-image: -ms-linear-gradient(#fff, #eee);
-            background-image: linear-gradient(#fff, #eee);
-        }
-
-        #pricing-table #most-popular h3 {
-            background-color: #ddd;
-            background-image: -moz-linear-gradient(#eee,#ddd);
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
-            background-image: -webkit-linear-gradient(#eee, #ddd);
-            background-image: -o-linear-gradient(#eee, #ddd);
-            background-image: -ms-linear-gradient(#eee, #ddd);
-            background-image: linear-gradient(#eee, #ddd);
-            margin-top: -30px;
-            padding-top: 30px;
-            -moz-border-radius: 5px 5px 0 0;
-            -webkit-border-radius: 5px 5px 0 0;
-            border-radius: 5px 5px 0 0;
-        }
-
-        #pricing-table .plan:nth-child(1) h3 {
-            -moz-border-radius: 5px 0 0 0;
-            -webkit-border-radius: 5px 0 0 0;
-            border-radius: 5px 0 0 0;
-        }
-
-        #pricing-table .plan:nth-child(4) h3 {
-            -moz-border-radius: 0 5px 0 0;
-            -webkit-border-radius: 0 5px 0 0;
-            border-radius: 0 5px 0 0;
-        }
-
-        #pricing-table h3 span {
-            display: block;
-            font: bold 25px/100px Georgia, Serif;
-            color: #777;
-            background: #fff;
-            border: 5px solid #fff;
-            height: 100px;
-            width: 100px;
-            margin: 10px auto -65px;
-            -moz-border-radius: 100px;
-            -webkit-border-radius: 100px;
-            border-radius: 100px;
-            -moz-box-shadow: 0 5px 20px #ddd inset, 0 3px 0 #999 inset;
-            -webkit-box-shadow: 0 5px 20px #ddd inset, 0 3px 0 #999 inset;
-            box-shadow: 0 5px 20px #ddd inset, 0 3px 0 #999 inset;
-        }
-
-        /* --------------- */
-
-        #pricing-table ul {
-            margin: 20px 0 0 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        #pricing-table li {
-            border-top: 1px solid #ddd;
-            padding: 10px 0;
-        }
-
-        /* --------------- */
-
-        #pricing-table .signup {
-            position: relative;
-            padding: 8px 20px;
-            margin: 20px 0 0 0;
-            color: #fff;
-            font: bold 14px Arial, Helvetica;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            background-color: #72ce3f;
-            background-image: -moz-linear-gradient(#72ce3f, #62bc30);
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#72ce3f), to(#62bc30));
-            background-image: -webkit-linear-gradient(#72ce3f, #62bc30);
-            background-image: -o-linear-gradient(#72ce3f, #62bc30);
-            background-image: -ms-linear-gradient(#72ce3f, #62bc30);
-            background-image: linear-gradient(#72ce3f, #62bc30);
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
-            text-shadow: 0 1px 0 rgba(0,0,0,.3);
-            -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
-            -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
-            box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
-        }
-
-        #pricing-table .signup:hover {
-            background-color: #62bc30;
-            background-image: -moz-linear-gradient(#62bc30, #72ce3f);
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#62bc30), to(#72ce3f));
-            background-image: -webkit-linear-gradient(#62bc30, #72ce3f);
-            background-image: -o-linear-gradient(#62bc30, #72ce3f);
-            background-image: -ms-linear-gradient(#62bc30, #72ce3f);
-            background-image: linear-gradient(#62bc30, #72ce3f);
-        }
-
-        #pricing-table .signup:active, #pricing-table .signup:focus {
-            background: #62bc30;
-            top: 2px;
-            -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset;
-            -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset;
-            box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset;
-        }
-
-        /* --------------- */
-
-        .clear:before, .clear:after {
-            content:"";
-            display:table
-        }
-
-        .clear:after {
-            clear:both
-        }
-
-        .clear {
-            zoom:1
-        }
-    </style>
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<div class="container">
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Pricing</h1>
-        <h2>14 Day Free Trial!</h2>
-    </div>
-
-    <div id="pricing-table" class="clear">
-        <div class="plan">
-            <h3>Basic<span>$100</span></h3>
-            <a class="signup" href="/signup?tier=Basic">Sign up</a>
-            <ul>
-                <li><b>1GB</b> Disk Space</li>
-                <li><b>10GB</b> Monthly Bandwidth</li>
-                <li><b>2</b> Email Accounts</li>
-                <li><b>Unlimited</b> subdomains</li>
-            </ul>
+<!-- Header -->
+<nav class="navbar navbar-default theme-bg-nav" data-spy="affix" data-offset-top="60">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="images/logo-white.png" alt="TicketR Logo"></a>
         </div>
 
-
-        <div class="plan" id="most-popular">
-            <h3>Advanced<span>$200</span></h3>
-            <a class="signup" href="/signup?tier=Advanced">Sign up</a>
-            <ul>
-                <li><b>5GB</b> Disk Space</li>
-                <li><b>50GB</b> Monthly Bandwidth</li>
-                <li><b>10</b> Email Accounts</li>
-                <li><b>Unlimited</b> subdomains</li>
-            </ul>
-        </div>
-        <div class="plan">
-            <h3>Enterprise<span>$600</span></h3>
-            <a class="signup" href="/signup?tier=Enterprise">Sign up</a>
-            <ul>
-                <li><b>10GB</b> Disk Space</li>
-                <li><b>100GB</b> Monthly Bandwidth</li>
-                <li><b>20</b> Email Accounts</li>
-                <li><b>Unlimited</b> subdomains</li>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="features">Features</a></li>
+                <li><a href="pricing">Pricing</a></li>
+                <li><a href="#faq">Faq</a></li>
+                <li class="solid-item"><a href="/login">Login</a></li>
             </ul>
         </div>
     </div>
+</nav>
+<!-- Header End -->
 
+<!-- Page header -->
+<div class="page-header section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">Pricing Plan</h2>
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Pricing</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Pricing Table -->
+<div class="pricing-page gray-bg section section-padding ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-xs-12">
+                <div class="section-header text-center ">
+                    <h3 class="section-title ">Pricing</h3>
+                    <p class="section-text ">TicketR is the easiest way for teams to track work and get results. Our Premium and Enterprise plans give you more power, control, and customization.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pricing-packages">
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="package">
+                        <div class="package-header">
+                            <h4 class="pack-name">Free</h4>
+                        </div>
+                        <div class="package-body">
+                            <p class="pack-price">$0.00</p>
+                            <ul class="pack-feature-list">
+                                <li>Unlimited tasks, projects, and conversations</li>
+                                <li>Up to 15 team members</li>
+                                <li>Basic dashboards</li>
+                                <li>Basic search</li>
+                            </ul>
+                        </div>
+                        <div class="pack-footer">
+                            <a class="btn btn-primary" href="/signup?tier=Basic">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="package active">
+                        <div class="package-header">
+                            <h4 class="pack-name">Advanced</h4>
+                        </div>
+                        <div class="package-body">
+                            <p class="pack-price">$8.50</p>
+                            <ul class="pack-feature-list">
+                                <li>No team member limit</li>
+                                <li>Unlimited dashboards</li>
+                                <li>Advanced search & reporting</li>
+                                <li>Custom fields</li>
+                                <li>Task dependencies</li>
+                                <li>Comment-only projects</li>
+                                <li>Private teams and projects</li>
+                                <li>Start dates</li>
+                            </ul>
+                        </div>
+                        <div class="pack-footer">
+                            <a class="btn btn-primary" href="/signup?tier=Advanced">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="package">
+                        <div class="package-header">
+                            <h4 class="pack-name">ENTERPRISE</h4>
+                        </div>
+                        <div class="package-body">
+                            <p class="pack-price">Quote</p>
+                            <ul class="pack-feature-list">
+                                <li>Manage team members with advanced admin controls like service accounts and SAML.</li>
+                                <li>Get specialized help from our customer success team, plus same day support to ensure you’re successful with TicketR.</li>
+                                <li>Maintain strict control over your data and security with user provisioning and deprovisioning, data deletion, and cross-regional backups.</li>
+                                <li>Put your logo front and center. With custom branding, you’re able to customize Asana with your own logo.</li>
+                            </ul>
+                        </div>
+                        <div class="pack-footer">
+                            <a class="btn btn-primary" href="/signup?tier=Enterprise">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Faq area -->
+<div class="faq-area section section-padding bottom-0" id="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="section-header text-center">
+                    <h3 class="section-title">Questions & Answers</h3>
+                    <p class="section-text">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="faq-accordion">
+                    <div class="panel-group" id="faqAccordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingOne">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">What is SaaS tech app?</a></h4>
+                            </div>
+                            <div id="faqCollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqHeadingOne">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingTwo">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseOne"> How ut perspiciatis unde omnis?</a></h4>
+                            </div>
+                            <div id="faqCollapseTwo" class="panel-collapse collapse" role="tabpane1" aria-labelledby="faqHeadingTwo">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingThree">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">What aute irure dolor in reprehenderit ?</a></h4>
+                            </div>
+                            <div id="faqCollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingThree">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFour">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">Why this app?</a></h4>
+                            </div>
+                            <div id="faqCollapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFour">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFive">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">When deserunt mollit anim est laborum?</a></h4>
+                            </div>
+                            <div id="faqCollapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFive">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="faq-accordion">
+                    <div class="panel-group" id="faqAccordion2" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingOne-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseOne-2" aria-expanded="true" aria-controls="faqCollapseOne-2">What is SaaS tech app?</a></h4>
+                            </div>
+                            <div id="faqCollapseOne-2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqHeadingOne-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingTwo-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseTwo-2" aria-expanded="false" aria-controls="faqCollapseTwo-2"> How ut perspiciatis unde omnis?</a></h4>
+                            </div>
+                            <div id="faqCollapseTwo-2" class="panel-collapse collapse" role="tabpane1" aria-labelledby="faqHeadingTwo-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingThree-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseThree-2" aria-expanded="false" aria-controls="faqCollapseThree-2">What aute irure dolor in reprehenderit ?</a></h4>
+                            </div>
+                            <div id="faqCollapseThree-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingThree-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFour-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseFour-2" aria-expanded="false" aria-controls="faqCollapseFour-2">Why this app?</a></h4>
+                            </div>
+                            <div id="faqCollapseFour-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFou-2r">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFive-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseFive-2" aria-expanded="false" aria-controls="faqCollapseFive-2">When deserunt mollit anim est laborum?</a></h4>
+                            </div>
+                            <div id="faqCollapseFive-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFive-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Subscribe box -->
+<div class="subscribe-area-2 section section-padding" id="subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-xs-12">
+                <h3 class="subscribe-title">Over <strong>100M+</strong> Peoples using TicketR, Join now</h3>
+                <form class="subscription style-2" id="subscription" action="#" method="post">
+                    <input type="email" name="EMAIL" placeholder="Type your email address">
+                    <button type="submit">Start Use it</button>
+                    <div class="clearfix"></div>
+                    <p class="newsletter-success"></p>
+                    <p class="newsletter-error"></p>
+                </form>
+                <p class="subscription-info">30 days free, No credit card required</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+<footer class="footer-widget section-padding gray-bg bottom-0">
+    <div class="container">
+        <div class="footer-widget-area">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="widget logo-widget">
+                        <a class="footer-logo" href="app-landing.html">
+                            <img src="images/footer-logo.png" alt="...">
+                        </a>
+                        <p class="copyright">©  2018, TicketR</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="widget custom-menu-widget">
+                        <h4 class="widget-title">Solutions</h4>
+                        <ul class="widget-menu">
+                            <li><a href="#">Software program</a></li>
+                            <li><a href="#">Apps solutions</a></li>
+                            <li><a href="#">Business analycis</a></li>
+                            <li><a href="#">Plans & signuo</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="widget custom-menu-widget">
+                        <h4 class="widget-title">Company</h4>
+                        <ul class="widget-menu">
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Our services</a></li>
+                            <li><a href="#">Our team</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Our clients</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="widget contact-widget">
+                        <h4 class="widget-title">Contact</h4>
+                        <p>9000 Regency Parkway, Suite 400 Cary, NC 27518</p>
+                        <p><strong>E:</strong>  supportsaasapp@gmail.com</p>
+                        <p><strong>P:</strong>  +000 1456 6978 111</p>
+                        <ul class="widget-social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-migrate-3.0.1.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.nav.js"></script>
+<script src="assets/js/owl.carousel.js"></script>
+<script src="assets/js/visible.js"></script>
+<script src="assets/js/jquery.countTo.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
+<script src="js/map.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>
