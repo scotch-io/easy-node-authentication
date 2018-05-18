@@ -142,11 +142,15 @@ input:not([type=radio]):not([type=checkbox]):not([type=submit]):focus, textarea:
 }
 
 .navbar-brand>img{
-
+  padding: 12px;
+  margin-top: -7px;
   max-width: 140px;
 }
 .footer-widget-area .widget.logo-widget .footer-logo img {
   max-width: 210px;
+  padding-right: 40px;
+  margin-top: -15px;
+
 }
 
 /*Common */
