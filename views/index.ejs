@@ -1,40 +1,45 @@
-<!-- views/index.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>Sample SaaS software</title>
 	<!-- Site information -->
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="SaaS Trade Description">
+	<title>TicketR</title>
+	<meta name="description" content="TicketR Description">
 
 	<!-- External CSS -->
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/themify-icons.css">
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
-	<link rel="stylesheet" href="assets/css/owl.transitions.css">
-	<link rel="stylesheet" href="assets/css/slick.css">
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="/assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="/assets/css/owl.transitions.css">
+	<link rel="stylesheet" href="/assets/css/slick.css">
 
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/responsive.css">
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600" rel="stylesheet">
 
 	<!-- Favicon -->
-	<link rel="icon" href="images/favicon.png">
-	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
+	<link rel="icon" href="/images/favicon.png">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/icon-114x114.png">
+
+	<!--[if lt IE 9]>
+	<script src="/assets/js/html5shiv.min.js"></script>
+	<script src="/assets/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
+
 <!-- Header -->
-<nav class="navbar navbar-default default-bg-nav" data-spy="affix" data-offset-top="60">
+<nav class="navbar navbar-default " data-spy="affix" data-offset-top="60">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
@@ -43,15 +48,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#"><img src="images/logo.png" alt="SaaS Trade Logo"></a>
+			<a class="navbar-brand" href="/"><img src="images/logo.png" alt="SaaS Trade Logo"></a>
 		</div>
 
 		<div class="collapse navbar-collapse " id="navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/pricing">Features</a></li>
-				<li><a href="/pricing">Pricing</a></li>
-				<li><a href="/pricing">Contact</a></li>
-				<li class="solid-item"><a href="/login">Loin</a></li>
+				<li><a href="features">Features</a></li>
+				<li><a href="pricing">Pricing</a></li>
+				<li><a href="#faq">Faq</a></li>
+				<li class="solid-item"><a class="btn btn-gradient" href="login">Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -59,113 +64,207 @@
 
 <!-- Banner -->
 <div class="banner" id="banner">
-	<div class="banner-item banner-item-style-4">
-
-		<div class="bg-round-1"></div>
-		<div class="bg-round-2"></div>
-
+	<div class="banner-item banner-item-style-2 gray-bg">
 		<div class="banner-content">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-4 col-md-5 col-sm-12">
-						<h1 class="banner-title">Complete <br/>Software Solutions</h1>
-						<p class="banner-text">When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-						<div class="banner-button">
-							<a class="btn btn-primary primary-gradient-bg" href="#">Get Started</a>
+					<div class="col-md-6 col-sm-12 text-left">
+						<h1 class="banner-title"><span class="theme-color">#TicketR</span> <span class="black-color">The foundation <br/>for teamwork</span></h1>
+						<p class="banner-text">TicketR is the easiest way for teams to track their work—and get results.</p>
+						<form class="banner-form subscription" action="#" method="post">
+							<a class="btn btn-gradient" href="pricing">Get Started</a>
+							<p class="sign-in-text">Already using TicketR? <a href="login.html">Sign in</a></p>
+							<div class="clearfix"></div>
+							<p class="newsletter-success"></p>
+							<p class="newsletter-error"></p>
+						</form>
+					</div>
+					<div class="col-md-6 hidden-sm hidden-xs">
+						<div class="banner-img">
+							<img src="images/banner/slack.png" alt="">
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Count & client-logo -->
+<div class="countarea section section-padding bottom-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 col-xs-12">
+				<div class="section-header text-center">
+					<h3 class="section-title">Number #1 <br>Team Collaboration Tools</h3>
+				</div>
+			</div>
+		</div>
+		<div class="count-items text-center">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="counter-item">
+						<div class="counter-body">
+							<h3 class="fact-number"><span class="count" data-form="0" data-to="13">
+                                </span>+</h3>
+							<p class="fact-name">Country</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="counter-item">
+						<div class="counter-body">
+							<h3 class="fact-number"><span class="count" data-form="0" data-to="800">
+                                </span>M</h3>
+							<p class="fact-name">Active user</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="counter-item">
+						<div class="counter-body">
+							<h3 class="fact-number"><span class="count" data-form="0" data-to="260">
+                                </span>M</h3>
+							<p class="fact-name">IOS user</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 ">
+				<div class="client-logos">
+					<div class="client-logo-area">
+						<a href="#" class="client-logo"><img src="images/client/logo/logo-1.png" alt=""></a>
+						<a href="#" class="client-logo"><img src="images/client/logo/logo-2.png" alt=""></a>
+						<a href="#" class="client-logo"><img src="images/client/logo/logo-3.png" alt=""></a>
+						<a href="#" class="client-logo"><img src="images/client/logo/logo-4.png" alt=""></a>
+						<a href="#" class="client-logo"><img src="images/client/logo/logo-5.png" alt=""></a>
+						<a href="#" class="client-logo"><img src="images/client/logo/logo-6.png" alt=""></a>
+						<a href="#" class="client-logo"><img src="images/client/logo/logo-7.png" alt=""></a>
 					</div>
 				</div>
 			</div>
 		</div>
 
 	</div>
+</div>
 
-	<div class="banner-image-style-2 hidden-sm hidden-xs">
-		<img class="img-responsive" src="images/banner/software-landing-1.png" alt="Banner Mock">
+<!--Fetures  -->
+<div class="features section section-padding" id="feature">
+	<div class="container">
+
+		<div class="sub-section">
+			<div class="row">
+				<div class="col-sm-6 col-sm-push-6 col-xs-12 xs-bottom-30">
+					<h4 class="subsection-title">Team's communication together</h4>
+					<p class="subsection-text">Bring emails, files, tickets, and more into TicketR with over 200 integrations to choose from, so you can see everything in one place.</p>
+				</div>
+				<div class="col-sm-6 col-sm-pull-6 col-xs-12">
+					<img class="img-responsive" src="images/feature/slack-1.png" alt=".">
+				</div>
+			</div>
+		</div>
+
+		<div class="sub-section">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<h4 class="subsection-title">TicketR builds a searchable archive</h4>
+					<p class="subsection-text">Designate admins to control your organization’s usage and set security controls so you feel confident that your info is secure.</p>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<img class="img-responsive features-side-img" src="images/feature/slack-2.png" alt=".">
+				</div>
+			</div>
+		</div>
+
+		<div class="sub-section">
+			<div class="row">
+				<div class="col-sm-6 col-sm-push-6 col-xs-12 xs-bottom-30">
+					<h4 class="subsection-title">It streamlines your workflows</h4>
+					<p class="subsection-text">Make teams and projects private to create a safe space for sensitive work.</p>
+				</div>
+				<div class="col-sm-6 col-sm-pull-6 col-xs-12">
+					<img class="img-responsive" src="images/feature/slack-3.png" alt=".">
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<!-- How it works tab -->
-<div class="section section-padding bottom-0 how-it-work-tabs features-tab-area" id="how-it-work-tab">
+<!-- Pricing Table -->
+<div class="pricing-area primary-gradient-bg section section-padding bottom-0" id="pricing">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-xs-12">
 				<div class="section-header text-center">
-					<h3 class="section-title">How It Work ?</h3>
-					<p class="section-text">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+					<h3 class="section-title text-white">Pricing Cards</h3>
+					<p class="section-text text-white">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="row">
+			<div class="pricing-packages">
 
-	<div class="how-it-work-tabs ">
-		<div class="tab-navs-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<!-- Nav tabs -->
-						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#exclusive-design" aria-controls="exclusive-design" role="tab" data-toggle="tab"><i class="ti-paint-bucket"></i>Exclusive Design</a></li>
-							<li role="presentation"><a href="#life-time-supports" aria-controls="life-time-supports" role="tab" data-toggle="tab"><i class="ti-support"></i>Life Time Supports</a></li>
-							<li role="presentation"><a href="#extreme-security" aria-controls="extreme-security" role="tab" data-toggle="tab"><i class="ti-shield"></i>Extreme Security</a></li>
-						</ul>
+				<div class="col-sm-4 col-xs-12">
+					<div class="package">
+						<div class="package-header">
+							<h4 class="pack-name">Free</h4>
+						</div>
+						<div class="package-body">
+							<p class="pack-price">$0.00</p>
+							<ul class="pack-feature-list">
+								<li>Unlimited tasks, projects, and conversations</li>
+								<li>Up to 15 team members</li>
+								<li>Basic dashboards</li>
+								<li>Basic search</li>
+								<li>Private teams and projects</li>
+								<li>Start dates</li>
+							</ul>
+						</div>
+						<div class="pack-footer">
+							<a class="btn btn-primary" href="/signup?tier=Basic">Get Started</a>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="tab-content-area">
-			<div class="container">
-				<div class="row col-sm-12">
-					<!-- Tab panes -->
-					<div class="tab-content">
 
-						<div role="tabpanel" class="tab-pane active" id="exclusive-design">
-							<div class="row">
-								<div class="col-md-5 col-md-offset-1 col-xs-12">
-									<img class="img-responsive" src="images/feature/how-it-work-tab-1.png" alt="">
-								</div>
-								<div class="col-md-6 col-xs-12 sm-bottom-30">
-									<h3>Powerful Tool for your <br> Customer</h3>
-									<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing</p>
-									<ul class="list-items">
-										<li><i class="fa fa-check"></i>It is a long established fact that</li>
-										<li><i class="fa fa-check"></i>There are many variations of passages</li>
-										<li><i class="fa fa-check"></i>Contrary to popular belief</li>
-									</ul>
-								</div>
-							</div>
+				<div class="col-sm-4 col-xs-12">
+					<div class="package active">
+						<div class="package-header">
+							<h4 class="pack-name">Advanced</h4>
 						</div>
-						<div role="tabpanel" class="tab-pane fade" id="life-time-supports">
-							<div class="row">
-								<div class="col-md-5 col-md-offset-1 col-xs-12">
-									<img class="img-responsive" src="images/feature/how-it-work-tab-1.png" alt="">
-								</div>
-								<div class="col-md-6 col-xs-12 sm-bottom-30">
-									<h3>Powerful Tool for your <br> Customer</h3>
-									<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing</p>
-									<ul class="list-items">
-										<li><i class="fa fa-check"></i>It is a long established fact that</li>
-										<li><i class="fa fa-check"></i>There are many variations of passages</li>
-										<li><i class="fa fa-check"></i>Contrary to popular belief</li>
-									</ul>
-								</div>
-							</div>
+						<div class="package-body">
+							<p class="pack-price">$8.50</p>
+							<ul class="pack-feature-list">
+								<li>No team member limit</li>
+								<li>Unlimited dashboards</li>
+								<li>Advanced search & reporting</li>
+								<li>Custom fields</li>
+								<li>Task dependencies</li>
+								<li>Comment-only projects</li>
+								<li>Manage team members with advanced admin controls like service accounts and SAML.</li>
+							</ul>
 						</div>
-						<div role="tabpanel" class="tab-pane fade" id="extreme-security">
-							<div class="row">
-								<div class="col-md-5 col-md-offset-1 col-xs-12">
-									<img  class="img-responsive" src="images/feature/how-it-work-tab-1.png" alt="">
-								</div>
-								<div class="col-md-6 col-xs-12 sm-bottom-30">
-									<h3>Powerful Tool for your <br> Customer</h3>
-									<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing</p>
-									<ul class="list-items">
-										<li><i class="fa fa-check"></i>It is a long established fact that</li>
-										<li><i class="fa fa-check"></i>There are many variations of passages</li>
-										<li><i class="fa fa-check"></i>Contrary to popular belief</li>
-									</ul>
-								</div>
-							</div>
+						<div class="pack-footer">
+							<a class="btn btn-primary" href="/signup?tier=Advanced">Get Started</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-4 col-xs-12">
+					<div class="package">
+						<div class="package-header">
+							<h4 class="pack-name">ENTERPRISE</h4>
+						</div>
+						<div class="package-body">
+							<p class="pack-price">Quote</p>
+							<ul class="pack-feature-list">
+								<li>Get specialized help from our customer success team, plus same day support to ensure you’re successful with TicketR.</li>
+								<li>Maintain strict control over your data and security with user provisioning and deprovisioning, data deletion, and cross-regional backups.</li>
+							</ul>
+						</div>
+						<div class="pack-footer">
+							<a class="btn btn-primary" href="/signup?tier=Enterprise">Get Started</a>
 						</div>
 					</div>
 				</div>
@@ -174,24 +273,134 @@
 	</div>
 </div>
 
-<!-- Subscribe box -->
-<div class="subscribe-area-2 section section-padding" id="subscribe">
+<!-- Faq area -->
+<div class="faq-area section section-padding " id="faq">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3 col-xs-12">
-				<h3 class="subscribe-title">Over <strong>100M+</strong> Peoples using SaaS trade, Join now</h3>
-				<form class="subscription style-2" id="subscription" action="#" method="post">
-					<input type="email" name="EMAIL" placeholder="Type your email address">
-					<button type="submit">Start Use it</button>
-					<div class="clearfix"></div>
-					<p class="newsletter-success"></p>
-					<p class="newsletter-error"></p>
-				</form>
-				<p class="subscription-info">30 days free, No credit card required</p>
+			<div class="col-md-6 col-md-offset-3">
+				<div class="section-header text-center">
+					<h3 class="section-title">Questions & Answers</h3>
+					<p class="section-text">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-xs-12">
+				<div class="faq-accordion">
+					<div class="panel-group" id="faqAccordion" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingOne">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">What is SaaS tech app?</a></h4>
+							</div>
+							<div id="faqCollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqHeadingOne">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingTwo">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseOne"> How ut perspiciatis unde omnis?</a></h4>
+							</div>
+							<div id="faqCollapseTwo" class="panel-collapse collapse" role="tabpane1" aria-labelledby="faqHeadingTwo">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingThree">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">What aute irure dolor in reprehenderit ?</a></h4>
+							</div>
+							<div id="faqCollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingThree">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingFour">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">Why this app?</a></h4>
+							</div>
+							<div id="faqCollapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFour">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingFive">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">When deserunt mollit anim est laborum?</a></h4>
+							</div>
+							<div id="faqCollapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFive">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-xs-12">
+				<div class="faq-accordion">
+					<div class="panel-group" id="faqAccordion2" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingOne-2">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseOne-2" aria-expanded="true" aria-controls="faqCollapseOne-2">What is SaaS tech app?</a></h4>
+							</div>
+							<div id="faqCollapseOne-2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqHeadingOne-2">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingTwo-2">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseTwo-2" aria-expanded="false" aria-controls="faqCollapseTwo-2"> How ut perspiciatis unde omnis?</a></h4>
+							</div>
+							<div id="faqCollapseTwo-2" class="panel-collapse collapse" role="tabpane1" aria-labelledby="faqHeadingTwo-2">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingThree-2">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseThree-2" aria-expanded="false" aria-controls="faqCollapseThree-2">What aute irure dolor in reprehenderit ?</a></h4>
+							</div>
+							<div id="faqCollapseThree-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingThree-2">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingFour-2">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseFour-2" aria-expanded="false" aria-controls="faqCollapseFour-2">Why this app?</a></h4>
+							</div>
+							<div id="faqCollapseFour-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFou-2r">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="faqHeadingFive-2">
+								<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseFive-2" aria-expanded="false" aria-controls="faqCollapseFive-2">When deserunt mollit anim est laborum?</a></h4>
+							</div>
+							<div id="faqCollapseFive-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFive-2">
+								<div class="panel-body">
+									When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <!-- footer -->
 <footer class="footer-widget section-padding gray-bg bottom-0">
@@ -201,9 +410,9 @@
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="widget logo-widget">
 						<a class="footer-logo" href="app-landing.html">
-							<img src="images/footer-logo.png" alt="...">
+							<img src="images/footer-logo.png" alt=".">
 						</a>
-						<p class="copyright">©  2018, SaaS trade</p>
+						<p class="copyright">©  2018, TicketR</p>
 					</div>
 				</div>
 
@@ -234,8 +443,8 @@
 					<div class="widget contact-widget">
 						<h4 class="widget-title">Contact</h4>
 						<p>9000 Regency Parkway, Suite 400 Cary, NC 27518</p>
-						<p><strong>E:</strong>  supportsaasapp@gmail.com</p>
-						<p><strong>P:</strong>  +000 1456 6978 111</p>
+						<p><strong>E:</strong>  support@ticketr.com</p>
+						<p><strong>P:</strong>  +1 800 222 9399</p>
 						<ul class="widget-social">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -250,19 +459,19 @@
 </footer>
 
 <!-- Script -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery-migrate-3.0.1.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.nav.js"></script>
-<script src="assets/js/owl.carousel.js"></script>
-<script src="assets/js/visible.js"></script>
-<script src="assets/js/jquery.countTo.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.ajaxchimp.min.js"></script>
-<script src="assets/js/slick.min.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-migrate-3.0.1.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.nav.js"></script>
+<script src="/assets/js/owl.carousel.js"></script>
+<script src="/assets/js/visible.js"></script>
+<script src="/assets/js/jquery.countTo.js"></script>
+<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
-<script src="js/map.js"></script>
-<script src="js/custom.js"></script>
+<script src="/js/map.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>

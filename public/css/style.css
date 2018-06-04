@@ -141,6 +141,18 @@ input:not([type=radio]):not([type=checkbox]):not([type=submit]):focus, textarea:
   outline: none;
 }
 
+.navbar-brand>img{
+  padding: 12px;
+  margin-top: -7px;
+  max-width: 140px;
+}
+.footer-widget-area .widget.logo-widget .footer-logo img {
+  max-width: 210px;
+  padding-right: 40px;
+  margin-top: -15px;
+
+}
+
 /*Common */
 .theme-color {
   color: #3aa6fe;
@@ -2287,21 +2299,14 @@ Feature
   color: #fff;
 }
 
-.navbar .container { margin-top: 0;}
-
-.container {
-  margin-bottom: 30px;
-  margin-top: 40px;
-}
-
 /*------------------------------------
 Page
 ------------------------------------*/
 .page-header {
   background-image: -webkit-gradient(linear, left top, right top, from(#3aa6fe), to(#49deff));
   background-image: linear-gradient(90deg, #3aa6fe 0%, #49deff 100%);
-  margin: 0 0 0 0;
-  padding: 40px 0 130px;
+  margin: 0;
+  padding: 210px 0 130px;
   text-align: center;
 }
 .page-header .page-title {
@@ -2981,4 +2986,29 @@ Coming Soon
 }
 .comingsoon-social .social li a:hover {
   color: #3aa6fe;
+}
+
+/* Servicebot Integration Custom CSS */
+
+.rf--form-content {
+  background: white;
+}
+
+.rf--summary-content {
+  background: white;
+}
+
+#servicebot-management-form input:not([type=radio]):not([type=checkbox]):not([type=submit]), #servicebot-management-form textarea{
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 3px;
+  padding: 24px 20px;
+  margin-bottom: 0;
+}
+.account-status-active {
+  background: #81d881;
+  border-radius: 50px;
+  padding: 0px 31px 6px;
+  margin-left: 11px;
+  color: white;
 }

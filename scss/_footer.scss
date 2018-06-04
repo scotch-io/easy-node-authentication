@@ -1,0 +1,103 @@
+/*------------------------------------
+Footer
+------------------------------------*/
+
+
+.footer-widget-area {
+	.widget {
+		margin-bottom: 30px;
+		.widget-title {
+			font-size: 22px;
+			font-weight: 500;
+			margin-top: 0;
+			margin-bottom: 25px;
+		}
+		ul {
+		    margin: 0;
+		    padding: 0;
+		    list-style: none;
+			li {
+			    line-height: 3.3rem;
+			    a {
+			    	color: $baseFontColor;
+			    	&:hover {
+			    		color: $primaryColor;
+			    	}
+			    }
+			}
+		}
+		.widget-social {
+			li {
+				display: inline-block;
+				a {
+					margin-right: 10px;
+					color: #a5a5a5;
+					font-size: 14px;
+				}
+			}
+		}
+	
+		&.contact-widget {
+			p {
+				strong {
+					margin-right: 5px;
+				}
+			}
+		}
+
+		&.logo-widget {
+			.footer-logo {
+				float: left;
+				width: 100%;
+			    margin-bottom: 80px;
+			}
+		}
+
+	}
+}
+
+
+.footer-bottom {
+	padding: 15px 0;
+	.footer-logo {
+		
+	}
+	.footer-menu {
+		list-style: none;
+	    padding: 0;
+	    margin-top: 16px;
+	    display: inline-block;
+	    vertical-align: middle;
+	    text-align: center;
+	    li {
+	    	display: inline-block;
+	    	a {
+	    		font-family: $headingFont;
+	    		text-transform: uppercase;
+	    		font-size: 14px;
+	    		font-weight: 600;
+	    		letter-spacing: 1px;
+	    		color: #505050;
+	    		&:hover {
+	    			color: $primaryColor;
+	    		}
+	    	}
+	    	+ li {
+	    		margin-left: 30px;
+	    	}
+	    }
+	}
+	.footer-social {
+	    display: inline-block;
+	    vertical-align: middle;
+	    float: right;
+	    margin-top: 15px;
+	    a {
+	    	color: #505050;
+	    	font-size: 15px;
+	    	+ a {
+	    		margin-left: 25px;
+	    	}
+	    }
+	}
+}

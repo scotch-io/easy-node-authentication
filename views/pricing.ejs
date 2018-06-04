@@ -1,13 +1,13 @@
-<!-- views/profile.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <!-- Site information -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SaaS Trade  - Software & SaaS Startups Template</title>
-    <meta name="description" content="SaaS Trade Description">
+    <title>TicketR</title>
+    <meta name="description" content="TicketR Description">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -49,14 +49,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="images/logo-white.png" alt="SaaS Trade Logo"></a>
+            <a class="navbar-brand" href="/"><img src="images/logo-white.png" alt="TicketR Logo"></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/pricing">Overview</a></li>
-                <li><a href="/pricing">Pricing</a></li>
-                <li><a href="/pricing">Contact</a></li>
+                <li><a href="features">Features</a></li>
+                <li><a href="pricing">Pricing</a></li>
+                <li><a href="#faq">Faq</a></li>
                 <li class="solid-item"><a href="/login">Login</a></li>
             </ul>
         </div>
@@ -66,6 +66,13 @@
 
 <!-- Page header -->
 <div class="page-header section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title">Pricing Plan</h2>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Pricing Table -->
@@ -74,8 +81,8 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-xs-12">
                 <div class="section-header text-center ">
-                    <h3 class="section-title ">Pricing Cards</h3>
-                    <p class="section-text ">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                    <h3 class="section-title ">Packages</h3>
+                    <p class="section-text ">TicketR is the easiest way for teams to track work and get results. Our Premium and Enterprise plans give you more power, control, and customization.</p>
                 </div>
             </div>
         </div>
@@ -88,13 +95,14 @@
                             <h4 class="pack-name">Free</h4>
                         </div>
                         <div class="package-body">
-                            <p class="pack-price">$100.00</p>
+                            <p class="pack-price">$0.00</p>
                             <ul class="pack-feature-list">
-                                <li>4 TB Storage</li>
-                                <li>8 GB RAM</li>
-                                <li>Unlimited Bandwidth</li>
-                                <li>No API Access</li>
-                                <li>Webmail Support</li>
+                                <li>Unlimited tasks, projects, and conversations</li>
+                                <li>Up to 15 team members</li>
+                                <li>Basic dashboards</li>
+                                <li>Basic search</li>
+                                <li>Private teams and projects</li>
+                                <li>Start dates</li>
                             </ul>
                         </div>
                         <div class="pack-footer">
@@ -106,16 +114,18 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="package active">
                         <div class="package-header">
-                            <h4 class="pack-name">STANDARD</h4>
+                            <h4 class="pack-name">Advanced</h4>
                         </div>
                         <div class="package-body">
-                            <p class="pack-price">$200.00</p>
+                            <p class="pack-price">$8.50</p>
                             <ul class="pack-feature-list">
-                                <li>4 TB Storage</li>
-                                <li>8 GB RAM</li>
-                                <li>Unlimited Bandwidth</li>
-                                <li>No API Access</li>
-                                <li>Webmail Support</li>
+                                <li>No team member limit</li>
+                                <li>Unlimited dashboards</li>
+                                <li>Advanced search & reporting</li>
+                                <li>Custom fields</li>
+                                <li>Task dependencies</li>
+                                <li>Comment-only projects</li>
+                                <li>Manage team members with advanced admin controls like service accounts and SAML.</li>
                             </ul>
                         </div>
                         <div class="pack-footer">
@@ -127,16 +137,13 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="package">
                         <div class="package-header">
-                            <h4 class="pack-name">BASIC</h4>
+                            <h4 class="pack-name">ENTERPRISE</h4>
                         </div>
                         <div class="package-body">
-                            <p class="pack-price">$300.0</p>
+                            <p class="pack-price">Quote</p>
                             <ul class="pack-feature-list">
-                                <li>4 TB Storage</li>
-                                <li>8 GB RAM</li>
-                                <li>Unlimited Bandwidth</li>
-                                <li>No API Access</li>
-                                <li>Webmail Support</li>
+                                <li>Get specialized help from our customer success team, plus same day support to ensure you’re successful with TicketR.</li>
+                                <li>Maintain strict control over your data and security with user provisioning and deprovisioning, data deletion, and cross-regional backups.</li>
                             </ul>
                         </div>
                         <div class="pack-footer">
@@ -149,6 +156,133 @@
     </div>
 </div>
 
+<!-- Faq area -->
+<div class="faq-area section section-padding" id="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="section-header text-center">
+                    <h3 class="section-title">Questions & Answers</h3>
+                    <p class="section-text">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="faq-accordion">
+                    <div class="panel-group" id="faqAccordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingOne">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">What is SaaS tech app?</a></h4>
+                            </div>
+                            <div id="faqCollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqHeadingOne">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingTwo">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseOne"> How ut perspiciatis unde omnis?</a></h4>
+                            </div>
+                            <div id="faqCollapseTwo" class="panel-collapse collapse" role="tabpane1" aria-labelledby="faqHeadingTwo">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingThree">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">What aute irure dolor in reprehenderit ?</a></h4>
+                            </div>
+                            <div id="faqCollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingThree">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFour">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">Why this app?</a></h4>
+                            </div>
+                            <div id="faqCollapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFour">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFive">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion" href="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">When deserunt mollit anim est laborum?</a></h4>
+                            </div>
+                            <div id="faqCollapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFive">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="faq-accordion">
+                    <div class="panel-group" id="faqAccordion2" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingOne-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseOne-2" aria-expanded="true" aria-controls="faqCollapseOne-2">What is SaaS tech app?</a></h4>
+                            </div>
+                            <div id="faqCollapseOne-2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqHeadingOne-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingTwo-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseTwo-2" aria-expanded="false" aria-controls="faqCollapseTwo-2"> How ut perspiciatis unde omnis?</a></h4>
+                            </div>
+                            <div id="faqCollapseTwo-2" class="panel-collapse collapse" role="tabpane1" aria-labelledby="faqHeadingTwo-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingThree-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseThree-2" aria-expanded="false" aria-controls="faqCollapseThree-2">What aute irure dolor in reprehenderit ?</a></h4>
+                            </div>
+                            <div id="faqCollapseThree-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingThree-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFour-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseFour-2" aria-expanded="false" aria-controls="faqCollapseFour-2">Why this app?</a></h4>
+                            </div>
+                            <div id="faqCollapseFour-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFou-2r">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="faqHeadingFive-2">
+                                <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#faqAccordion2" href="#faqCollapseFive-2" aria-expanded="false" aria-controls="faqCollapseFive-2">When deserunt mollit anim est laborum?</a></h4>
+                            </div>
+                            <div id="faqCollapseFive-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqHeadingFive-2">
+                                <div class="panel-body">
+                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 'Content here, content here', making it look like readable English. Many desktop publishing
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- footer -->
 <footer class="footer-widget section-padding gray-bg bottom-0">
@@ -160,7 +294,7 @@
                         <a class="footer-logo" href="app-landing.html">
                             <img src="images/footer-logo.png" alt="...">
                         </a>
-                        <p class="copyright">©  2018, SaaS trade</p>
+                        <p class="copyright">©  2018, TicketR</p>
                     </div>
                 </div>
 
@@ -191,7 +325,7 @@
                     <div class="widget contact-widget">
                         <h4 class="widget-title">Contact</h4>
                         <p>9000 Regency Parkway, Suite 400 Cary, NC 27518</p>
-                        <p><strong>E:</strong>  supportsaasapp@gmail.com</p>
+                        <p><strong>E:</strong>  support@ticketr.com</p>
                         <p><strong>P:</strong>  +000 1456 6978 111</p>
                         <ul class="widget-social">
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>

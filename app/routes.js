@@ -11,24 +11,40 @@ module.exports = function (app, passport) {
         let User = require('./models/user');
         let eventData = req.body.event_data;
         let email, user;
-        switch (req.body.event_name) {
-            case "post_decommission":
+        console.log(req.body.event_name);
+        try {
+            if (eventData.instance && eventData.instance.references) {
                 email = eventData.instance.references.users[0].email;
                 user = await User.findOne({'local.email': email});
-                user.status = "suspended";
-                await user.save();
-                res.json({"message": "user suspended"});
-                break;
-            case "post_reactivate":
-                email = eventData.instance.references.users[0].email;
-                user = await User.findOne({'local.email': email})
-                user.status = "active";
-                await user.save();
-                res.json({"message": "user reactivated"});
-                break;
-            default:
-                res.json({"test": "test"});
-                break;
+            }
+            switch (req.body.event_name) {
+                case "post_property_change":
+                    let properties = eventData.instance.references.service_instance_properties.reduce((acc, prop) => {
+                        acc[prop.name] = prop.data.value;
+                        return acc;
+                    }, {});
+                    user.tier = properties["tier"];
+                    user.business = properties["business-name"];
+                    await user.save();
+                    res.json({"message": "properties updated"});
+                    break;
+                case "post_decommission":
+                    user.status ="suspended";
+                    await user.save();
+                    res.json({"message": "user suspended"});
+                    break;
+                case "post_reactivate":
+                    user.status = "active";
+                    await user.save();
+                    res.json({"message": "user reactivated"});
+                    break;
+                default:
+                    res.json({"test": "test"});
+                    break;
+            }
+        }catch(e){
+            console.error(e);
+            res.status(500).json({error: e});
         }
     });
     // =====================================
@@ -62,12 +78,15 @@ module.exports = function (app, passport) {
     app.get('/signup', function (req, res) {
         let tier = req.query.tier || "Basic";
         // render the page and pass in any flash data if it exists
-        res.render('signup.ejs', {tier, message: req.flash('signupMessage')});
+        res.render('signup.ejs', {servicebotUrl: process.env.SERVICEBOT_URL || "http://localhost:3000", tier, message: req.flash('signupMessage')});
     });
     app.get('/pricing', function (req, res) {
 
         // render the page and pass in any flash data if it exists
         res.render('pricing.ejs', {message: req.flash('signupMessage')});
+    });
+    app.get('/features', function(req, res) {
+        res.render('features.ejs', {message: req.flash('featuresMessage')});
     });
 
 
@@ -86,6 +105,7 @@ module.exports = function (app, passport) {
     app.get('/profile', isLoggedIn, function (req, res) {
 
         res.render('profile.ejs', {
+            servicebotUrl: process.env.SERVICEBOT_URL || "http://localhost:3000",
             user: req.user, // get the user out of session and pass to template
         });
     });
@@ -98,7 +118,7 @@ module.exports = function (app, passport) {
             var hmac = crypto.createHmac('sha256', key);
 
             var payload = {
-                "email": email
+                "email": email.toLowerCase()
             };
             var header = {
                 "alg": "HS256",
@@ -119,13 +139,14 @@ module.exports = function (app, passport) {
             return data + "." + cleanBase64(hmac.digest('base64'));
         }
 
-        var SECRET_KEY = "a110fc299852d2dc00326fbe8e98a977ad019f79783b5302d95accc8c32f6a5f"; //keep this key safe!
+        var SECRET_KEY = process.env.SERVICEBOT_SECRET || "a110fc299852d2dc00326fbe8e98a977ad019f79783b5302d95accc8c32f6a5f"; //keep this key safe!
         var userToken = generateJWT(req.user.local.email, SECRET_KEY);
 
 
         res.render('billing.ejs', {
             user: req.user, // get the user out of session and pass to template
-            userToken: userToken
+            userToken: userToken,
+            servicebotUrl: process.env.SERVICEBOT_URL || "http://localhost:3000"
         });
     });
 

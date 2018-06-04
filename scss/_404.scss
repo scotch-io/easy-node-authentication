@@ -1,0 +1,20 @@
+/*------------------------------------
+404
+------------------------------------*/
+
+.page-404 {
+	text-align: center;
+	.title {
+		font-size: 48px;
+		margin-bottom: 40px;
+	}
+	.btn-404 {
+		background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+		border-radius: 3px;
+		color: #fff;
+		padding: 8px 53px;
+	}
+	.image-404 {
+		margin-top: 100px;
+	}
+}

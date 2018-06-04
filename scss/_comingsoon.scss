@@ -1,0 +1,96 @@
+/*------------------------------------
+Coming Soon
+------------------------------------*/
+
+
+.comingsoon-banner {
+    height: 768px;
+    .banner-content {
+        top: 50%;
+        transform: translateY(-50%);
+        position: relative;
+        .banner-title {
+            font-size: 48px;
+            line-height: 1;
+            margin-top: 0;
+        }
+        .banner-form {
+            margin-top: 60px;
+            max-width: 380px;
+            [type=email] {
+                background-color: #fff;
+                border-radius: 3px;
+                line-height: 43px;
+                float: left;
+                width: calc(100% - 110px);
+                padding: 0 20px;
+            }
+            [type=submit] {
+                width: 90px;
+                margin-left: 20px;
+                background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+                line-height: 42px;
+                color: #fff;
+                text-transform: uppercase;
+            }
+        }      
+    }
+
+    .banner-image-style-2 {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: auto;
+        width: 700px;
+        background-image: url(../images/bg/comingsoon.jpg);
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+.countdown-comingsoon {
+    margin-top: 30px;
+    .section_count {
+        display: inline-block;
+        font-family: $headingFont;
+        +.section_count {
+            margin-left: 50px;
+        }
+        .tcount {
+            font-size: 50px;
+            font-weight: 600;
+            display: block;
+            line-height: 1;
+            color: $primaryColor;
+        }
+        .text {
+            font-size: 20px;
+            color: #222222;
+        }
+    }
+}
+
+
+.comingsoon-social {
+    margin-top: -35px;
+    .social {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            display: inline-block;
+            +li {
+                margin-left: 30px;
+            }
+             a {
+                color: #a5a5a5;
+                font-size: 15px;
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+}
+
+

@@ -1,0 +1,26 @@
+/*------------------------------------
+Download area
+------------------------------------*/
+.download-area {
+	.download-icons {
+		a {
+			+ a {
+				margin-left: 30px;
+			}
+		}
+	}
+
+
+	&.style-2 {
+		.section-title {
+			font-size: 36px;
+			color: #fff;
+			margin-bottom: 25px;
+			margin-top: 0;
+		}
+		p {
+			color: #fff;
+		}
+	}
+}
+

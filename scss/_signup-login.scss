@@ -1,0 +1,120 @@
+/*------------------------------------
+Signup Login
+------------------------------------*/
+
+.signup-area, .login-area {
+	background-color: #f7f7f7;
+    .signup-login-bg {
+		background-image: url(../images/bg/login.png);
+		background-repeat: no-repeat;
+	    background-position: right;     
+	    .account-form {
+	    	max-width: 400px;
+	    	padding-top: 100px;
+	    	background-color: #f7f7f7;
+	    	.form-header {
+	    		width: 100%;
+	    		float: left;
+	    		margin-bottom: 20px;
+	    		.title {
+	    			float: left;
+	    			width: 50%;
+	    			font-weight: 400;
+	    		}
+	    		.link {
+	    			width: 50%;
+	    			float: left;
+	    			text-align: right;
+	    			margin-top: 15px;
+	    			font-size: 15px;
+	    			a {
+	    				color: $primaryColor;
+	    			}
+	    		}
+	    	}
+
+	    	button, input, select, textarea {
+	    		border-color: #dcdcdc;
+	    		border-radius: 5px;
+	    	}
+
+	    	.terms {
+	    		display: block;
+	    		font-weight: 300;
+	    		margin-top: 5px;
+	    		a {
+	    			color: $primaryColor;
+	    		}
+	    	}
+
+			.forget-tearm {
+				font-size: 15px;
+				.remember {
+		    		font-weight: 300;
+		    	}
+		    	a {
+		    		float: right;
+		    		color: #757575;
+		    	}
+			}
+
+	    	.signup-btn {
+	    		width: 100%;
+	    		text-transform: uppercase;
+	    		font-weight: 500;
+	    		font-size: 14px;
+	    		font-family: $headingFont;
+	    		background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+	    		color: #fff;
+	    		margin-top: 20px;
+	    		transition: all 0.3s ease;
+	    		&:hover{
+	    			background-color: $primaryColor;
+	    		}
+	    	}
+	    }
+	    .login-with-social {
+	    	width: 400px;
+	    	margin-top: 30px;
+
+
+	    	.or-section {
+				background-image: url(../images/or-section.png);
+				background-repeat: no-repeat;	
+				background-position: center;     		
+	    	}
+	    	.social-logins {
+	    		text-align: center;
+	    		margin-top: 30px;
+	    		a {
+	    		    width: 45px;
+	    		    height: 45px;
+	    		    border-radius: 50%;
+	    		    font-size: 15px;
+	    		    line-height: 45px;
+	    		    color: #fff;
+	    		    display: inline-block;
+	    		    + a {
+	    		    	margin-left: 15px;
+	    		    }
+	    		}
+	    		.facebook-login {
+	    			background-color: #3b5998;
+	    		}	    			
+	    		.gplus-login {
+	    			background-color: #ea4335;
+	    		}	    			
+	    		.twitter-login {
+	    			background-color: #1da1f2;
+	    		}
+	    	}
+	    }
+	}
+}
+
+.login-area {
+	.account-form {
+		padding-top: 150px !important;
+
+	} 
+}

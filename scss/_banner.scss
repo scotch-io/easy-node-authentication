@@ -1,0 +1,369 @@
+/*------------------------------------
+ Banner
+------------------------------------*/
+
+.banner {
+	position: relative;
+    // &.style-1 {
+    //    margin-top: 165px;
+    // }
+    .banner-item {
+        height: 768px;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        overflow: hidden;
+	    .banner-content {
+			position: absolute;
+		    top: 50%;
+		    left: 0;
+		    right: 0;
+		    transform: translateY(-50%);
+		    margin-top: 50px;
+		    z-index: 2;
+		    .banner-title {
+		        font-size: 40px;
+		        font-weight: 600;
+		        line-height: 46px;
+		        margin: 0 0px 35px 0px;
+		    }
+		    .banner-text {
+		    	font-size: 18px;
+		    	line-height: 28px;
+		    	font-weight: 300;
+		    }
+			.banner-button {
+				margin-top: 45px;
+			}
+			.banner-form {
+
+			}
+	    }
+
+	    .play-button {
+	    	position: absolute;
+		    top: 50%;
+		    right: -35px;
+		    transform: translateY(-50%);
+		    margin-top: 10px;
+		    a {
+		    	i {
+		    		color: $primaryColor;
+		    		font-size: 37px;
+		    		padding-left: 10px;
+				    background: #fff;
+				    width: 100px;
+				    height: 100px;
+				    border-radius: 50%;
+				    line-height: 100px;
+				    text-align: center;
+				    box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.25);
+		    	}
+		    }
+	    }
+	    .play-button-2 {
+	    	margin-top: 10px !important;
+	    	p {
+	    		color: #505050;
+	    		font-size: 15px;
+	    	}
+	    	.play-bg-1 {
+	    		border: 2px solid rgba(0, 0, 0, .05);
+	    		background-color: rgb(240, 244, 246);
+	    		display: inline-block;
+	    		height: 55px;
+	    		width: 55px;
+	    		line-height: 52px;
+	    		border-radius: 50%;
+	    		.play-bg-2 {
+		    		border: 2px solid rgba(0, 0, 0, .1);
+		    		background-color: rgb(240, 244, 246);
+		    		display: inline-block;
+		    		height: 45px;
+		    		width: 45px;
+		    		line-height: 42px;
+		    		border-radius: 50%;
+			    	i {
+					  border-style: solid;
+					  border-width: 2px;
+					  border: 2px solid rgba(0, 0, 0, .15);
+					  border-radius: 50%;
+					  background-color: rgb(240, 244, 246);
+					  width: 35px;
+					  height: 35px;
+					  line-height: 30px;
+					  color: $primaryColor;
+					  font-size: 17px;
+			    	}
+	    		}
+	    	}
+	    }
+
+		&.banner-item-style-1 {
+			.banner-bg-1 {
+				background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+				height: 610px;
+				margin-top: 155px;
+				.banner-content {
+					color: #fff;
+					padding: 0 50px;
+					margin-top: 70px;
+					.banner-title {
+						color: #fff;
+					}
+				}
+				.download-links {
+					position: absolute;
+					bottom: 30px;
+					left: 50px;
+					color: #fff;
+					display: flex;
+					align-items: flex-end;
+					h5 {
+						color: #fff;
+						font-size: 18px;
+						font-weight: 400;
+					}
+					.icons {
+						a {
+							margin-left: 15px;
+							font-size: 30px;
+							color: #fff;
+						}
+					}
+
+				}
+			}
+			.banner-image {
+				margin-top: 150px;
+			    img {
+			        margin: 0 auto;
+			    }
+			    .mocks-background {
+			        background: url(../images/mocks/elements-bg.png) no-repeat center center;
+			        background-size: covor;
+			    }
+			}
+		}
+	    &.banner-item-style-2 {
+	    	.banner-content {
+	    		.banner-title {
+	    			font-size: 48px;
+	    			line-height: 58px;
+	    			color: #fff;
+                    .black-color{
+                        color: #505050;
+                    }
+	    		}
+	    		.banner-text {
+	    			color: #505050;
+	    			font-size: 18px;
+	    			line-height: 30px;	
+                    &.white-color{
+                        color: #ffffff;
+                    }
+	    		}
+	    		.banner-form {
+	    			margin-top: 40px;
+	    			max-width: 420px;
+	    			 [type=email] {
+	    			 	background-color: #fff;
+						border-radius: 3px;
+					    line-height: 43px;
+					    float: left;
+					    width: calc(100% - 150px);
+					    padding: 0 20px;
+					}
+					[type=submit] {
+					    border: none;
+					    display: inline-block;
+					    text-transform: uppercase;
+					    color: #ffffff;
+					    background-image: linear-gradient( 90deg, rgb(58,166,254) 0%, rgb(73,222,255) 100%);
+					    line-height: 45px;
+					    width: 130px;
+					    text-align: center;
+					    padding: 0 5px;
+					    border-radius: 3px;
+					    vertical-align: middle;
+					    margin-left: 20px;
+					}
+					.sign-in-text {
+						position: absolute;
+						margin-top: 20px;
+						a {
+							color: $primaryColor;
+						}
+					}
+	    		}
+
+	    	}
+	    }
+	    &.banner-item-style-3 {
+	    	.banner-content {
+	    		.banner-title {
+	    			color: #fff;
+	    			font-size: 60px;
+	    			line-height: 70px;
+	    		}
+	    		.banner-text {
+	    			max-width: 600px;
+	    			margin: 0 auto;
+	    			color: #fff;
+	    		}
+	    		.banner-button {
+	    			.btn {
+	    				+ .btn {
+	    					margin-left: 30px;
+	    					color: #fff;
+	    				}
+	    			}
+	    		}
+	    	}
+	    }
+	    &.banner-item-style-4 {
+	    	.banner-content {
+	    		.banner-text{
+	    			font-size: 17px;
+	    			line-height: 28px;
+	    		}
+	    		.banner-button {
+	    			.btn {
+	    				color: #fff;
+	    			}
+	    		}
+	    	}
+	    }
+	    &.banner-item-style-5 {
+	    	height: 980px;
+	    	.banner-content {
+			    top: 25%;
+			    transform: translateY(-25%);
+			    margin-top: 50px;
+				.banner-form {
+					max-width: 470px;
+					margin: 0 auto;
+					[type=email] {
+					    background-color: #fff;
+					    border-radius: 3px;
+					    line-height: 43px;
+					    float: left;
+					    width: calc(100% - 70px);
+					    padding: 0 20px;
+					}
+					[type=submit]  {
+						width: 60px;
+						margin-left: 10px;
+						background-color: transparent;
+						line-height: 40px;
+					}
+				}
+				.play-button-2 {
+					margin-top: 30px;
+				    float: left;
+				    width: 100%;
+				}
+	    	}
+	    	.mock-slider {
+	    		position: absolute;
+	    		bottom: 80px;
+	    		left: 50%;
+	    		transform: translateX(-50%);
+				.screen-mock {
+				    background-image: url(../images/mocks/macbook-moc.png);
+				    background-size: contain;
+				    background-position: center center;
+				    background-repeat: no-repeat;
+				    height: 470px;
+				    width: 800px;
+				    margin: 0;
+				    position: absolute;
+				    top: 0;
+				    left: 50%;
+				    transform: translateX(-50%);
+				    z-index: 2;
+				}
+
+				.slide-main {
+				     margin: 0 auto;
+				}
+
+				.slider-mocks {
+				    text-align: center;
+				    top: 25px;
+				    .item {}
+				    .owl-controls {
+				        .owl-next,
+				        .owl-prev {
+				            position: absolute;
+				            top: 50%;
+				            -webkit-transform: translateY(-50%);
+				            transform: translateY(-50%);
+				            font-size: 2rem;
+				            width: 40px;
+				            height: 40px;
+				            line-height: 37px;
+				            border-radius: 50%;
+				            background-color: #ffffff;
+				            border: 1px solid rgb(233, 233, 233);
+				            text-align: center;
+				            -webkit-transition: all 0.3s ease;
+				            transition: all 0.3s ease;
+				        }
+				        .owl-prev {
+				            left: 120px;
+				        }
+				        .owl-next {
+				            right: 120px;
+				        }
+				    }
+				}
+	    	}
+	    }
+		&.banner-item-style-6 {
+			height: 940px;
+			.banner-content{
+				margin-top: -30px;
+				.banner-title {
+					color: #fff;
+					font-size: 48px;
+					line-height: 60px;
+					margin-bottom: 30px;
+				}
+				.banner-text {
+					color: #fff;
+					max-width: 550px;
+					margin: 0 auto;
+				}
+				.banner-button {
+					margin-top: 20px;
+				}
+			}
+        }
+
+    }
+	
+	.banner-image-style-2 {
+	    position: absolute;
+	    bottom: 0;
+	    right: 0;
+	    z-index: 1;
+	    img {
+	    	max-width: 900px;
+	    }
+	}
+	.banner-image-style-3 {
+		position: relative;
+	    text-align: center;
+	    margin-top: -250px;
+	    width: 100%;
+		img {
+			max-width: 900px;
+			margin: 0 auto;
+		}
+	}
+
+}
+.full-vh{
+    min-height: 600px;
+}

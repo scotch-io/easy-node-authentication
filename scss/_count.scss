@@ -1,0 +1,26 @@
+/*------------------------------------
+Count
+------------------------------------*/
+
+.count-area {
+	background-image: url(../images/bg/count-bg.png);
+	background-repeat: no-repeat;
+    background-position: bottom;
+    padding-bottom: 200px;
+	.counter-item {
+		text-align: center;
+	}
+}
+
+.counter-item {
+	.counter-body {
+		.fact-number {
+			color: $primaryColor;
+			font-size: 48px;
+			font-weight: 400;
+		}
+		.fact-name {
+			font-size: 18px;
+		}
+	}
+}
