@@ -8,8 +8,10 @@
     "express": "~3.4.4",
     "mongoose": "~4.x",
     "passport": "~0.1.17",
+    "passport-custom": "^1.0.5",
     "passport-facebook": "~1.0.2",
     "passport-google-oauth": "~0.1.5",
+    "passport-jwt": "^4.0.0",
     "passport-local": "~0.1.6",
     "passport-twitter": "~1.0.2",
     "path": "^0.12.7"

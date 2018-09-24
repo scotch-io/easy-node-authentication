@@ -2,6 +2,8 @@
 
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
+var JwtStrategy   = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // load up the user model
 var User       		= require('../app/models/user');
@@ -32,6 +34,18 @@ module.exports = function(passport) {
     // =========================================================================
     // we are using named strategies since we have one for login and one for signup
 	// by default, if there was no name, it would just be called 'local'
+    let opts = {};
+    opts.secretOrKey = process.env.SERVICEBOT_SECRET;
+    opts.jwtFromRequest = ExtractJwt.fromBodyField("token");
+    passport.use('servicebot-login', new JwtStrategy(opts,
+        function(payload, done) {
+            console.log("yus");
+            console.log(payload);
+            User.findOne({servicebotUid: payload.uid}, function (err, user) {
+                done(err, user);
+            });
+        }
+    ));
 
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email

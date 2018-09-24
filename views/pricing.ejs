@@ -78,81 +78,37 @@
 <!-- Pricing Table -->
 <div class="pricing-page gray-bg section section-padding ">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-xs-12">
-                <div class="section-header text-center ">
-                    <h3 class="section-title ">Packages</h3>
-                    <p class="section-text ">TicketR is the easiest way for teams to track work and get results. Our Premium and Enterprise plans give you more power, control, and customization.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="pricing-packages">
+        <div id="servicebot-pricing-embed"></div>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="https://js.servicebot.io/js/servicebot-tiers-embed.js" type="text/javascript"></script>
+        <script  type="text/javascript">
+            let signup = function(response) {
+                let token = response.token
+                console.log(response);
+                return fetch("/login",
+                    {
+                        method: "POST",
+                        headers: {"content-type": "application/json"},
+                        credentials : "include",
+                        body: JSON.stringify({token})
+                    }).then(response => {
+                        if(!response.error){
+                            window.location = "/profile";
+                        }
+                }).catch(error => {
+                    console.error(error);
+                });
+            }
 
-                <div class="col-sm-4 col-xs-12">
-                    <div class="package">
-                        <div class="package-header">
-                            <h4 class="pack-name">Free</h4>
-                        </div>
-                        <div class="package-body">
-                            <p class="pack-price">$0.00</p>
-                            <ul class="pack-feature-list">
-                                <li>Unlimited tasks, projects, and conversations</li>
-                                <li>Up to 15 team members</li>
-                                <li>Basic dashboards</li>
-                                <li>Basic search</li>
-                                <li>Private teams and projects</li>
-                                <li>Start dates</li>
-                            </ul>
-                        </div>
-                        <div class="pack-footer">
-                            <a class="btn btn-primary" href="/signup?tier=Basic">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-xs-12">
-                    <div class="package active">
-                        <div class="package-header">
-                            <h4 class="pack-name">Advanced</h4>
-                        </div>
-                        <div class="package-body">
-                            <p class="pack-price">$8.50</p>
-                            <ul class="pack-feature-list">
-                                <li>No team member limit</li>
-                                <li>Unlimited dashboards</li>
-                                <li>Advanced search & reporting</li>
-                                <li>Custom fields</li>
-                                <li>Task dependencies</li>
-                                <li>Comment-only projects</li>
-                                <li>Manage team members with advanced admin controls like service accounts and SAML.</li>
-                            </ul>
-                        </div>
-                        <div class="pack-footer">
-                            <a class="btn btn-primary" href="/signup?tier=Advanced">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-xs-12">
-                    <div class="package">
-                        <div class="package-header">
-                            <h4 class="pack-name">ENTERPRISE</h4>
-                        </div>
-                        <div class="package-body">
-                            <p class="pack-price">Quote</p>
-                            <ul class="pack-feature-list">
-                                <li>Get specialized help from our customer success team, plus same day support to ensure you’re successful with TicketR.</li>
-                                <li>Maintain strict control over your data and security with user provisioning and deprovisioning, data deletion, and cross-regional backups.</li>
-                            </ul>
-                        </div>
-                        <div class="pack-footer">
-                            <a class="btn btn-primary" href="/signup?tier=Enterprise">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            Servicebot.Tiers({
+                templateId : 1,
+                url : "<%= servicebotUrl %>",
+                selector : document.getElementById('servicebot-pricing-embed'),
+                handleResponse : signup,
+                forceCard : false, //set to true if you want credit card to be a required field for the customer
+                setPassword : true //set to true if you want customer to fill out a password
+            })
+        </script>
     </div>
 </div>
 

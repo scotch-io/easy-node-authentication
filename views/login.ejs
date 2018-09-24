@@ -55,23 +55,38 @@
                     <% } %>
 
 					<!-- LOGIN FORM -->
-					<form id="loginForm" class="account-form signin-form" action="#" method="post">
-						<div class="form-header">
-							<h4 class="title">Sign in</h4>
-							<p class="link">Or <a href="/pricing">create an account</a></p>
-						</div>
+					<div id="servicebot-login-form"></div>
+					<script src="https://js.stripe.com/v3/"></script>
+					<script src="https://js.servicebot.io/js/servicebot-login-embed.js" type="text/javascript"></script>
+					<script  type="text/javascript">
+                        let signup = function(response) {
+                            let token = response.token
+                            console.log(response);
+                            return fetch("/login",
+                                {
+                                    method: "POST",
+                                    headers: {"content-type": "application/json"},
+                                    credentials : "include",
+                                    body: JSON.stringify({token})
+                                }).then(response => {
+                                if(!response.error){
+                                    window.location = "/profile";
+                                }
+                            }).catch(error => {
+                                console.error(error);
+                            });
+                        }
 
-						<input type="text" name="email" placeholder="Username" required>
-						<input type="password" name="password" placeholder="Password" required>
+                        Servicebot.Login({
+                            url : "<%= servicebotUrl %>",
+                            selector : document.getElementById('servicebot-login-form'),
+                            handleResponse : signup
+                            // token: "password-reset-token",
+                            // uid: "user-id-to-password-reset"
 
-						<div class="forget-tearm">
-							<label class="remember"><input type="checkbox" name="remember-pass">
-								Remember me
-							</label>
-							<a href="#">Forget password?</a>
-						</div>
-						<button class="signup-btn" type="submit">Login In</button>
-					</form>
+                        })
+					</script>
+
 
 				</div>
 			</div>

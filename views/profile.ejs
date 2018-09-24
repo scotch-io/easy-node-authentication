@@ -58,8 +58,12 @@
 			<ul class="nav navbar-nav navbar-right">
                 <% if(user.status) {%>
 					<li><a href="/profile">Dashboard</a></li>
-					<li><a href="/billing">Billing</a></li>
-					<li class="solid-item"><a href="/logout">Logout</a></li>
+                <% if (user.accountType === "subscriber") { %>
+				<li><a href="/billing">Billing</a></li>
+				<li><a href="/users">Users</a></li>
+                <% } %>
+
+				<li class="solid-item"><a href="/logout">Logout</a></li>
                 <% } %>
 			</ul>
 		</div>
@@ -89,9 +93,12 @@
 					<p>
 						<strong>ID</strong>: <%= user._id %><br>
 						<strong>Email</strong>: <%= user.local.email %><br>
-						<strong>Password</strong>: <%= user.local.password %><br>
-						<strong>Business</strong>: <%= user.business %><br>
-						<strong>Tier</strong>: <%= user.tier %><br>
+						<strong>Servicebot ID</strong>: <%= user.servicebotUid %><br>
+                        <% if (user.accountType === "subscriber") { %>
+							<strong>Tier</strong>: <%= user.tierId %><br>
+                        <% } %>
+						<strong>Account Type</strong>: <%= user.accountType %><br>
+
 
 					</p>
 
@@ -106,7 +113,7 @@
 			</div>
 			<% } %>
 
-			<%if (user.tier === "Enterprise" && user.status !== "suspended") { %>
+			<%if (user.tierId == 4 && user.status !== "suspended") { %>
 			<div class="col-sm-6">
 				<div class="well">
 					<h3>Special Enterprise Box!</h3>

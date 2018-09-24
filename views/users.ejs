@@ -57,8 +57,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <% if(user.status) {%>
                 <li><a href="/profile">Dashboard</a></li>
+                <% if (user.accountType === "subscriber") { %>
                 <li><a href="/billing">Billing</a></li>
                 <li><a href="/users">Users</a></li>
+                <% } %>
                 <li class="solid-item"><a href="/logout">Logout</a></li>
                 <% } %>
             </ul>
@@ -72,7 +74,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="page-title">Account Billing</h2>
+                <h2 class="page-title">User Management</h2>
             </div>
         </div>
     </div>
@@ -82,17 +84,14 @@
 <div class="pricing-page section section-padding ">
     <div class="container">
         <div class="row">
-            <div id="servicebot-management-form"></div>
+            <div id="servicebot-seat-management-form"></div>
             <script src="https://js.stripe.com/v3/"></script>
-            <script src="https://js.servicebot.io/js/servicebot-billing-settings-embed.js" type="text/javascript"></script>
+            <script src="https://js.servicebot.io/js/servicebot-seat-management-embed.js" type="text/javascript"></script>
             <script  type="text/javascript">
-                Servicebot.BillingSettings({
+                Servicebot.SeatManagement({
                     url : "<%= servicebotUrl %>",
-                    selector : document.getElementById('servicebot-management-form'),
-                    token: "<%= userToken %>",
-                    handleResponse: (response) => {
-                    //determine what to do on certain events...
-                }
+                    selector : document.getElementById('servicebot-seat-management-form'),
+                    token: "<%= userToken %>"
                 })
             </script>
         </div>
