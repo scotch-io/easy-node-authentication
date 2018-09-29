@@ -1,18 +1,8 @@
-# Complete Guide to Node Authentication
+# Servicebot Example Integration
 
-Code for the entire scotch.io tutorial series: Complete Guide to Node Authentication
+Code for an example integration between a NodeJS Express application and [Servicebot](https://servicebot.io).
 
-We will be using Passport to authenticate users locally, with Facebook, Twitter, and Google.
-
-## Instructions
-
-If you would like to download the code and try it for yourself:
-
-1. Clone the repo: `git clone git@github.com:scotch-io/node-authentication-guide`
-2. Install packages: `npm install`
-3. Change out the database configuration in config/database.js
-4. Launch: `node server.js`
-5. Visit in your browser at: `http://localhost:8080`
-
-
-
+This example utilizes:
+- All of Servicebot's Embeddables
+- Webhooks from Servicebot triggering events in the app
+- Passport to authenticate with Servicebot
