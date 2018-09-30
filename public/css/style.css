@@ -2336,6 +2336,8 @@ Signup Login
 ------------------------------------*/
 .signup-area, .login-area {
   background-color: #f7f7f7;
+  min-height: 100vh;
+  padding-top: 200px;
 }
 .signup-area .signup-login-bg, .login-area .signup-login-bg {
   background-image: url(../images/bg/login.png);
@@ -3011,4 +3013,10 @@ Coming Soon
   padding: 0px 31px 6px;
   margin-left: 11px;
   color: white;
+}
+
+/* Pricing section */
+.section.pricing-page{
+  padding: 120px 0 60px;
+  position: relative;
 }
