@@ -503,13 +503,13 @@ Buttons
   min-height: 80px;
 }
 .navbar-default .navbar-brand {
-  margin-top: 50px;
+  margin-top: 0;
   margin-bottom: 5px;
   height: 70px;
   padding: 10px 0;
 }
 .navbar-default .navbar-nav {
-  margin-top: 60px;
+  margin-top: 15px;
   margin-bottom: 0;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -2306,7 +2306,7 @@ Page
   background-image: -webkit-gradient(linear, left top, right top, from(#3aa6fe), to(#49deff));
   background-image: linear-gradient(90deg, #3aa6fe 0%, #49deff 100%);
   margin: 0;
-  padding: 210px 0 130px;
+  padding: 150px 0 130px;
   text-align: center;
 }
 .page-header .page-title {
