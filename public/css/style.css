@@ -146,6 +146,16 @@ input:not([type=radio]):not([type=checkbox]):not([type=submit]):focus, textarea:
   margin-top: -7px;
   max-width: 140px;
 }
+.navbar-brand, .footer-logo{
+  font-size: 30px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #39a6fe !important;
+  line-height: 49px;
+}
+.navbar-brand.white{
+  color: #fff !important;
+}
 .footer-widget-area .widget.logo-widget .footer-logo img {
   max-width: 210px;
   padding-right: 40px;
@@ -3019,4 +3029,44 @@ Coming Soon
 .section.pricing-page{
   padding: 120px 0 60px;
   position: relative;
+}
+
+/* Dashboard page section */
+.dashboard-page h3{
+  font-size: 24px;
+  text-align: center;
+}
+.dashboard-page .account-status-active, .dashboard-page .account-status-suspended{
+  padding: 4px 15.9px 5px;
+  font-size: 16px;
+  display: block;
+  text-align: center;
+  margin: 10px 0 50px;
+}
+.dashboard-page .account-status-suspended{
+  background: #ea3a3a;
+  color: white;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+.dashboard-page .well{
+  border: none;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding: 60px;
+}
+.dashboard-page p strong, .dashboard-page h3{
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.dashboard-page p strong {
+  display: inline-block;
+  width: 160px;
+  text-align: left;
+}
+.dashboard-page.section .row{
+  display: flex;
+  justify-content:center;
 }

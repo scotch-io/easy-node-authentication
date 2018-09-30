@@ -1,0 +1,214 @@
+/** Pricing Embed Top level Element **/
+#servicebot-pricing-embed * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#servicebot-pricing-embed .servicebot-billing-type-selector {
+    font-family: "Open Sans", "Arial";
+}
+#servicebot-pricing-embed .servicebot-billing-type-selector ul._selector {
+    font-size: 13px;
+    border-radius: 0;
+    background: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#servicebot-pricing-embed
+.servicebot-billing-type-selector
+ul._selector
+li._interval._selected {
+    box-shadow: none;
+    border-radius: 2px;
+    background-color: #3aa6fe;
+}
+#servicebot-pricing-embed .servicebot-pricing-table {
+    border-color: #3aa6fe;
+    border: none;
+}
+
+#servicebot-pricing-embed .servicebot-pricing-table ._tier ._name {
+    font-family: "Merriweather", "Arial";
+    font-size: 20px;
+    color: white;
+    background-color: #3aa6fe;
+}
+#servicebot-pricing-embed .servicebot-pricing-table ._tier ._price {
+    font-size: 40px;
+    color: #3aa6fe;
+}
+#servicebot-pricing-embed
+.servicebot-pricing-table
+._tier
+._price
+._interval-name {
+    font-size: 16px;
+}
+#servicebot-pricing-embed .servicebot-pricing-table ._tier ul._feature-list {
+    margin-bottom: 40px;
+}
+#servicebot-pricing-embed
+.servicebot-pricing-table
+._tier
+ul._feature-list
+._item {
+    font-size: 14px;
+    font-weight: 100;
+    padding: 16px 0;
+}
+#servicebot-pricing-embed .servicebot-pricing-table ._tier button._select-tier {
+    box-shadow: none;
+    color: #64dd17;
+    border-color: #64dd17;
+    font-size: 14px;
+}
+
+/* Sign up */
+#servicebot-pricing-embed{
+    position: relative;
+}
+#servicebot-pricing-embed .back-pricing{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: none;
+    color: #3babfe;
+    margin: 5px;
+}
+.servicebot--rf-embeddable.custom .rf--form-wrapper{
+    border: none;
+}
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .rf--form-inner ._heading-wrapper{
+    background-color: #3babfe;
+}
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .rf--form-inner ._heading-wrapper h2{
+    color: #ffffff;
+}
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .sb-form-group label,
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .sb-form-group .form-input-flex input{
+    color: #222222;
+}
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form button.buttons{
+    background-color: #3babfe;
+}
+.servicebot--rf-embeddable.custom .addon-checkbox-widget-default-value-wrapper .iconToggleField{
+    border-color: #3babfe;
+}
+.servicebot--rf-embeddable.custom .addon-checkbox-widget-default-value-wrapper .iconToggleField.active span.itf-icon,
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .rf--form-inner .rf--summary h4,
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .rf--form-inner .rf--summary .fe--base-price-value, .servicebot--rf-embeddable .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .rf--form-inner .rf--summary .fe--total-price-value,
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form .rf--form-inner .rf--summary .fe--total-price-wrapper .fe--total-price-label h5,
+.servicebot--rf-embeddable.custom .rf--form-wrapper .rf--form .rf--form-content .rf--form-elements .rf--body form button._text{
+    color: #3babfe !important;
+}
+.servicebot--rf-embeddable.custom .form-group{
+    margin-bottom: 0;
+}
+
+/* Login */
+#servicebot-login-form #servicebot-login-embed-container #servicebot-login-form .buttons._login, #servicebot-login-embed-container #servicebot-login-form .buttons._forgot-password-submit{
+    background-color: #3babfe;
+}
+
+/* Billing */
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper h3{
+    font-size: 26px;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf-summary{
+    padding-bottom: 34px;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .servicebot-billing-invoices .__invoice-list-header,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf--current-services-list .mbf--current-services-item .servicebot-pricing-table ._tier,
+.servicebot--embeddable.custom .servicebot-billing-type-selector ul._selector li._interval._selected,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf--current-services-list .mbf--current-services-item .servicebot-subscription .servicebot-billing-type-selector ._selector ._interval._selected:hover,
+.servicebot--embeddable.custom .servicebot-invoice-modal-container .__modal .__header,
+.servicebot--embeddable.custom .servicebot-invoice-modal-container .__modal .__footer button{
+    background-color: #3babfe;
+    font-weight: 400;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .servicebot-billing-invoices .__invoice-list li.__list-items .__invoice-button{
+    color: #3babfe !important;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper,
+.servicebot--embeddable.custom .servicebot-pricing-table ._tier._selected ._name,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .add-on-item-update-submit span,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf-summary ._heading,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf-summary ._items ._item ._value_wrap ._value{
+    color: #222222 !important;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .servicebot-subscription-add-ons .add-on-item-widgets ._add-on-item-widget-wrapper .addon-options-widget-default-value-wrapper > .form-input-flex,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .servicebot-subscription-add-ons .add-on-item-widgets ._add-on-item-widget-wrapper .addon-checkbox-widget-default-value-wrapper .iconToggleField{
+    border-color: #222222;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .add-on-item-update-submit span,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .add-on-item-update-submit label,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .servicebot-subscription-add-ons .add-on-item-widgets ._add-on-item-widget-wrapper .addon-options-widget-default-value-wrapper ._value-input-wrapper ._value-select{
+    font-size: 1em;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf--current-services-list .mbf--current-services-item .servicebot-pricing-table ._tier._selected{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.14);
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf--current-services-list .mbf--current-services-item .servicebot-pricing-table ._tier ._selected-label{
+    background-color: #AEBED3;
+    color: white;
+    font-weight: bold;
+    border-color: transparent;
+}
+.servicebot--embeddable.custom .servicebot-invoice-modal-container .__modal .__header{
+    background-image: none;
+}
+.servicebot--embeddable.custom .servicebot-invoice-modal-container .__modal .__header .__inner .__left h3{
+    color: white;
+}
+.servicebot--embeddable.custom .servicebot-invoice-modal-container .__modal .__footer button{
+    border: none;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper .mbf--current-services-list .mbf--current-services-item .servicebot-pricing-table ._tier button,
+.servicebot--embeddable.custom .mbf--btn-cancel-service,
+.servicebot--embeddable.custom .buttons._add:disabled, .buttons._add[disabled],
+.servicebot--embeddable.custom .buttons._add, .buttons._add,
+.servicebot--embeddable.custom .buttons._primary:disabled, .buttons._primary[disabled]
+.servicebot--embeddable.custom .buttons._primary, .buttons._primary,
+.servicebot--embeddable.custom .servicebot--embeddable.servicebot--manage-billing-form-wrapper .add-on-item-update-submit button,
+.servicebot--embeddable.custom .buttons._add,
+.servicebot--embeddable.custom .buttons._primary,
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper #mbf--funding-form .mbf--update-funding-button-wrapper button.mbf--btn-update-funding,
+.servicebot--embeddable.custom .mbf--btn-resubscribe-service{
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+    border-radius: 50px !important;
+    padding: 7px 21px;
+}
+.servicebot--embeddable.custom .form-help-text{
+    font-size: 15px;
+}
+.servicebot--embeddable.custom.servicebot--manage-billing-form-wrapper .mbf--form-wrapper #mbf--funding-form .mbf--update-funding-wrapper .update-card-container button.mbf--btn-update-funding-save{
+    top: -53px;
+    right: 0;
+}
+.servicebot--embeddable.custom .buttons._add, .servicebot--embeddable.custom .buttons._primary,
+.servicebot--embeddable.custom .mbf--btn-resubscribe-service,
+#servicebot-login-form #servicebot-login-embed-container #servicebot-login-form .buttons._login,
+#servicebot-login-form #servicebot-login-embed-container #servicebot-login-form .buttons._forgot-password-submit{
+    background-color: #3babfe;
+}
+
+/* Seat Management */
+#servicebot-seat-management-form .servicebot-seat-management-container .buttons.__primary{
+    background-color: #3babfe;
+}
+
+/* Login Reactivate */
+#servicebot-login-form #servicebot-login-embed-container #servicebot-resubscribe-form ._checkout ._price ._price-value,
+#servicebot-login-form #servicebot-login-embed-container #servicebot-resubscribe-form ._checkout ._price ._price-unit{
+    color: #3aa6fe;
+}
+#servicebot-login-form #servicebot-login-embed-container #servicebot-resubscribe-form ._checkout .servicebot-resubscribe-form ._submissions .buttons._reactivate-account{
+    background-color: #3babfe;
+}
+
+/* Account Profile */
