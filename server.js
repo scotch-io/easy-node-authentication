@@ -11,10 +11,21 @@ var flash    = require('connect-flash');
 
 var configDB = require('./config/database.js');
 
+
 // configuration ===============================================================
-mongoose.connect(configDB.url, {}, function(err){
-	console.error(err);
-}); // connect to our database
+
+let connectToMongo = function(){
+    mongoose.connect(configDB.url, {}, function(err){
+    	if(err){
+			console.error("MONGO ERR", err);
+			setTimeout(connectToMongo, 10000)
+		}
+		else{
+    		console.log("mongo success!");
+		}
+    }); // connect to our database
+}
+connectToMongo()
 
 require('./config/passport')(passport); // pass passport for configuration
 
