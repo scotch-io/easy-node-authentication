@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TicketR</title>
-    <meta name="description" content="TicketR Description">
+    <title>Example SaaS</title>
+    <meta name="description" content="Example SaaS Description">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -20,6 +20,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/servicebot-embeds.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,800" rel="stylesheet">
@@ -41,7 +42,7 @@
 <body>
 
 <!-- Header -->
-<nav class="navbar navbar-default theme-bg-nav" data-spy="affix" data-offset-top="60">
+<nav class="navbar navbar-default " data-spy="affix" data-offset-top="60">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
@@ -50,37 +51,32 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="images/logo-white.png" alt="TicketR Logo"></a>
+            <a class="navbar-brand" href="/">#Example SaaS</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="navbar-collapse">
+        <div class="collapse navbar-collapse " id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <% if(user.status) {%>
                 <li><a href="/profile">Dashboard</a></li>
+                <% if (user.accountType === "subscriber") { %>
                 <li><a href="/billing">Billing</a></li>
                 <li><a href="/users">Users</a></li>
-                <li class="solid-item"><a href="/logout">Logout</a></li>
+                <% } %>
+
+                <li class="solid-item"><a class="btn btn-gradient" href="/logout">Logout</a></li>
                 <% } %>
             </ul>
         </div>
     </div>
 </nav>
-<!-- Header End -->
-
-<!-- Page header -->
-<div class="page-header section section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="page-title">Account Billing</h2>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Pricing Table -->
 <div class="pricing-page section section-padding ">
     <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Billing Settings</h2>
+            <p class="section-text">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</p>
+        </div>
         <div class="row">
             <div id="servicebot-management-form"></div>
             <script src="https://js.stripe.com/v3/"></script>
@@ -107,10 +103,10 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="widget logo-widget">
-                        <a class="footer-logo" href="app-landing.html">
-                            <img src="images/footer-logo.png" alt="...">
+                        <a class="footer-logo" href="/">
+                            #Example SaaS
                         </a>
-                        <p class="copyright">©  2018, TicketR</p>
+                        <p class="copyright">©  2018, Example SaaS</p>
                     </div>
                 </div>
 
