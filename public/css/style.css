@@ -176,7 +176,10 @@ input:not([type=radio]):not([type=checkbox]):not([type=submit]):focus, textarea:
 }
 
 .section-padding {
-  padding: 120px 0;
+  padding: 100px 0;
+}
+.features.section-padding {
+  padding: 0;
 }
 .section-padding.bottom-0 {
   padding-bottom: 0;
@@ -196,8 +199,9 @@ input:not([type=radio]):not([type=checkbox]):not([type=submit]):focus, textarea:
 }
 .section-header .section-title {
   margin: 0;
-  font-size: 40px;
-  line-height: 1;
+  font-size: 30px;
+  line-height: 40px;
+  letter-spacing: 0.5px;
 }
 .section-header .section-text {
   margin-top: 25px;
@@ -305,12 +309,13 @@ blockquote:before {
 .sub-section .subsection-title {
   font-size: 30px;
   font-weight: 400;
-  margin-top: 60px;
+  margin-top: 100px;
   margin-bottom: 25px;
 }
 .sub-section .subsection-text {
-  font-size: 17px;
-  line-height: 30px;
+  font-size: 22px;
+  line-height: 40px;
+  letter-spacing: 0.5px;
 }
 .sub-section .list-items {
   list-style: none;
@@ -491,10 +496,33 @@ Buttons
 .btn-gradient {
   background-image: -webkit-gradient(linear, left top, right top, from(#3aa6fe), to(#49deff));
   background-image: linear-gradient(90deg, #3aa6fe 0%, #49deff 100%);
+  color: white;
 }
 .btn-gradient:hover {
   background-image: -webkit-gradient(linear, left top, right top, from(#3aa6fe), to(#3aa6fe));
   background-image: linear-gradient(90deg, #3aa6fe 0%, #3aa6fe 100%);
+  color: white;
+}
+
+.btn-examples {
+  background: #0033a0;
+  color: white;
+  border-radius: 5px;
+}
+.btn-examples:hover {
+  background: #000000;
+  color: white;
+}
+
+.btn-signup {
+  background: #00cea0;
+  color: white;
+  border-radius: 5px;
+}
+
+.btn-signup:hover {
+  background: #000000;
+  color: white;
 }
 
 /*------------------------------------
@@ -619,12 +647,6 @@ Buttons
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.navbar-default.affix .navbar-nav > li > a {
-  color: #505050;
-}
-.navbar-default.affix .navbar-nav > li > a:hover {
-  color: #3aa6fe;
-}
 .navbar-default.software-landing-nav .navbar-nav .solid-item a {
   background-color: #fff;
   color: #505050;
@@ -718,7 +740,7 @@ Buttons
 .banner .banner-item .banner-content .banner-text {
   font-size: 18px;
   line-height: 28px;
-  font-weight: 300;
+  font-weight: 900;
 }
 .banner .banner-item .banner-content .banner-button {
   margin-top: 45px;
@@ -3069,4 +3091,34 @@ Coming Soon
 .dashboard-page.section .row{
   display: flex;
   justify-content:center;
+}
+
+
+
+.img-responsive{
+  width: 100%;
+}
+.img-responsive.login{
+  width: 70%;
+  margin-left: 15%;
+}
+.img-responsive.seatmanagement {
+  width: 85%;
+  margin-left: 7%;
+}
+
+.m-t-30 {
+  margin-top: 30px;
+}
+
+.theme-color.blue a{
+  color: #39a6fe;
+}
+.theme-color.blue a:hover{
+  color: #000000;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover {
+  color: #3aa6fe;
+  background-color: transparent;
 }
