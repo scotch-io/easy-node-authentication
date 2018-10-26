@@ -212,3 +212,37 @@ ul._feature-list
 }
 
 /* Account Profile */
+#servicebot-pricing-embed .servicebot-pricing-table ._tier ._price ._interval-name {
+    display: block;
+    margin: 7px auto;
+}
+
+span._price {
+    height: 70px;
+}
+
+#servicebot-pricing-embed .servicebot-pricing-table ._tier ._name {
+    font-size: 25px;
+    color: #222222;
+    padding: 50px;
+}
+
+#servicebot-pricing-embed .servicebot-pricing-table ._tier ._price {
+    font-size: 25px;
+}
+
+#servicebot-pricing-embed .servicebot-pricing-table ._tier button._select-tier {
+    border-radius: 2px;
+}
+
+.servicebot-pricing-table ._tier:after {
+    height: calc(100% - 60px);
+    top: auto;
+    bottom: 0;
+    border-right: 1px solid #f4f6fb;
+}
+
+#servicebot-pricing-embed .servicebot-pricing-table ._tier ._name {
+    background: #fff;
+}
+
